@@ -1,0 +1,447 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    
+{% block css %}
+    <link rel="icon" href="{% static 'icon/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/public.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home-style.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/FA/css/all.min.css' %}">
+{% endblock css %}
+
+{% block content %}
+    <main class="main-container">
+        <!-- banner website -->
+        <section class="common-hero-banner banner-carousel" aria-roledescription="carousel" aria-label="بنرهای تبلیغاتی">
+            <!-- Hidden buttons that decide which slide is shown -->
+            <input class="carousel-radio" type="radio" name="slide" id="slide1" aria-label="اسلاید اول" checked>
+            <input class="carousel-radio" type="radio" name="slide" id="slide2" aria-label="اسلاید دوم">
+            <input class="carousel-radio" type="radio" name="slide" id="slide3" aria-label="اسلاید سوم">
+            <input class="carousel-radio" type="radio" name="slide" id="slide4" aria-label="اسلاید چهارم">
+
+            <div class="carousel-wrapper">
+                {% if banners %}
+                {% for banner in banners %}
+                <div class="carousel-slide">
+                    <a href="{% url 'ads:ads-list' %}">
+                        <picture>
+                            <source media="(min-width: 1440px)" srcset="{{ banner.image_desktop.url }}">
+                            <source media="(min-width: 768px)" srcset="{{ banner.image_tablet.url }}">
+                            <img src="{{ banner.image_mobile.url }}" alt="ثبت آگهی رایگان" fetchpriority="high">
+                        </picture>
+                    </a>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            <!-- prev / next arrows -->
+            <div class="carousel-arrows carousel-arrows-1">
+                <label for="slide4" aria-label="اسلاید قبلی"><i class="fa-solid fa-chevron-right"
+                        aria-hidden="true"></i></label>
+                <label for="slide2" aria-label="اسلاید بعدی"><i class="fa-solid fa-chevron-left"
+                        aria-hidden="true"></i></label>
+            </div>
+            <div class="carousel-arrows carousel-arrows-2">
+                <label for="slide1" aria-label="اسلاید قبلی"><i class="fa-solid fa-chevron-right"
+                        aria-hidden="true"></i></label>
+                <label for="slide3" aria-label="اسلاید بعدی"><i class="fa-solid fa-chevron-left"
+                        aria-hidden="true"></i></label>
+            </div>
+            <div class="carousel-arrows carousel-arrows-3">
+                <label for="slide2" aria-label="اسلاید قبلی"><i class="fa-solid fa-chevron-right"
+                        aria-hidden="true"></i></label>
+                <label for="slide4" aria-label="اسلاید بعدی"><i class="fa-solid fa-chevron-left"
+                        aria-hidden="true"></i></label>
+            </div>
+            <div class="carousel-arrows carousel-arrows-4">
+                <label for="slide3" aria-label="اسلاید قبلی"><i class="fa-solid fa-chevron-right"
+                        aria-hidden="true"></i></label>
+                <label for="slide1" aria-label="اسلاید بعدی"><i class="fa-solid fa-chevron-left"
+                        aria-hidden="true"></i></label>
+            </div>
+
+            <!-- dots -->
+            <div class="carousel-dots">
+                <label for="slide1" aria-label="اسلاید اول"></label>
+                <label for="slide2" aria-label="اسلاید دوم"></label>
+                <label for="slide3" aria-label="اسلاید سوم"></label>
+                <label for="slide4" aria-label="اسلاید چهارم"></label>
+            </div>
+        </section>
+
+
+
+        <!-- featured ads -->
+        <section class="ads-section" aria-labelledby="featured-title">
+            <div class="ads-section-header">
+                <h2 class="ads-section-title" id="featured-title">
+                    <i class="fa-solid fa-star"></i>
+                    آگهی‌های منتخب
+                </h2>
+                <a href="#" class="view-all-ads">مشاهده همه<i class="fa-solid fa-chevron-left"></i></a>
+            </div>
+
+            <div class="ads-gallery">
+                <!-- first ad -->
+                <article class="common-ad-card ad-card">
+                    <a href="ad-details.html?id=1" class="ad-card-link">
+                        <div class="ad-card-image">
+                            <img src="../assets/image/image-ads-1.jpg" alt="آپارتمان ۱۲۵ متری نوساز فول امکانات"
+                                loading="lazy">
+
+                            <span class="ad-badge featured-badge">منتخب</span>
+                        </div>
+
+                        <div class="ad-card-content">
+                            <h3 class="ad-title">
+                                آپارتمان ۱۲۵ متری نوساز فول امکانات
+                            </h3>
+                            <p class="ad-price">
+                                ۴,۲۰۰,۰۰۰,۰۰۰ تومان
+                            </p>
+                            <div class="ad-card-footer">
+                                <span>تهران، سعادت‌آباد</span>
+                                <span>۱۰ دقیقه پیش</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <input type="checkbox" id="favorite-1" class="favorite-checkbox">
+                    <label for="favorite-1" class="favorite-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </label>
+                </article>
+
+                <!-- second ads -->
+                <article class="common-ad-card ad-card">
+                    <a href="ad-details.html?id=2" class="ad-card-link">
+                        <div class="ad-card-image">
+                            <img src="../assets/image/image-ads-2.jpg" alt="پروژه ۱۲۰۰ متری مدل ۱۴۰۲ کم‌کارکرد"
+                                loading="lazy">
+                            <span class="ad-badge featured-badge">منتخب</span>
+                        </div>
+
+                        <div class="ad-card-content">
+                            <h3 class="ad-title">پروژه ۱۲۰۰ متری مدل ۱۴۰۲ کم‌کارکرد</h3>
+                            <p class="ad-price">۸۶۰,۰۰۰,۰۰۰ تومان</p>
+
+                            <div class="ad-card-footer">
+                                <span>اصفهان، مرداویج</span>
+                                <span>۱ ساعت پیش</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <input type="checkbox" id="favorite-2" class="favorite-checkbox">
+                    <label for="favorite-2" class="favorite-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </label>
+                </article>
+
+                <!-- third ad -->
+                <article class="common-ad-card ad-card">
+                    <a href="ad-details.html?id=3" class="ad-card-link">
+                        <div class="ad-card-image">
+                            <img src="../assets/image/image-ads-3.jpg" alt="لپ‌تاپ گیمینگ ایسوس ROG Core i7"
+                                loading="lazy">
+                            <span class="ad-badge featured-badge">منتخب</span>
+                        </div>
+
+                        <div class="ad-card-content">
+                            <h3 class="ad-title">لپ‌تاپ گیمینگ ایسوس ROG Core i7</h3>
+                            <p class="ad-price">۵۴,۰۰۰,۰۰۰ تومان</p>
+
+                            <div class="ad-card-footer">
+                                <span>شیراز، معالی‌آباد</span>
+                                <span>۳ ساعت پیش</span>
+                            </div>
+                        </div>
+                    </a>
+                    <input type="checkbox" id="favorite-3" class="favorite-checkbox">
+                    <label for="favorite-3" class="favorite-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </label>
+
+                </article>
+
+                <!-- fourth ad -->
+                <article class="common-ad-card ad-card">
+
+                    <a href="ad-details.html?id=4" class="ad-card-link">
+                        <div class="ad-card-image">
+                            <img src="../assets/image/image-ads-4.jpg" alt="ست مبل راحتی ۷ نفره مدرن چرم"
+                                loading="lazy">
+                            <span class="ad-badge featured-badge">منتخب</span>
+                        </div>
+
+                        <div class="ad-card-content">
+                            <h3 class="ad-title">ست مبل راحتی ۷ نفره مدرن چرم</h3>
+                            <p class="ad-price">۳۵,۰۰۰,۰۰۰ تومان</p>
+
+                            <div class="ad-card-footer">
+                                <span>مشهد، سجاد</span>
+                                <span>۵ ساعت پیش</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <input type="checkbox" id="favorite-4" class="favorite-checkbox">
+                    <label for="favorite-4" class="favorite-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </label>
+
+                </article>
+
+            </div>
+        </section>
+
+
+        <!-- urgent ads -->
+        <section class="ads-section" aria-labelledby="urgent-title">
+            <div class="ads-section-header">
+                <h2 class="ads-section-title" id="urgent-title">
+                    <i class="fa-solid fa-bolt"></i>
+                    آگهی‌های فوری
+                </h2>
+                <a href="#" class="view-all-ads">مشاهده همه<i class="fa-solid fa-chevron-left"></i></a>
+            </div>
+
+            <div class="ads-gallery">
+
+                <!-- first ad -->
+                <article class="common-ad-card ad-card">
+                    <a href="ad-details.html?id=5" class="ad-card-link">
+                        <div class="ad-card-image">
+                            <img src="../assets/image/image-ads-5.jpg" alt="آیفون ۱۳ پرو مکس ۲۵۶ گیگ در حد نو"
+                                loading="lazy">
+                            <span class="ad-badge urgent-badge">فوری</span>
+                        </div>
+
+                        <div class="ad-card-content">
+                            <h3 class="ad-title">آیفون ۱۳ پرو مکس ۲۵۶ گیگ در حد نو</h3>
+                            <p class="ad-price">۶۲,۰۰۰,۰۰۰ تومان</p>
+
+                            <div class="ad-card-footer">
+                                <span>کرج، گوهردشت</span>
+                                <span>۱۰ دقیقه پیش</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <input type="checkbox" id="favorite-5" class="favorite-checkbox">
+                    <label for="favorite-5" class="favorite-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </label>
+                </article>
+
+                <!-- second ad -->
+                <article class="common-ad-card ad-card">
+                    <a href="ad-details.html?id=6" class="ad-card-link">
+                        <div class="ad-card-image">
+                            <img src="../assets/image/image-ads-6.jpg" alt="استخدام فروشنده حضوری پوشاک" loading="lazy">
+                            <span class="ad-badge urgent-badge">فوری</span>
+                        </div>
+
+                        <div class="ad-card-content">
+                            <h3 class="ad-title">استخدام فروشنده حضوری پوشاک</h3>
+                            <p class="ad-price">حقوق توافقی + بیمه</p>
+
+                            <div class="ad-card-footer">
+                                <span>تهران، ولیعصر</span>
+                                <span>۳۰ دقیقه پیش</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <input type="checkbox" id="favorite-6" class="favorite-checkbox">
+                    <label for="favorite-6" class="favorite-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </label>
+                </article>
+
+                <!-- third ad -->
+                <article class="common-ad-card ad-card">
+                    <a href="ad-details.html?id=7" class="ad-card-link">
+                        <div class="ad-card-image">
+                            <img src="../assets/image/image-ads-7.jpg" alt="کنسول پلی‌استیشن ۵ ریجن دو استاندارد"
+                                loading="lazy">
+                            <span class="ad-badge urgent-badge">فوری</span>
+                        </div>
+
+                        <div class="ad-card-content">
+                            <h3 class="ad-title">کنسول پلی‌استیشن ۵ ریجن دو استاندارد</h3>
+                            <p class="ad-price">۲۸,۹۰۰,۰۰۰ تومان</p>
+
+                            <div class="ad-card-footer">
+                                <span>تبریز، آبرسان</span>
+                                <span>۲ ساعت پیش</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <input type="checkbox" id="favorite-7" class="favorite-checkbox">
+                    <label for="favorite-7" class="favorite-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </label>
+                </article>
+
+                <!-- fourth ad -->
+                <article class="common-ad-card ad-card">
+                    <a href="ad-details.html?id=8" class="ad-card-link">
+                        <div class="ad-card-image">
+                            <img src="../assets/image/image-ads-8.jpg" alt="موتورسیکلت کلیک ۱۵۰ سی‌سی مدل ۱۴۰۱"
+                                loading="lazy">
+                            <span class="ad-badge urgent-badge">فوری</span>
+                        </div>
+
+                        <div class="ad-card-content">
+                            <h3 class="ad-title">موتورسیکلت کلیک ۱۵۰ سی‌سی مدل ۱۴۰۱</h3>
+                            <p class="ad-price">۹۵,۰۰۰,۰۰۰ تومان</p>
+
+                            <div class="ad-card-footer">
+                                <span>قم، سالاریه</span>
+                                <span>۳ ساعت پیش</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <input type="checkbox" id="favorite-8" class="favorite-checkbox">
+                    <label for="favorite-8" class="favorite-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </label>
+                </article>
+
+            </div>
+        </section>
+
+
+        <!-- ads near you -->
+        <section class="ads-section" aria-labelledby="nearby-title">
+            <div class="ads-section-header">
+                <h2 class="ads-section-title" id="nearby-title">
+                    <i class="fa-solid fa-location-dot"></i>
+                    آگهی‌های نزدیک شما
+                </h2>
+                <a href="#" class="view-all-ads">مشاهده همه<i class="fa-solid fa-chevron-left"></i></a>
+            </div>
+
+            <div class="ads-gallery">
+
+                <!-- first ad -->
+                <article class="common-ad-card ad-card">
+                    <a href="ad-details.html?id=9" class="ad-card-link">
+                        <div class="ad-card-image">
+                            <img src="../assets/image/image-ads-9.jpg" alt="آپارتمان ۹۰ متری دو خوابه" loading="lazy">
+                        </div>
+
+                        <div class="ad-card-content">
+                            <h3 class="ad-title">آپارتمان ۹۰ متری دو خوابه</h3>
+                            <p class="ad-price">۳,۸۰۰,۰۰۰,۰۰۰ تومان</p>
+
+                            <div class="ad-card-footer">
+                                <span>تهران، تهرانپارس</span>
+                                <span>۲۰ دقیقه پیش</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <input type="checkbox" id="favorite-9" class="favorite-checkbox">
+                    <label for="favorite-9" class="favorite-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </label>
+                </article>
+
+                <!-- second ad -->
+                <article class="common-ad-card ad-card">
+                    <a href="ad-details.html?id=10" class="ad-card-link">
+                        <div class="ad-card-image">
+                            <img src="../assets/image/image-ads-10.jpg" alt="میز تحریر چوبی سالم و تمیز" loading="lazy">
+                        </div>
+
+                        <div class="ad-card-content">
+                            <h3 class="ad-title">میز تحریر چوبی سالم و تمیز</h3>
+                            <p class="ad-price">۲,۵۰۰,۰۰۰ تومان</p>
+
+                            <div class="ad-card-footer">
+                                <span>تهران، نارمک</span>
+                                <span>۱ ساعت پیش</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <input type="checkbox" id="favorite-10" class="favorite-checkbox">
+                    <label for="favorite-10" class="favorite-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </label>
+                </article>
+
+                <!-- third ad -->
+                <article class="common-ad-card ad-card">
+                    <a href="ad-details.html?id=11" class="ad-card-link">
+                        <div class="ad-card-image">
+                            <img src="../assets/image/image-ads-11.jpg" alt="دوچرخه کوهستان ۲۶ اینچ" loading="lazy">
+                        </div>
+
+                        <div class="ad-card-content">
+                            <h3 class="ad-title">دوچرخه کوهستان ۲۶ اینچ</h3>
+                            <p class="ad-price">۷,۲۰۰,۰۰۰ تومان</p>
+
+                            <div class="ad-card-footer">
+                                <span>تهران، پیروزی</span>
+                                <span>۲ ساعت پیش</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <input type="checkbox" id="favorite-11" class="favorite-checkbox">
+                    <label for="favorite-11" class="favorite-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </label>
+                </article>
+
+                <!-- fourth ad -->
+                <article class="common-ad-card ad-card">
+                    <a href="ad-details.html?id=12" class="ad-card-link">
+                        <div class="ad-card-image">
+                            <img src="../assets/image/image-ads-12.jpg" alt="میز ناهارخوری ۶ نفره" loading="lazy">
+                        </div>
+
+                        <div class="ad-card-content">
+                            <h3 class="ad-title">میز ناهارخوری ۶ نفره</h3>
+                            <p class="ad-price">۱۲,۰۰۰,۰۰۰ تومان</p>
+
+                            <div class="ad-card-footer">
+                                <span>تهران، تهران‌نو</span>
+                                <span>۳ ساعت پیش</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <input type="checkbox" id="favorite-12" class="favorite-checkbox">
+                    <label for="favorite-12" class="favorite-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </label>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+{% endblock content %}
+
+{% block scripts %}
+
+{% endblock scripts %}

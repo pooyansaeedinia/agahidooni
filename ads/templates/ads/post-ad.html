@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+آگهی دونی | ثبت آگهی
+{% endblock title %}
+
+{% block css %}
+<link rel="icon" href="{% static 'icon/favicon.ico' %}">
+<link rel="stylesheet" href="{% static 'css/public.css' %}">
+<link rel="stylesheet" href="{% static 'css/post-ad-style.css' %}">
+<link rel="stylesheet" href="{% static 'fonts/FA/css/all.min.css' %}">
+{% endblock css %}
+
+{% block content %}
+<main class="main-container">
+    <!-- banner post ad -->
+    <section class="common-hero-banner post-page-banner" aria-label="بنر ثبت آگهی">
+        <picture>
+            <source media="(min-width: 1440px)" srcset="{% static 'media/images/desktop-post-banner.png' %}">
+            <source media="(min-width: 768px)" srcset="{% static 'media/images/tablet-post-banner.png' %}">
+            <img src="{% static 'media/images/mobile-post-banner.png' %}" alt="ثبت آگهی رایگان در آگهی دونی"
+                fetchpriority="high">
+        </picture>
+    </section>
+
+    <!-- post ad form -->
+    <form class="post-ad-form" id="adForm" action="#" method="post">
+        <div class="form-container">
+
+            <!-- ad info -->
+            <section class="form-ad-info" aria-labelledby="info-title">
+                <h2 class="form-ad-title" id="info-title">اطلاعات آگهی</h2>
+
+                <div class="form-layout">
+                    <fieldset class="form-field-wrapper">
+                        <legend class="form-field-title">نوع آگهی</legend>
+                        <div class="choice-container">
+                            <input type="hidden" name="ad_type" id="ad-type" value="product">
+                            <a class="option-btn" href="#" role="button" data-ad-type="product"
+                                aria-pressed="true">محصول</a>
+                            <a class="option-btn" href="#" role="button" data-ad-type="service"
+                                aria-pressed="false">خدمات</a>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-field-wrapper">
+                        <label class="form-field-title" for="ad-category">دسته‌بندی</label>
+                        <select class="form-control" id="ad-category" name="category" required>
+                            <option value="" selected>دسته‌بندی مورد نظر خود را انتخاب کنید</option>
+                            <option value="real-estate">املاک و مسکن</option>
+                            <option value="vehicles">وسایل نقلیه</option>
+                            <option value="electronics">لوازم الکترونیکی</option>
+                            <option value="home">مربوط به خانه</option>
+                            <option value="repair">تعمیرات و نصب</option>
+                            <option value="education">آموزش</option>
+                            <option value="transport">حمل‌ونقل و باربری</option>
+                            <option value="cleaning">نظافت و پذیرایی</option>
+                            <option value="design-dev">طراحی و برنامه‌نویسی</option>
+                        </select>
+                    </div>
+
+                    <fieldset class="form-field-wrapper form-field-fullwidth product-only">
+                        <legend class="form-field-title">وضعیت محصول</legend>
+                        <div class="choice-container">
+                            <input class="choice-input" type="radio" name="condition" id="cond-new" value="new">
+                            <label class="option-btn" for="cond-new">نو</label>
+
+                            <input class="choice-input" type="radio" name="condition" id="cond-like-new"
+                                value="like-new">
+                            <label class="option-btn" for="cond-like-new">در حد نو</label>
+
+                            <input class="choice-input" type="radio" name="condition" id="cond-used" value="used">
+                            <label class="option-btn" for="cond-used">کارکرده</label>
+
+                            <input class="choice-input" type="radio" name="condition" id="cond-repair"
+                                value="needs-repair">
+                            <label class="option-btn" for="cond-repair">نیاز به تعمیر</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-field-wrapper form-field-fullwidth service-only">
+                        <legend class="form-field-title">مدت زمان ارائه خدمات</legend>
+                        <div class="choice-container">
+                            <input class="choice-input" type="radio" name="duration" id="dur-lt1" value="lt-1h">
+                            <label class="option-btn" for="dur-lt1">کمتر از ۱ ساعت</label>
+
+                            <input class="choice-input" type="radio" name="duration" id="dur-1-2" value="1-2h">
+                            <label class="option-btn" for="dur-1-2">۱ تا ۲ ساعت</label>
+
+                            <input class="choice-input" type="radio" name="duration" id="dur-2-5" value="2-5h">
+                            <label class="option-btn" for="dur-2-5">۲ تا ۵ ساعت</label>
+
+                            <input class="choice-input" type="radio" name="duration" id="dur-day" value="1d">
+                            <label class="option-btn" for="dur-day">یک روز</label>
+
+                            <input class="choice-input" type="radio" name="duration" id="dur-days" value="multi-day">
+                            <label class="option-btn" for="dur-days">چند روز</label>
+
+                            <input class="choice-input" type="radio" name="duration" id="dur-nego" value="negotiable">
+                            <label class="option-btn" for="dur-nego">توافقی</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-field-wrapper form-field-fullwidth service-only">
+                        <legend class="form-field-title">نحوه ارائه خدمات</legend>
+                        <div class="choice-container">
+                            <input class="choice-input" type="checkbox" name="delivery[]" id="mode-onsite"
+                                value="onsite">
+                            <label class="option-btn" for="mode-onsite">حضوری</label>
+
+                            <input class="choice-input" type="checkbox" name="delivery[]" id="mode-online"
+                                value="online">
+                            <label class="option-btn" for="mode-online">آنلاین</label>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-field-wrapper form-field-fullwidth service-only">
+                        <label class="form-field-title" for="service-area">محدوده ارائه خدمات</label>
+                        <input class="form-control" type="text" id="service-area" name="service_area"
+                            placeholder="مثلاً: تهران، منطقه ۱" autocomplete="off">
+                    </div>
+                </div>
+            </section>
+
+            <!-- description & price -->
+            <section class="form-ad-info" aria-labelledby="desc-title">
+                <h2 class="form-ad-title" id="desc-title">توضیحات و قیمت</h2>
+
+                <div class="form-layout">
+                    <div class="form-field-wrapper form-field-fullwidth">
+                        <label class="form-field-title" for="ad-title">عنوان آگهی</label>
+                        <input class="form-control" type="text" id="ad-title" name="title" maxlength="100"
+                            placeholder="عنوان آگهی خود را وارد کنید" autocomplete="off" required>
+                    </div>
+
+                    <div class="form-field-wrapper form-field-fullwidth">
+                        <label class="form-field-title" for="ad-description">توضیحات آگهی</label>
+                        <textarea class="form-control" id="ad-description" name="description" rows="5" maxlength="1000"
+                            placeholder="توضیحات بیشتری درباره آگهی بنویسید" required></textarea>
+                    </div>
+
+                    <div class="form-field-wrapper form-field-fullwidth">
+                        <label class="form-field-title" for="ad-price">قیمت (تومان)</label>
+                        <input class="form-control" type="number" inputmode="numeric" id="ad-price" name="price" min="0"
+                            placeholder="قیمت را وارد کنید" autocomplete="off" required>
+                    </div>
+                </div>
+            </section>
+
+            <!-- upload images -->
+            <section class="form-ad-info" aria-labelledby="images-title">
+                <h2 class="form-ad-title" id="images-title">تصاویر</h2>
+                <input class="visually-hidden upload-image-input" type="file" id="ad-images" name="images"
+                    accept="image/png, image/jpeg, image/webp" multiple>
+                <label class="upload-image-box" for="ad-images">
+                    <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>
+                    <span>آپلود عکس</span>
+                    <small>فرمت‌های JPG، PNG یا WebP حداکثر ۶ تصویر</small>
+                </label>
+                <p class="upload-msg" id="uploadMsg" role="status" aria-live="polite"></p>
+            </section>
+
+            <!-- location -->
+            <section class="form-ad-info" aria-labelledby="location-title">
+                <h2 class="form-ad-title" id="location-title">آدرس</h2>
+
+                <div class="form-layout">
+                    <div class="form-field-wrapper form-field-fullwidth">
+                        <div class="form-pair" role="group" aria-labelledby="location-title">
+                            <div>
+                                <label class="form-field-title" for="ad-province">استان</label>
+                                <select class="form-control" id="ad-province" name="province" required>
+                                    <option value="tehran" selected>تهران</option>
+                                    <option value="isfahan">اصفهان</option>
+                                    <option value="fars">فارس</option>
+                                    <option value="razavi-khorasan">خراسان رضوی</option>
+                                    <option value="east-azerbaijan">آذربایجان شرقی</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="form-field-title" for="ad-city">شهر</label>
+                                <select class="form-control" id="ad-city" name="city" required>
+                                    <option value="tehran" selected>تهران</option>
+                                    <option value="karaj">کرج</option>
+                                    <option value="shahriar">شهریار</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-field-wrapper form-field-fullwidth">
+                        <label class="form-field-title" for="ad-address">خیابان / کوچه</label>
+                        <input class="form-control" type="text" id="ad-address" name="address"
+                            placeholder="مثلاً: خیابان رشیدی، پلاک ۳۱۳" autocomplete="street-address">
+                    </div>
+                </div>
+            </section>
+
+            <!-- form action button -->
+            <div class="form-actions">
+                <button class="common-design-btn btn-clear-form" type="reset">پاک کردن فرم</button>
+                <button class="common-design-btn btn-post-ad" type="submit">ثبت آگهی</button>
+            </div>
+
+        </div>
+    </form>
+</main>
+{% endblock content %}

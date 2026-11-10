@@ -1,0 +1,722 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        {% block title %}
+            آگهی دونی | خرید و فروش کالا و خدمات
+        {% endblock title %}
+    </title>
+    <meta name="description" content="آگهی دونی؛ خرید و فروش کالا و خدمات در سراسر ایران">
+    {% block css %}
+        
+    {% endblock css %}
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/css-reset-style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+
+<body>
+{% block header %}
+    <header class="header1">
+        <div class="header-container">
+
+            <button class="menu-toggle" id="menuToggle" type="button"
+                aria-label="باز کردن منو" aria-controls="mobileMenu" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <img class="img_logo" src="{% static 'logo/Agahidooni_without_agahidooni1.png' %}" alt="آگهی دونی لوگو">
+
+            <nav class="main-nav" aria-label="منوی اصلی">
+                <button class="nav-item filter-open-btn" id="filterOpenBtn" type="button">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>فیلترها</span>
+                </button>
+            </nav>
+
+            <div class="city-select">
+                <div class="location-input-wrap">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <input type="text" id="cityInput" list="citiesList"
+                        placeholder="انتخاب شهر..." value="تهران"
+                        autocomplete="off" aria-label="انتخاب شهر">
+                </div>
+            </div>
+
+            <form class="search-box" id="searchForm" role="search"
+                method="get" action="{% url 'ads:ads-list' %}">
+                <i class="fa-solid fa-search search-icon"></i>
+                <input type="search" id="searchInput" name="q"
+                    placeholder="جستجو در همه کالاها و خدمات..."
+                    aria-label="جستجو در همه کالاها و خدمات"
+                    value="{{ request.GET.q|default:'' }}">
+            </form>
+
+            <div class="header-actions">
+                
+                {% if user.is_authenticated %}
+                    <a href="{% url 'accounts:login' %}" class="btn-login" id="loginBtn" aria-label="ورود به حساب کاربری">
+                    <i class="fa-solid fa-user"></i>
+                    <span>داشبورد من</span>
+                </a>
+                {% else %}
+                <a href="{% url 'accounts:login' %}" class="btn-login" id="loginBtn" aria-label="ورود به حساب کاربری">
+                    <i class="fa-solid fa-user"></i>
+                    <span>ورود / حساب من</span>
+                </a>
+                {% endif %}
+
+                <div class="user-menu" id="userMenu" hidden>
+                    <button class="user-avatar-btn" id="userAvatarBtn"
+                        type="button" aria-label="منوی حساب کاربری" aria-expanded="false">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="user-dropdown-header">
+                            <span id="userPhone">0912•••••••</span>
+                        </div>
+
+                        <a href="/my-ads" class="dropdown-item">
+                            <i class="fa-solid fa-box-archive"></i>
+                            <span>آگهی‌های من</span>
+                        </a>
+
+                        <a href="/settings" class="dropdown-item">
+                            <i class="fa-solid fa-gear"></i>
+                            <span>تنظیمات حساب کاربری</span>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <button type="button" class="dropdown-item logout" id="logoutBtn">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>خروج از حساب کاربری</span>
+                        </button>
+                    </div>
+                </div>
+
+                <a href="{% url 'ads:post-ad' %}" class="btn-post" aria-label="ثبت آگهی">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>ثبت آگهی</span>
+                </a>
+
+            </div>
+
+            <div class="container">
+                <label class="theme-switch" for="switch" title="تغییر تم">
+                    <input type="checkbox" id="switch">
+                    <i class="fa-solid fa-moon moon"></i>
+                    <i class="fa-solid fa-sun sun"></i>
+                </label>
+            </div>
+
+        </div>
+    </header>
+
+    <datalist id="citiesList">
+        <option value="تهران">
+        <option value="آمل">
+        <option value="اراک">
+        <option value="اردبیل">
+        <option value="ارومیه">
+        <option value="اصفهان">
+        <option value="اهواز">
+        <option value="شیراز">
+        <option value="بجنورد">
+        <option value="بندرعباس">
+        <option value="بوشهر">
+        <option value="بیرجند">
+        <option value="تبریز">
+        <option value="تهران">
+
+    </datalist>
+
+    <div class="filter-overlay" id="filterOverlay"></div>
+
+    <section class="filter-modal" id="filterModal"
+        role="dialog" aria-modal="true" aria-labelledby="filterTitle">
+
+        <div class="filter-modal-header">
+            <button type="button" class="filter-close-btn" id="filterCloseBtn" aria-label="بستن فیلترها">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="filter-search-area">
+            <div class="filter-search-box">
+                <i class="fa-solid fa-search" id="search_left"></i>
+                <input type="search" id="filterSearchInput" placeholder="ماشین، چای‌ساز، موبایل و ...">
+                <button type="button" id="clearFilterSearch" aria-label="پاک کردن جستجو">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="filter-search-results" id="filterSearchResults" hidden></div>
+        </div>
+
+        <div class="filter-body" id="filterBody">
+
+            <div class="filter-column">
+
+                <section class="filter-section">
+                    <div class="filter-section-heading">
+                        <h5>دسته‌بندی آگهی</h5>
+                    </div>
+
+                    <div class="filter-options_bar">
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="وسایل نقلیه">
+                            <span class="custom-checkbox"></span>
+                            <span>وسایل نقلیه</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="خدمات اینترنتی">
+                            <span class="custom-checkbox"></span>
+                            <span>خدمات اینترنتی و دیجیتال</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="مهمانی">
+                            <span class="custom-checkbox"></span>
+                            <span>تجهیزات پذیرایی و مهمانی</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="سایر">
+                            <span class="custom-checkbox"></span>
+                            <span>سایر موارد</span>
+                        </label>
+                    </div>
+                </section>
+
+                <section class="filter-section">
+                    <div class="filter-section-heading">
+                        <h3>وضعیت کالا</h3>
+                    </div>
+
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="condition" value="نو">
+                            <span class="custom-checkbox"></span>
+                            <span>کاملا نو</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" name="condition" value="کارکرده">
+                            <span class="custom-checkbox"></span>
+                            <span>کارکرده و دست دوم</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" name="condition" value="در حد نو">
+                            <span class="custom-checkbox"></span>
+                            <span>در حد نو</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" name="condition" value="نیاز به تعمیر">
+                            <span class="custom-checkbox"></span>
+                            <span>نیاز به تعمیر</span>
+                        </label>
+                    </div>
+                </section>
+
+            </div>
+
+            <div class="filter-column">
+
+                <section class="filter-section_price">
+                    <div class="price-filter">
+                        <h4>محدوده قیمت</h4>
+
+                        <div class="price-values">
+                            <div>
+                                <span>از</span>
+                                <strong id="min-value">500,000</strong>
+                                <span>تومان</span>
+                            </div>
+
+                            <div>
+                                <span>تا</span>
+                                <strong id="max-value">8,000,000</strong>
+                                <span>تومان</span>
+                            </div>
+                        </div>
+
+                        <div class="slider-container">
+                            <div class="slider-track"></div>
+                            <div class="slider-range" id="slider-range"></div>
+                            <input type="range" id="min-range" min="0" max="10000000" value="500000" step="100000">
+                            <input type="range" id="max-range" min="0" max="10000000" value="8000000" step="100000">
+                        </div>
+
+                        <div class="price-limits">
+                            <span>۰ تومان</span>
+                            <span>۱۰ میلیون تومان</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="filter-section_map">
+                    <div class="filter-section-heading">
+                        <h4>محدوده مکانی</h4>
+                    </div>
+
+                    <div class="filter-field">
+                        <div class="filter-input-wrap">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <input type="text" id="filterCity" list="citiesList" placeholder="انتخاب شهر">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="filter-section">
+                    <div class="filter-section-heading">
+                        <h3>سایر امکانات</h3>
+                    </div>
+
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="features" value="عکس‌دار">
+                            <span class="custom-checkbox"></span>
+                            <span>فقط آگهی‌های عکس‌دار</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" name="features" value="فوری">
+                            <span class="custom-checkbox"></span>
+                            <span>آگهی‌های فوری</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" name="features" value="تخفیف‌دار">
+                            <span class="custom-checkbox"></span>
+                            <span>دارای تخفیف</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" name="features" value="منتخب">
+                            <span class="custom-checkbox"></span>
+                            <span>آگهی‌های منتخب</span>
+                        </label>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+
+        <div class="filter-modal-footer">
+            <div class="filter-footer-info">
+                <button type="button" id="resetFiltersBtn">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    پاک کردن همه
+                </button>
+            </div>
+
+            <button type="button" class="apply-filters-btn" id="applyFiltersBtn">
+                <span>نمایش آگهی‌ها</span>
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+        </div>
+
+    </section>
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="mobile-menu" id="mobileMenu" aria-label="منوی موبایل" aria-hidden="true" inert>
+
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-title">
+                <img class="menu-logo" src="/logo/Agahidooni_without_agahidooni1.png" alt="آگهی دونی">
+            </div>
+
+            <button class="close-menu" id="closeMenu" type="button" aria-label="بستن منو">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="user-profile" id="userProfile">
+            <div class="user-avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="user-info">
+                <strong id="profileName">سلام، خوش آمدید!</strong>
+                <span id="profileDescription">برای استفاده از امکانات وارد شوید</span>
+            </div>
+        </div>
+
+        <nav class="mobile-nav" aria-label="منوی کاربری">
+
+            <div id="loggedOutSection">
+                <a href="#">
+                    <i class="fa-solid fa-right-to-bracket menu-icon"></i>
+                    <span>ورود به حساب کاربری</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-user-plus menu-icon"></i>
+                    <span>ثبت‌نام</span>
+                </a>
+            </div>
+
+            <div id="loggedInSection" hidden>
+                <a href="#">
+                    <i class="fa-solid fa-gauge-high menu-icon"></i>
+                    <span>داشبورد من</span>
+                    <i class="fa-solid fa-chevron-left menu-arrow"></i>
+                </a>
+            </div>
+
+            <div class="menu-divider"></div>
+
+            <div class="mobile-filter-groups">
+
+                <section class="mobile-filter-accordion">
+
+                    <button class="mobile-filter-accordion-toggle mobile-category-toggle"
+                        id="mobileCategoryToggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="mobileCategorySubmenu">
+
+                        <i class="fa-solid fa-border-all menu-icon"></i>
+                        <span>دسته‌بندی آگهی</span>
+                        <i class="fa-solid fa-chevron-left menu-arrow"></i>
+                    </button>
+
+                    <div class="mobile-filter-accordion-content"
+                        id="mobileCategorySubmenu"
+                        aria-hidden="true"
+                        inert>
+
+                        <div class="mobile-filter-options" id="mobileCategoryOptions"></div>
+
+                        <div class="mobile-filter-actions">
+                            <button type="button" data-clear-group="category">
+                                پاک کردن
+                            </button>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="mobile-filter-accordion">
+
+                    <button class="mobile-filter-accordion-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="mobileConditionSubmenu">
+
+                        <i class="fa-solid fa-box-open menu-icon"></i>
+                        <span>وضعیت کالا</span>
+                        <i class="fa-solid fa-chevron-left menu-arrow"></i>
+                    </button>
+
+                    <div class="mobile-filter-accordion-content"
+                        id="mobileConditionSubmenu"
+                        aria-hidden="true"
+                        inert>
+
+                        <div class="mobile-filter-options">
+
+                            <label class="mobile-filter-option">
+                                <input type="checkbox" name="mobileCondition" value="نو">
+                                <span>کاملا نو</span>
+                            </label>
+
+                            <label class="mobile-filter-option">
+                                <input type="checkbox" name="mobileCondition" value="کارکرده">
+                                <span>کارکرده و دست دوم</span>
+                            </label>
+
+                            <label class="mobile-filter-option">
+                                <input type="checkbox" name="mobileCondition" value="در حد نو">
+                                <span>در حد نو</span>
+                            </label>
+
+                            <label class="mobile-filter-option">
+                                <input type="checkbox" name="mobileCondition" value="نیاز به تعمیر">
+                                <span>نیاز به تعمیر</span>
+                            </label>
+
+                        </div>
+
+                        <div class="mobile-filter-actions">
+                            <button type="button" data-clear-group="condition">
+                                پاک کردن
+                            </button>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="mobile-filter-accordion">
+
+                    <button class="mobile-filter-accordion-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="mobilePriceSubmenu">
+
+                        <i class="fa-solid fa-money-bill-wave menu-icon"></i>
+                        <span>محدوده قیمت</span>
+                        <i class="fa-solid fa-chevron-left menu-arrow"></i>
+                    </button>
+
+                    <div class="mobile-filter-accordion-content"
+                        id="mobilePriceSubmenu"
+                        aria-hidden="true"
+                        inert>
+
+                        <div class="mobile-price-fields">
+
+                            <label>
+                                <span>از قیمت (تومان)</span>
+                                <input type="number" id="mobileMinPrice"
+                                    placeholder="حداقل قیمت" min="0">
+                            </label>
+
+                            <label>
+                                <span>تا قیمت (تومان)</span>
+                                <input type="number" id="mobileMaxPrice"
+                                    placeholder="حداکثر قیمت" min="0">
+                            </label>
+
+                        </div>
+
+                        <div class="mobile-filter-actions">
+                            <button type="button" data-clear-group="price">
+                                پاک کردن
+                            </button>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="mobile-filter-accordion">
+
+                    <button class="mobile-filter-accordion-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="mobileLocationSubmenu">
+
+                        <i class="fa-solid fa-location-dot menu-icon"></i>
+                        <span>محدوده مکانی</span>
+                        <i class="fa-solid fa-chevron-left menu-arrow"></i>
+                    </button>
+
+                    <div class="mobile-filter-accordion-content"
+                        id="mobileLocationSubmenu"
+                        aria-hidden="true"
+                        inert>
+
+                        <div class="mobile-city-field">
+                            <input type="text"
+                                id="mobileFilterCity"
+                                list="citiesList"
+                                placeholder="انتخاب شهر..."
+                                autocomplete="off">
+                        </div>
+
+                        <div class="mobile-filter-actions">
+                            <button type="button" data-clear-group="location">
+                                پاک کردن
+                            </button>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="mobile-filter-accordion">
+
+                    <button class="mobile-filter-accordion-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="mobileFeaturesSubmenu">
+
+                        <i class="fa-solid fa-sliders menu-icon"></i>
+                        <span>سایر امکانات</span>
+                        <i class="fa-solid fa-chevron-left menu-arrow"></i>
+                    </button>
+
+                    <div class="mobile-filter-accordion-content"
+                        id="mobileFeaturesSubmenu"
+                        aria-hidden="true"
+                        inert>
+
+                        <div class="mobile-filter-options">
+
+                            <label class="mobile-filter-option">
+                                <input type="checkbox" name="mobileFeatures" value="عکس‌دار">
+                                <span>فقط آگهی‌های عکس‌دار</span>
+                            </label>
+
+                            <label class="mobile-filter-option">
+                                <input type="checkbox" name="mobileFeatures" value="فوری">
+                                <span>آگهی‌های فوری</span>
+                            </label>
+
+                            <label class="mobile-filter-option">
+                                <input type="checkbox" name="mobileFeatures" value="تخفیف‌دار">
+                                <span>دارای تخفیف</span>
+                            </label>
+
+                            <label class="mobile-filter-option">
+                                <input type="checkbox" name="mobileFeatures" value="منتخب">
+                                <span>آگهی‌های منتخب</span>
+                            </label>
+
+                        </div>
+
+                        <div class="mobile-filter-actions">
+                            <button type="button" data-clear-group="features">
+                                پاک کردن
+                            </button>
+                        </div>
+
+                    </div>
+                </section>
+
+                <div class="mobile-filter-reset">
+                    <button type="button" id="resetFiltersBtn">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        پاک کردن همه
+                    </button>
+                </div>
+
+                <button type="button" class="apply-filters-btn" id="applyFiltersBtn">
+                    <span>نمایش آگهی‌ها</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+
+            </div>
+
+            <div class="menu-divider"></div>
+
+            <button class="logout-button" id="logoutButton" type="button" hidden>
+                <i class="fa-solid fa-right-from-bracket menu-icon"></i>
+                <span>خروج از حساب کاربری</span>
+            </button>
+
+        </nav>
+
+        <div class="mobile-city">
+            <label for="mobileCityInput">انتخاب شهر</label>
+            <div class="location-input-wrap">
+                <i class="fa-solid fa-location-dot"></i>
+                <input type="text" id="mobileCityInput" list="citiesList" value="تهران"
+                    placeholder="انتخاب شهر..." autocomplete="off">
+            </div>
+        </div>
+
+        <button class="mobile-theme-button" id="mobileThemeButton" type="button">
+            <i class="fa-solid fa-moon menu-icon"></i>
+            <span id="themeText">حالت تاریک</span>
+        </button>
+
+    </aside>
+{% endblock header %}
+
+{% block content %}
+{% endblock content %}
+
+{% block footer %}
+<footer id="footer-container">
+    <section class="footer-section">
+
+        <section class="footer-cards footer-about">
+            <div class="footer-logo-box footer-logo">
+                <img src="../assets/img/Agahidooni_logo.png" alt="LOGO" class="footer-logo-img">
+                <p class="footer-logo-title">اگهی دونی</p>
+            </div>
+            <p class="footer-about-text">پلتفرم نیازمندیهای اینترنتی و درج آگهی رایگان خرید و فروش کالاهای نو و دست
+                دوم، املاک،
+                خودرو، استخدام و خدمات در سراسر کشور.</p>
+
+
+        </section>
+        <section class="socialmedia-box">
+            <p class="socialmedia-box-text">
+                ما را در شبکه‌های اجتماعی دنبال کنید!
+            </p>
+
+            <div class="socialmedia-icons">
+                <img src="../assets/img/facebook-light.png" alt="facebook" class="socialmedia-box-img light-icon">
+                <img src="../assets/img/instagram-light.png" alt="instagram" class="socialmedia-box-img light-icon">
+                <img src="../assets/img/linkedin-light.png" alt="linkedin" class="socialmedia-box-img light-icon">
+                <img src="../assets/img/telegram-light.png" alt="telegram" class="socialmedia-box-img light-icon">
+                <img src="../assets/img/whatsapp-light.png" alt="whatsapp" class="socialmedia-box-img light-icon">
+                <img src="../assets/img/facebook-dark.png" alt="facebook" class="socialmedia-box-img dark-icon">
+                <img src="../assets/img/instagram-dark.png" alt="instagram" class="socialmedia-box-img dark-icon">
+                <img src="../assets/img/linkedin-dark.png" alt="linkedin" class="socialmedia-box-img dark-icon">
+                <img src="../assets/img/telegram-dark.png" alt="telegram" class="socialmedia-box-img dark-icon">
+                <img src="../assets/img/whatsapp-dark.png" alt="whatsapp" class="socialmedia-box-img dark-icon">
+            </div>
+        </section>
+        <section class="footer-cards footer-categories">
+            <p class="footer-links-title">دسته بندی ها</p>
+            <ul class="footer-links">
+                <li><a href="*">املاک و مسکن</a></li>
+                <li><a href="*">وسایل نقلیه</a></li>
+                <li><a href="*">لوازم الکترونیکی</a></li>
+                <li><a href="*">مربوط به خانه</a></li>
+                <li><a href="*">خدمات و کسب و کار</a></li>
+            </ul>
+        </section>
+
+        <section class="footer-cards footer-account">
+            <p class="footer-links-title">حساب کاربری</p>
+            <ul class="footer-links">
+                <li><a href="*"> ورود به حساب </a></li>
+                <li><a href="*">ثبت نام سریع</a></li>
+                <li><a href="*">اگهی های من</a></li>
+                <li><a href="*">نشان ها و یادداشت ها</a></li>
+                <li><a href="*">افزایش بازدید اگهی</a></li>
+            </ul>
+        </section>
+
+        <section class="footer-cards footer-support">
+            <p class="footer-links-title">پشتیبانی</p>
+            <ul class="footer-links">
+                <li><a href="*">مرکز پشتیبانی و امداد </a></li>
+                <li><a href="*">راهنمای ثبت اگهی</a></li>
+                <li><a href="*">شیوه های پرداخت امن</a></li>
+                <li><a href="*">گزارش تخلف اگهی</a></li>
+                <li><a href="*">تماس با ما</a></li>
+            </ul>
+        </section>
+
+        <section class="footer-cards footer-rules">
+            <p class="footer-links-title">قوانین و مقررات</p>
+            <ul class="footer-links">
+                <li><a href="*">قوانین انتشار اگهی</a></li>
+                <li><a href="*">حریم خصوصی کاربران</a></li>
+                <li><a href="*">شرایط استفاده</a></li>
+                <li><a href="*">بلاگ و اخبار</a></li>
+            </ul>
+        </section>
+
+    </section>
+
+
+
+</footer>
+{% endblock footer %}
+
+<script src="{% static 'js/header.js' %}" defer></script>
+<script src="{% static 'js/footer.js' %}"></script>
+{% block scripts %}
+    
+{% endblock scripts %}
+
+</body>
+</html>

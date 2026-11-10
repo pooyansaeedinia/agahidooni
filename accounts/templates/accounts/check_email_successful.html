@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header %}
+{% endblock header %}
+{% block footer %}
+{% endblock footer %}
+
+{# css #}
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/check_email.css" %}">
+{% endblock css %}
+
+{# title #}
+{% block title %}
+    آگهی نو || تایید موفق ایمیل
+{% endblock title %}
+
+{# content #}
+{% block content %}
+    <section class="check-email-section">
+        <!--آیکون-->
+        <div class="icon-wrapper">
+            <i class="bi bi-check-circle-fill"></i>
+        </div>
+        <h2>ایمیل با موفقیت تأیید شد</h2>
+        <p class="desc">
+            آدرس ایمیل شما با موفقیت تایید شد. اکنون می‌توانید وارد حساب کاربری خود شوید و خرید خود را آغاز کنید
+        </p>
+        <div class="info-box">
+            <i class="bi bi-gift"></i>
+            <span>به خانواده آگهی دونی خوش آمدید از کد <strong>WELCOME10</strong> برای 10٪ تخفیف اولین سفارش خود استفاده کنید.</span>
+        </div>
+        <a href="{% url "accounts:login" %}" class="back-to-login">ورود به حساب کاربری</a>
+    </section>
+{% endblock content %}

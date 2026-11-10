@@ -1,0 +1,95 @@
+/* Remove all default styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    /* Include padding and border in element's total width and height */
+    margin: 0;
+    /* Remove default margin */
+    padding: 0;
+    /* Remove default padding */
+    text-decoration: none;
+}
+
+/* Set default font properties */
+html {
+    font-size: 100%;
+    /* Set base font size */
+    line-height: 1.5;
+    /* Set line height for better readability */
+}
+
+/* Remove list styles */
+ol,
+ul {
+    list-style: none;
+    /* Remove bullets and numbering */
+}
+
+/* Remove quotes from blockquotes and q elements */
+blockquote,
+q {
+    quotes: none;
+    /* No quotes for blockquote and q elements */
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+    content: '';
+    /* Remove default quote content */
+}
+
+/* Set table layout */
+table {
+    border-collapse: collapse;
+    /* Collapse borders for tables */
+    border-spacing: 0;
+    /* No spacing between table cells */
+}
+
+/* Ensure images are responsive */
+img {
+    max-width: 100%;
+    /* Make images responsive */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+
+/* Set default appearance for form elements */
+input,
+textarea,
+select,
+button {
+    font-family: inherit;
+    /* Inherit font family from parent elements */
+    font-size: inherit;
+    /* Inherit font size from parent elements */
+}
+
+/* Ensure no default styling for buttons */
+button {
+    background: none;
+    /* Remove default button background */
+    border: none;
+    /* Remove default button border */
+    cursor: pointer;
+    /* Change cursor to pointer on hover */
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+    /* Ensure these elements are displayed as block elements */
+}

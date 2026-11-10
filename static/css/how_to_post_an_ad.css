@@ -1,0 +1,258 @@
+/*فونت وزیر*/
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+
+/*رنگ های پروزه در حالت Light mode*/
+:root {
+    --primary: #087F72;
+    --primary-hover: #06665C;
+    --primary-tint: #E0F2EF;
+    --bg-color: #F5F7F7;
+    --surface: #FFFFFF;
+    --text-primary: #172A2A;
+    --text-secondary: #647474;
+    --border: #E1E8E7;
+    --success: #15803D;
+    --info-bg: #E0F2EF;
+    --info-text: #06665C;
+    --danger: #B91C1C;
+    --font-family: 'Vazirmatn', Tahoma, sans-serif;
+    --radius: 8px;
+    --transition: all 0.3s ease;
+    --meta-data: #FF8A3D
+}
+
+/*رنگ های پروژه در حالت Dark mode*/
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary: #63D2BE;
+        --primary-hover: #85E0D0;
+        --primary-tint: #203B36;
+        --bg-color: #111C1B;
+        --surface: #1A2927;
+        --text-primary: #E6F0ED;
+        --text-secondary: #9BAEAA;
+        --border: #30413E;
+        --info-bg: #203B36;
+        --info-text: #85E0D0;
+    }
+}
+
+/*ستایل های عمومی*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family) !important;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    direction: rtl;
+}
+
+.post-an-ad-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 120px 20px 60px;
+}
+
+/*بنر بالای صفحه*/
+.page-banner {
+    background: linear-gradient(135deg, #087F72 0%, #0a9c8c 100%);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    box-shadow: 0 10px 30px rgba(8, 127, 114, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/*استایل دایره در بنر صفحه*/
+.page-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/*آیکون درون بنر*/
+.banner-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+/*عوان بنر*/
+.banner-text h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+/*متن بنر*/
+.banner-text p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+}
+
+/*گرید ثبت آگهی*/
+.post-an-ad-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+/*کارت مراحل*/
+.info-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px 24px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(8, 127, 114, 0.08);
+    border-color: var(--primary);
+}
+
+/*شماره هر مرحله*/
+.card-number {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--primary-tint);
+    line-height: 1;
+}
+
+/* آیکون کارت */
+.card-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    margin: 0 auto 20px;
+    transition: all 0.3s ease;
+}
+
+.info-card:hover .card-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.info-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.info-card p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+/*هایلایت پایین صفحه*/
+.bottom-highlight {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #fff8e1;
+    border-right: 4px solid #f59e0b;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.bottom-highlight i {
+    color: #f59e0b;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.bottom-highlight p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #92400e;
+    margin: 0;
+    text-align: justify;
+}
+
+/*ریسپانسیو*/
+@media (max-width: 1024px) {
+    .post-an-ad-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .post-an-ad-container {
+        padding-top: 100px;
+    }
+
+    .page-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+        gap: 16px;
+    }
+
+    .banner-icon {
+        width: 64px;
+        height: 64px;
+        font-size: 30px;
+    }
+
+    .banner-text h1 {
+        font-size: 20px;
+    }
+
+    .post-an-ad-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .info-card {
+        padding: 24px 20px;
+    }
+
+    .bottom-highlight {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block header %}
+{% endblock header %}
+{% block footer %}
+{% endblock footer %}
+
+{# css #}
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/check_email.css" %}">
+{% endblock css %}
+
+{# title #}
+{% block title %}
+    آگهی دونی || برسی صندوق ایمیل
+{% endblock title %}
+
+{# content #}
+{% block content %}
+    <section class="check-email-section">
+        <!--آیکون-->
+        <div class="icon-wrapper">
+            <i class="bi bi-envelope-check"></i>
+        </div>
+        <h2>ایمیل خود را بررسی کنید</h2>
+        <p class="desc">
+            ما یک ایمیل تایید به آدرس ایمیل شما ارسال کردیم<br>
+            لطفا صندوق ورودی خود را بررسی کنید و برای فعال‌سازی حساب کاربری روی لینک ارسال شده کلیک کنید
+        </p>
+        <div class="info-box">
+            <i class="bi bi-info-circle"></i>
+            <span>ایمیل را دریافت نکردید؟ پوشه اسپم (Spam) خود را بررسی کنید</span>
+        </div>
+        <a href="{% url "accounts:login" %}" class="back-to-login">بازگشت به صفحه ورود</a>
+    </section>
+{% endblock content %}
+
+{# js #}
+{% block js %}    {% endblock js %}

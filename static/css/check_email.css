@@ -1,0 +1,151 @@
+/*فونت وزیر*/
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+
+/*رنگ های پروزه در حالت Light mode*/
+:root {
+    --primary: #087F72;
+    --primary-hover: #06665C;
+    --primary-tint: #E0F2EF;
+    --bg-color: #F5F7F7;
+    --surface: #FFFFFF;
+    --text-primary: #172A2A;
+    --text-secondary: #647474;
+    --border: #E1E8E7;
+    --success: #15803D;
+    --info-bg: #E0F2EF;
+    --info-text: #06665C;
+    --danger: #B91C1C;
+    --font-family: 'Vazirmatn', Tahoma, sans-serif;
+    --radius: 8px;
+    --transition: all 0.3s ease;
+}
+
+/*رنگ های پروژه در حالت Dark mode*/
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary: #63D2BE;
+        --primary-hover: #85E0D0;
+        --primary-tint: #203B36;
+        --bg-color: #111C1B;
+        --surface: #1A2927;
+        --text-primary: #E6F0ED;
+        --text-secondary: #9BAEAA;
+        --border: #30413E;
+        --info-bg: #203B36;
+        --info-text: #85E0D0;
+    }
+}
+
+/*ستایل های عمومی*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family) !important;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    direction: rtl;
+}
+
+/*کانتینر چک اایمیل*/
+.check-email-section {
+    background-color: var(--surface);
+    padding: 50px 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 450px;
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+/*آیکون*/
+.icon-wrapper {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 85px;
+    height: 85px;
+    background-color: var(--primary-tint);
+    color: var(--primary);
+    border-radius: 50%;
+    font-size: 42px;
+    margin-bottom: 28px;
+}
+
+.check-email-section h2 {
+    color: var(--text-primary);
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.check-email-section .desc {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.9;
+    margin-bottom: 26px;
+}
+
+/*اینو باکس*/
+.info-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--info-bg);
+    color: var(--info-text);
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.info-box i {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+/*بازگشت به صفحه قبل*/
+.back-to-login, .back-to-signup {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.back-to-login:hover, .back-to-signup:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/*دکمه بازگشت به صفحه قبل*/
+.login-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    background-color: var(--primary);
+    color: #FFFFFF;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.login-btn:hover {
+    background-color: var(--primary-hover);
+}

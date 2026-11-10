@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header %}
+{% endblock header %}
+{% block footer %}
+{% endblock footer %}
+
+{# css بلاک #}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/authentication.css' %}">
+{% endblock css %}
+
+{# title بلاک #}
+{% block title %}
+    آگهی دونی || ثبت نام
+{% endblock title %}
+
+{# content بلاک #}
+{% block content %}
+    {# خطا های عمومی سرور #}
+    {% if form.non_field_errors %}
+        <div class="server-errors">
+            {% for error in form.non_field_errors %}
+                <div class="error-banner">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    <span>{{ error }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <section class="signup-section">
+        <h2>ساخت حساب کاربری جدید</h2>
+        <!--فرم ثبت نام-->
+        <form action="{% url 'accounts:signup' %}" method="post" class="signup-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="signup-email">ایمیل</label>
+                <input type="email" name="email" id="signup-email" required placeholder="ایمیل خود را وارد کنید" value="{{ form.email.value|default:'' }}" autocomplete="email">
+                {% if form.email.errors %}
+                    {% for error in form.email.errors %}
+                        <small class="error-text">{{ error }}</small>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="signup-password">رمز عبور</label>
+                <input type="password" name="password1" id="signup-password" required placeholder="حداقل 8 کاراکتر" autocomplete="new-password">
+                <i class="bi bi-eye toggle-password"></i>
+                {% if form.password1.errors %}
+                    {% for error in form.password1.errors %}
+                        <small class="error-text">{{ error }}</small>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="signup-confirmation-password">تکرار رمز عبور</label>
+                <input type="password" name="password2" id="signup-confirmation-password" required placeholder="رمز عبور را مجددا وارد کنید" autocomplete="new-password">
+                <i class="bi bi-eye toggle-password"></i>
+                {% if form.password2.errors %}
+                    {% for error in form.password2.errors %}
+                        <small class="error-text">{{ error }}</small>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="signup-resetPassword">
+                <a href="{% url 'accounts:login' %}">قبلا ثبت‌نام کرده‌اید؟ وارد شوید</a>
+            </div>
+            <button class="submitButton" type="submit">ثبت‌نام</button>
+        </form>
+    </section>
+{% endblock content %}
+{# js #}
+{% block js %}
+    <script src="{% static 'js/authentication.js' %}"></script>
+{% endblock js %}

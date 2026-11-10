@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{# بلاک css #}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/authentication.css' %}">
+{% endblock css %}
+
+{# بلاک title #}
+{% block title %}
+    آگهی دونی || ورود به حساب کاربری
+{% endblock title %}
+
+{% block header%}
+{% endblock header %}
+
+{# بلاک content #}
+{% block content %}
+    {# خطا های عمومی سرور #}
+    {% if form.non_field_errors %}
+        <div class="server-errors">
+            {% for error in form.non_field_errors %}
+                <div class="error-banner">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    <span>{{ error }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <section class="login-section">
+        <h2>ورود به حساب کاربری</h2>
+        <!--فرم ورود-->
+        <form action="{% url 'accounts:login' %}" method="post" class="login-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="login-email">ایمیل</label>
+                <input type="email" name="username" id="login-email" required placeholder="ایمیل خود را وارد کنید"
+                       value="{{ form.username.value|default:'' }}" autocomplete="email">
+                {% if form.username.errors %}
+                    {% for error in form.username.errors %}
+                        <small class="error-text">{{ error }}</small>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="login-password">رمز عبور</label>
+                <input type="password" name="password" id="login-password" required
+                       placeholder="رمز عبور خود را وارد کنید" autocomplete="current-password">
+                <i class="bi bi-eye toggle-password" id="login-toggle-password"></i>
+                {% if form.password.errors %}
+                    {% for error in form.password.errors %}
+                        <small class="error-text">{{ error }}</small>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="signup-resetPassword">
+                <a href="{% url 'accounts:password_reset' %}">رمز عبور را فراموش کرده‌اید؟</a>
+                <a href="{% url 'accounts:signup' %}">حساب کاربری ندارید؟ ثبت‌نام کنید</a>
+            </div>
+            <button class="submitButton" type="submit">ورود</button>
+        </form>
+    </section>
+{% endblock content %}
+{% block footer %}
+{% endblock footer %}
+{# بلاک js #}
+{% block js %}
+    <script src="{% static 'js/authentication.js' %}"></script>
+{% endblock js %}

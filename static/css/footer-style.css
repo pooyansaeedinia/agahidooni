@@ -1,0 +1,245 @@
+#footer-container {
+   width: 100%;
+   background-color: var(--bg);
+   padding: 2% 1%;
+   box-sizing: border-box;
+   font-size: 14px;
+}
+
+.footer-section {
+   display: grid;
+   grid-template-columns: 2fr repeat(4, minmax(0, 1fr));
+   grid-template-areas:
+      "about categories account support rules"
+      "socialmedia categories account support rules";
+   gap: 20px 40px;
+}
+
+.footer-about {
+   grid-area: about;
+}
+
+.footer-about-text {
+   line-height: 1.8;
+   color: var(--text);
+}
+
+.socialmedia-box {
+   grid-area: socialmedia;
+}
+
+.footer-categories {
+   grid-area: categories;
+}
+
+.footer-account {
+   grid-area: account;
+}
+
+.footer-support {
+   grid-area: support;
+}
+
+.footer-rules {
+   grid-area: rules;
+}
+
+.footer-cards {
+   width: auto;
+   display: flex;
+   flex-direction: column;
+   gap: 25px;
+}
+
+.footer-links {
+   border-right: 2px solid var(--primary);
+   list-style: none;
+   padding: 8px;
+   margin: 0;
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+}
+
+.footer-links a {
+   text-decoration: none;
+   color: var(--text);
+   font-size: 14px;
+}
+
+.footer-links a:hover {
+   color: var(--primary-hover);
+}
+
+.footer-logo-box {
+   display: flex;
+   align-items: center;
+   gap: 0 5px;
+}
+
+.footer-logo-img {
+   width: 50px;
+   height: 50px;
+}
+
+.footer-logo-title,
+.footer-links-title {
+   color: var(--primary);
+   font-size: 18px;
+   font-weight: bold;
+   font-family: "vazir", sans-serif;
+}
+
+.footer-links-title {
+   border-right: 8px solid var(--primary);
+   border-radius: 5px;
+   padding: 8px;
+}
+
+.socialmedia-box {
+   display: flex;
+   flex-direction: column;
+   gap: 15px 0;
+}
+
+.socialmedia-box-text {
+   font-size: 14px;
+   border-top: 1px solid #bbbabae6;
+   padding-top: 2%;
+   color: var(--text);
+}
+
+.socialmedia-icons {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 0 15px;
+}
+
+.socialmedia-box-img {
+   width: 37px;
+   height: 37px;
+   cursor: pointer;
+   transition: transform 0.4s ease;
+}
+
+.socialmedia-box-img.active {
+   transform: scale(1.1);
+}
+/* لایت:پیش فرض */
+.dark-icon {
+   display: block;
+}
+
+.light-icon {
+   display: none;
+}
+
+/* حالت دارک */
+html.dark .light-icon {
+   display: block;
+}
+
+html.dark .dark-icon {
+   display: none;
+}
+
+@media (min-width:769px) and (max-width:1040px) {
+
+   .footer-logo-title,
+   .footer-links-title {
+      font-size: 16px;
+   }
+
+   .footer-links a,
+   .socialmedia-box-text {
+      font-size: 14px;
+   }
+
+   .socialmedia-box-img {
+      width: 35px;
+      height: 35px;
+   }
+}
+
+@media (min-width:600px) and (max-width:950px) {
+   .footer-section {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-areas:
+         "about about about about"
+         "categories account support rules"
+         "socialmedia socialmedia socialmedia socialmedia";
+      gap: 30px 15px;
+   }
+
+   .footer-logo-title,
+   .footer-links-title {
+      font-size: 16px;
+      border-right: 8px solid var(--primary);
+      border-radius: 5px;
+      padding: 8px;
+   }
+
+   .footer-links a,
+   .socialmedia-box-text {
+      font-size: 14px;
+   }
+
+   .socialmedia-box-img {
+      width: 30px;
+      height: 30px;
+   }
+}
+
+@media (min-width:361px) and (max-width:600px) {
+   .footer-section {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-areas:
+         "about about"
+         "categories account"
+         "support rules"
+         "socialmedia socialmedia"
+   }
+
+   .footer-logo-title,
+   .footer-links-title {
+      font-size: 16px;
+      border-right: 5px solid var(--primary);
+
+   }
+
+   .footer-links a,
+   .socialmedia-box-text {
+      font-size: 14px;
+
+   }
+}
+
+@media (max-width:376px) {
+   .footer-section {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-areas:
+         "about about"
+         "support rules"
+         "socialmedia socialmedia";
+      gap: 40px;
+   }
+
+   .footer-categories,
+   .footer-account {
+      display: none;
+   }
+
+   .footer-logo-title,
+   .footer-links-title {
+      font-size: 15px;
+      border-right: 6px solid var(--primary);
+   }
+
+   .footer-links a,
+   .socialmedia-box-text {
+      font-size: 13px;
+   }
+
+}

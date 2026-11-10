@@ -1,0 +1,248 @@
+* {
+    direction: rtl;
+}
+
+@font-face {
+    font-family: "Vazir";
+    src: url(../font/vazir/Vazirmatn-SemiBold.woff2) format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Vazir";
+    src: url(../font/vazir/Vazirmatn-Bold.woff2) format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Estedad";
+    src: url(../font/estedad/Estedad-Regular.woff2) format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Estedad";
+    src: url(../font/estedad/Estedad-SemiBold.woff2) format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --bg: #f5f7f7;
+    --primary: #087f72;
+    --primary-hover: #06665c;
+    --primary-tint: #e0f2ef;
+    --accent-orange: #e87c00;
+    --accent-tint: #ffe7d6;
+    --surface: #ffffff;
+    --text-primary: #172a2a;
+    --text-secondary: #475252;
+    --border: #c2c2c2;
+    --color-danger: #ec202a;
+    --shadow: 0 4px 15px rgba(0,0,0,.10);
+    --header-height: 63px;
+    --banner-gap: 16px;
+    --page-gutter: 16px;
+}
+
+html.dark {
+    --bg: #111c1b;
+    --primary: #63d2be;
+    --primary-hover: #4db8a7;
+    --primary-tint: #2b6f66;
+    --accent-orange: #ffa66b;
+    --accent-tint: #ffb98a;
+    --surface: #1a2927;
+    --text-primary: #e6f0ed;
+    --text-secondary: #a2b4b0;
+    --border: #30413a;
+    --color-danger: #ec202a;
+    --shadow: 0 4px 15px rgba(0,0,0,.30);
+}
+
+body {
+    font-family: 'Estedad', Tahoma, sans-serif;
+    font-weight: 400;
+    background: var(--bg);
+    color: var(--text-primary);
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Vazir', Tahoma, sans-serif;
+    font-weight: 700;
+}
+
+a {
+    color: inherit;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--page-gutter);
+} 
+
+/* shared banners design */
+.common-hero-banner {
+  margin: 12px 0 0;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.common-hero-banner picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.common-hero-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* common ad card styles */
+.common-ad-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: var(--surface);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.common-ad-card:hover {
+    transform: translateY(-5px);
+}
+
+.common-ad-card .ad-card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.common-ad-card .ad-card-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+.common-ad-card .ad-card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.common-ad-card .ad-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+    padding: 4px 9px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 600;
+}
+
+.common-ad-card .featured-badge {
+    background-color: var(--primary);
+}
+
+.common-ad-card .ad-card-content {
+    padding: 10px;
+}
+
+.common-ad-card .ad-title {
+    margin: 0 0 8px;
+    color: var(--text-primary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.common-ad-card .ad-price {
+    margin: 0 0 12px;
+    color: var(--accent-orange);
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.common-ad-card .ad-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    padding-top: 8px;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    font-size: 0.625rem;
+}
+
+.common-ad-card .ad-card-footer span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.common-ad-card .urgent-badge {
+    background-color: var(--color-danger);
+}
+
+.common-ad-card .favorite-checkbox {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.common-ad-card .favorite-btn {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #ddd;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.common-ad-card .favorite-btn .fa-solid {
+    display: none;
+}
+
+.common-ad-card .favorite-checkbox:checked + .favorite-btn {
+    color: var(--color-danger);
+}
+
+.common-ad-card .favorite-checkbox:checked + .favorite-btn .fa-regular {
+    display: none;
+}
+
+.common-ad-card .favorite-checkbox:checked + .favorite-btn .fa-solid {
+    display: inline-block;
+}
+
+

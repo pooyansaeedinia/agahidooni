@@ -1,0 +1,299 @@
+/* home-style.css — Mobile First */
+.banner-carousel {
+    position: relative;
+}
+
+.carousel-radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#slide1:checked~.carousel-wrapper {
+    transform: translateX(0);
+}
+
+#slide2:checked~.carousel-wrapper {
+    transform: translateX(100%);
+}
+
+#slide3:checked~.carousel-wrapper {
+    transform: translateX(200%);
+}
+
+#slide4:checked~.carousel-wrapper {
+    transform: translateX(300%);
+}
+
+#slide1:focus-visible~.carousel-dots label:nth-child(1),
+#slide2:focus-visible~.carousel-dots label:nth-child(2),
+#slide3:focus-visible~.carousel-dots label:nth-child(3),
+#slide4:focus-visible~.carousel-dots label:nth-child(4) {
+    outline: 2px solid #ff6b00;
+    outline-offset: 2px;
+}
+
+.carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    height: 40vh;
+    min-height: 220px;
+}
+
+.carousel-slide a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-arrows {
+    display: none;
+    position: absolute;
+    inset: 0;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    pointer-events: none;
+}
+
+.carousel-arrows label {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.carousel-arrows label i {
+    display: block;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    text-align: center;
+}
+
+#slide1:checked~.carousel-arrows-1,
+#slide2:checked~.carousel-arrows-2,
+#slide3:checked~.carousel-arrows-3,
+#slide4:checked~.carousel-arrows-4 {
+    display: flex;
+}
+
+.carousel-dots {
+    --dot-size: 10px;
+    --dot-active-width: 25px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.carousel-dots label {
+    position: relative;
+    width: var(--dot-size);
+    height: var(--dot-size);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: width 0.3s, background-color 0.3s;
+}
+
+.carousel-dots label::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+}
+
+#slide1:checked~.carousel-dots label:nth-child(1),
+#slide2:checked~.carousel-dots label:nth-child(2),
+#slide3:checked~.carousel-dots label:nth-child(3),
+#slide4:checked~.carousel-dots label:nth-child(4) {
+    width: var(--dot-active-width);
+    background: #ff6b00;
+    border-radius: 10px;
+}
+
+.ads-section {
+    width: 100%;
+    margin: 2.5rem 0;
+}
+
+.banner-carousel+.ads-section {
+    margin-top: 3rem;
+}
+
+.ads-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1.125rem;
+}
+
+.ads-section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.ads-section-title i {
+    color: #ff7f23;
+}
+
+.view-all-ads {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.65rem;
+    color: var(--primary);
+    background: transparent;
+    font-size: 0.8125rem;
+    transition: all 0.3s ease;
+}
+
+.view-all-ads:hover {
+    text-shadow: 0 0 5px rgba(64, 224, 208, 0.441);
+}
+
+.ads-gallery {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.625rem;
+    padding-block: 6px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.ads-gallery::-webkit-scrollbar {
+    display: none;
+}
+
+.ad-card {
+    flex: 0 0 65%;
+    min-width: 0;
+    scroll-snap-align: start;
+}
+
+
+
+/* Tablet Responsive */
+@media (min-width: 768px) {
+    .banner-carousel+.ads-section {
+        margin-top: 3.5rem;
+    }
+
+    .carousel-slide {
+        height: 50vh;
+    }
+
+    .ads-section-title {
+        font-size: 1.25rem;
+    }
+
+    .view-all-ads {
+        font-size: 0.875rem;
+    }
+
+    .ads-gallery {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 1rem;
+    }
+
+    .ad-card {
+        flex: 0 0 42%;
+        min-width: 0;
+    }
+
+    .ad-title,
+    .ad-price {
+        font-size: 0.9375rem;
+    }
+}
+
+
+/* Desktop Responsive */
+@media (min-width: 1440px) {
+    .banner-carousel {
+        margin: var(--banner-gap, 16px) 0 0;
+    }
+
+    .banner-carousel+.ads-section {
+        margin-top: 4rem;
+    }
+
+    .carousel-slide {
+        height: calc(100vh - var(--header-height, 72px) - var(--banner-gap, 16px) * 2);
+        min-height: 320px;
+    }
+
+    .carousel-arrows {
+        padding: 0 16px;
+    }
+
+    .carousel-arrows label {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+
+    .carousel-dots {
+        --dot-size: 12px;
+        --dot-active-width: 30px;
+        bottom: 16px;
+    }
+
+    .ads-section-title {
+        font-size: 1.5rem;
+    }
+
+    .view-all-ads {
+        font-size: 0.9375rem;
+    }
+
+    .ads-gallery {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+        padding-block: 0;
+        overflow: visible;
+    }
+
+    .ad-badge,
+    .ad-card-footer {
+        font-size: 0.8125rem;
+    }
+
+    .ad-title,
+    .ad-price {
+        font-size: 1rem;
+    }
+
+    .ad-card {
+        width: 100%;
+        min-width: 0;
+    }
+}
