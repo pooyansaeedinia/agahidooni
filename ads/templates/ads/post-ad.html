@@ -25,7 +25,9 @@
     </section>
 
     <!-- post ad form -->
-    <form class="post-ad-form" id="adForm" action="#" method="post">
+    <form class="post-ad-form" id="adForm" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        {{ form.errors }}
         <div class="form-container">
 
             <!-- ad info -->
@@ -37,47 +39,45 @@
                         <legend class="form-field-title">نوع آگهی</legend>
                         <div class="choice-container">
                             <input type="hidden" name="ad_type" id="ad-type" value="product">
-                            <a class="option-btn" href="#" role="button" data-ad-type="product"
-                                aria-pressed="true">محصول</a>
-                            <a class="option-btn" href="#" role="button" data-ad-type="service"
-                                aria-pressed="false">خدمات</a>
+                            <a class="option-btn" href="{% url 'ads:post-ad-m' %}" role="button" data-ad-type="product"
+                                {% if request.resolver_match.url_name == 'post-ad-m' %}aria-pressed="true"{% else %}aria-pressed="false"{% endif %}>محصول</a>
+                            <a class="option-btn" href="{% url 'ads:post-ad-k' %}" role="button" data-ad-type="service"
+                                {% if request.resolver_match.url_name == 'post-ad-k' %}aria-pressed="true"{% else %}aria-pressed="false"{% endif %}>خدمات</a>
                         </div>
                     </fieldset>
+                    
 
-                    <div class="form-field-wrapper">
-                        <label class="form-field-title" for="ad-category">دسته‌بندی</label>
-                        <select class="form-control" id="ad-category" name="category" required>
-                            <option value="" selected>دسته‌بندی مورد نظر خود را انتخاب کنید</option>
-                            <option value="real-estate">املاک و مسکن</option>
-                            <option value="vehicles">وسایل نقلیه</option>
-                            <option value="electronics">لوازم الکترونیکی</option>
-                            <option value="home">مربوط به خانه</option>
-                            <option value="repair">تعمیرات و نصب</option>
-                            <option value="education">آموزش</option>
-                            <option value="transport">حمل‌ونقل و باربری</option>
-                            <option value="cleaning">نظافت و پذیرایی</option>
-                            <option value="design-dev">طراحی و برنامه‌نویسی</option>
-                        </select>
-                    </div>
+                    {% if request.resolver_match.url_name == 'post-ad-m' %}
+                    <select class="form-control" id="ad-category" name="category" required>
+                        <option value="">دسته‌بندی مورد نظر خود را انتخاب کنید</option>
+                        {% for c in categories %}
+                            <option value="{{ c.pk }}">{{ c.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    
+                    
 
                     <fieldset class="form-field-wrapper form-field-fullwidth product-only">
                         <legend class="form-field-title">وضعیت محصول</legend>
                         <div class="choice-container">
-                            <input class="choice-input" type="radio" name="condition" id="cond-new" value="new">
+                            <input class="choice-input" type="radio" name="product_status" id="cond-new" value="new">
                             <label class="option-btn" for="cond-new">نو</label>
 
-                            <input class="choice-input" type="radio" name="condition" id="cond-like-new"
+                            <input class="choice-input" type="radio" name="product_status" id="cond-like-new"
                                 value="like-new">
                             <label class="option-btn" for="cond-like-new">در حد نو</label>
 
-                            <input class="choice-input" type="radio" name="condition" id="cond-used" value="used">
+                            <input class="choice-input" type="radio" name="product_status" id="cond-used" value="used">
                             <label class="option-btn" for="cond-used">کارکرده</label>
 
-                            <input class="choice-input" type="radio" name="condition" id="cond-repair"
+                            <input class="choice-input" type="radio" name="product_status" id="cond-repair"
                                 value="needs-repair">
                             <label class="option-btn" for="cond-repair">نیاز به تعمیر</label>
                         </div>
                     </fieldset>
+
+                    {% elif request.resolver_match.url_name == 'post-ad-k' %}
 
                     <fieldset class="form-field-wrapper form-field-fullwidth service-only">
                         <legend class="form-field-title">مدت زمان ارائه خدمات</legend>
@@ -115,11 +115,12 @@
                         </div>
                     </fieldset>
 
-                    <div class="form-field-wrapper form-field-fullwidth service-only">
+                    {% comment %} <div class="form-field-wrapper form-field-fullwidth service-only">
                         <label class="form-field-title" for="service-area">محدوده ارائه خدمات</label>
                         <input class="form-control" type="text" id="service-area" name="service_area"
                             placeholder="مثلاً: تهران، منطقه ۱" autocomplete="off">
-                    </div>
+                    </div> {% endcomment %}
+                    {% endif %}
                 </div>
             </section>
 
@@ -168,32 +169,30 @@
                 <div class="form-layout">
                     <div class="form-field-wrapper form-field-fullwidth">
                         <div class="form-pair" role="group" aria-labelledby="location-title">
-                            <div>
-                                <label class="form-field-title" for="ad-province">استان</label>
-                                <select class="form-control" id="ad-province" name="province" required>
-                                    <option value="tehran" selected>تهران</option>
-                                    <option value="isfahan">اصفهان</option>
-                                    <option value="fars">فارس</option>
-                                    <option value="razavi-khorasan">خراسان رضوی</option>
-                                    <option value="east-azerbaijan">آذربایجان شرقی</option>
+                            {% comment %} <div>
+                                 <label class="form-field-title" for="ad-province">استان</label>
+                                <select class="form-control" id="ad-city" name="city" required>
+                                    {% for c in cities %}
+                                        <option value="{{ c.pk }}">{{ c.province.name }}</option>
+                                    {% endfor %}
                                 </select>
-                            </div>
+                            </div> {% endcomment %}
                             <div>
                                 <label class="form-field-title" for="ad-city">شهر</label>
                                 <select class="form-control" id="ad-city" name="city" required>
-                                    <option value="tehran" selected>تهران</option>
-                                    <option value="karaj">کرج</option>
-                                    <option value="shahriar">شهریار</option>
+                                    {% for c in cities %}
+                                        <option value="{{ c.pk }}">{{ c.name }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-field-wrapper form-field-fullwidth">
+                    {% comment %} <div class="form-field-wrapper form-field-fullwidth">
                         <label class="form-field-title" for="ad-address">خیابان / کوچه</label>
                         <input class="form-control" type="text" id="ad-address" name="address"
                             placeholder="مثلاً: خیابان رشیدی، پلاک ۳۱۳" autocomplete="street-address">
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </section>
 

@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import DetailView, ListView, TemplateView
-
-from ads.models import Ads
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DetailView, ListView, TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from ads.models import Ads, AdsGallery, Category, City
 from .models import UserAddress
+from django.contrib import messages
+from django.db import transaction
 
 from django.db.models import Q
 
@@ -58,5 +61,36 @@ class AdDetailView(DetailView):
         return context
     
     
-class PostAdView(TemplateView):
-    template_name = 'ads/post-ad.html'
+class PostAdView(LoginRequiredMixin, CreateView):
+    model = Ads
+    template_name = "ads/post-ad.html"
+    fields = ["title", "description", "price", "category", "city", "product_status"]
+    success_url = reverse_lazy("ads:ads-list")
+    ad_type = None   
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["instance"] = Ads(ad_type=self.ad_type, user=self.request.user)
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"] = Category.objects.all()
+        context["cities"] = City.objects.select_related("province")
+        return context
+
+    @transaction.atomic
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        for f in self.request.FILES.getlist("images")[:6]:
+            AdsGallery.objects.create(ad=self.object, image=f)
+        messages.success(self.request, "آگهی شما ثبت شد.")
+        return response
+
+
+class PostAdViewM(PostAdView):
+    ad_type = "product"
+
+
+class PostAdViewK(PostAdView):
+    ad_type = "service"

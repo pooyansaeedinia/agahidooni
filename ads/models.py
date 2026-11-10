@@ -3,7 +3,6 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import Q
 from django.urls import reverse
-from django.utils.text import slugify
 
 from Agahidooni import settings
 
@@ -88,12 +87,10 @@ class Ads(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='ads')
-    Brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name='ads', blank=True, null=True)
     price = models.PositiveIntegerField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name='ads')
     ad_type = models.CharField(max_length=50, choices=AD_TYPE_CHOICES)
     product_status = models.CharField(max_length=50, choices=PRODUCT_STATUS_CHOICES, blank=True)
-    slug = models.SlugField(max_length=100, blank=True, allow_unicode=True)
     badge = models.BooleanField(default=False, verbose_name="برچسب")
     
     class Meta:
@@ -115,12 +112,6 @@ class Ads(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.title, allow_unicode=True) or "ad"
-        self.full_clean()
-        super().save(*args, **kwargs)
-
     def get_absolute_url(self):
         return reverse('ads:ad-detail', kwargs={'pk': self.pk or 'ad'})
 
@@ -130,14 +121,14 @@ class AdsGallery(models.Model):
     image = models.ImageField(upload_to='photos/')
     ad = models.ForeignKey(Ads, on_delete=models.CASCADE, related_name='images')
 
-    MAX_IMAGES = 10
+    MAX_IMAGES = 6
 
     # اعتبار سنجی تعداد عکس های آپلود شده (اگر تعداد آنها بیشتر از ده باشد ارور میدهد)
     def save(self, *args, **kwargs):
         if not self.pk:
             if self.ad.images.count() >= self.MAX_IMAGES:
                 raise ValidationError(
-                    "هر آگهی حداکثر می‌تواند 10 تصویر داشته باشد"
+                    "هر آگهی حداکثر می‌تواند 6 تصویر داشته باشد"
                 )
         super().save(*args, **kwargs)
 
