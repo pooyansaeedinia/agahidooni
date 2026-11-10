@@ -49,18 +49,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-    
-
-class Brand(models.Model):
-    name = models.CharField(max_length=100)
-
-    class Meta:
-        verbose_name = "برند"
-        verbose_name_plural = "برند ها"
-        ordering = ['name']
-
-    def __str__(self):
-        return self.name
 
 
 # مدل آگهی ها
@@ -86,12 +74,13 @@ class Ads(models.Model):
     updated = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=100)
     description = models.TextField()
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='ads')
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='ads', blank=True, null=True)
     price = models.PositiveIntegerField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name='ads')
     ad_type = models.CharField(max_length=50, choices=AD_TYPE_CHOICES)
     product_status = models.CharField(max_length=50, choices=PRODUCT_STATUS_CHOICES, blank=True)
     badge = models.BooleanField(default=False, verbose_name="برچسب")
+    is_active = models.BooleanField(default=True, verbose_name="فعال")
     
     class Meta:
         verbose_name = "آگهی"

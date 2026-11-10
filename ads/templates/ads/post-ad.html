@@ -9,7 +9,6 @@
 <link rel="icon" href="{% static 'icon/favicon.ico' %}">
 <link rel="stylesheet" href="{% static 'css/public.css' %}">
 <link rel="stylesheet" href="{% static 'css/post-ad-style.css' %}">
-<link rel="stylesheet" href="{% static 'fonts/FA/css/all.min.css' %}">
 {% endblock css %}
 
 {% block content %}
@@ -25,7 +24,7 @@
     </section>
 
     <!-- post ad form -->
-    <form class="post-ad-form" id="adForm" enctype="multipart/form-data" method="post">
+    <form class="post-ad-form" id="adForm" action="#" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.errors }}
         <div class="form-container">
@@ -102,7 +101,7 @@
                         </div>
                     </fieldset>
 
-                    <fieldset class="form-field-wrapper form-field-fullwidth service-only">
+                    {% comment %} <fieldset class="form-field-wrapper form-field-fullwidth service-only">
                         <legend class="form-field-title">نحوه ارائه خدمات</legend>
                         <div class="choice-container">
                             <input class="choice-input" type="checkbox" name="delivery[]" id="mode-onsite"
@@ -113,7 +112,7 @@
                                 value="online">
                             <label class="option-btn" for="mode-online">آنلاین</label>
                         </div>
-                    </fieldset>
+                    </fieldset> {% endcomment %}
 
                     {% comment %} <div class="form-field-wrapper form-field-fullwidth service-only">
                         <label class="form-field-title" for="service-area">محدوده ارائه خدمات</label>

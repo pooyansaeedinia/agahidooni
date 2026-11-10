@@ -1,11 +1,7 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+{% block css %}
     <!--آیکون های بوت استرپ-->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css"/>
@@ -16,9 +12,20 @@
     <link rel="manifest" href="{% static 'media/images/faviocns/site.webmanifest' %}">
     <!--فایل های css-->
     <link rel="stylesheet" href="{% static 'css/ad_details.css' %}">
-    <title>آگهی دونی || لیست آگهی ها</title>
-</head>
-<body>
+{% endblock css %}
+
+{% block title %}
+    آگهی دونی || لیست آگهی ها
+{% endblock title %}
+
+{% comment %} {% block header %}
+{% endblock header %}
+
+{% block footer %}
+{% endblock footer %} {% endcomment %}
+
+
+{% block content %}
 <!--مودال تماس با فروشنده-->
 <div class="contact-modal" id="contactModal">
     <div class="modal-content">
@@ -161,7 +168,7 @@
         <div class="ad-gallery-col card-bg">
             <!--عکس اصلی آگهی-->
             <div class="main-image-wrapper">
-                <img src="{% static 'media/images/refrigerator.jpg' %}" alt="عکس اصلی آگهی" id="mainImage">
+                <img src="{{ ad.images.first.image.url }}" alt="عکس اصلی آگهی" id="mainImage">
             </div>
             <!--گالری عکس-->
             <div class="gallery-thumbnails">
@@ -223,7 +230,9 @@
         </div>
     </section>
 </main>
+{% endblock content %}
+
+{% block js %}
 <!--فایل های js-->
 <script src="{% static 'js/adDetails.js' %}"></script>
-</body>
-</html>
+{% endblock js %}
