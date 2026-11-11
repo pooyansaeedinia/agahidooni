@@ -1,3 +1,4 @@
+
 const AUTH = {
     isLoggedIn: false,
     userName: 'کاربر آگهی دونی'
@@ -111,6 +112,79 @@ function syncCity(source, target) {
 syncCity(cityInput, mobileCityInput);
 syncCity(mobileCityInput, cityInput);
 
+document.getElementById('searchForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const query = document.getElementById('searchInput').value.trim();
+
+    if (!query) return;
+
+    window.location.href = '/search?q=' + encodeURIComponent(query);
+});
+
+let minRange;
+let maxRange;
+let minValue;
+let maxValue;
+let sliderRange;
+
+const minGap = 100000;
+const maxPrice = 10000000;
+
+function formatPrice(value) {
+    return new Intl.NumberFormat('en-US').format(value);
+}
+
+function updateSlider() {
+    if (!minRange || !maxRange || !minValue || !maxValue || !sliderRange) {
+        return;
+    }
+
+    let min = Number(minRange.value);
+    let max = Number(maxRange.value);
+
+    if (max - min < minGap) {
+        if (document.activeElement === minRange) {
+            min = max - minGap;
+            minRange.value = min;
+        } else {
+            max = min + minGap;
+            maxRange.value = max;
+        }
+    }
+
+    minValue.textContent = formatPrice(min);
+    maxValue.textContent = formatPrice(max);
+
+    const minPercent = (min / maxPrice) * 100;
+    const maxPercent = (max / maxPrice) * 100;
+
+    sliderRange.style.left = minPercent + '%';
+    sliderRange.style.width = (maxPercent - minPercent) + '%';
+}
+
+function initPriceSlider() {
+    minRange = document.getElementById('min-range');
+    maxRange = document.getElementById('max-range');
+    minValue = document.getElementById('min-value');
+    maxValue = document.getElementById('max-value');
+    sliderRange = document.getElementById('slider-range');
+
+    if (!minRange || !maxRange || !minValue || !maxValue || !sliderRange) {
+        return;
+    }
+
+    minRange.addEventListener('input', updateSlider);
+    maxRange.addEventListener('input', updateSlider);
+
+    updateSlider();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPriceSlider);
+} else {
+    initPriceSlider();
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     const openBtn = document.getElementById('filterOpenBtn');
@@ -140,12 +214,20 @@ document.addEventListener('DOMContentLoaded', function () {
         filterOverlay.classList.remove('show');
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
-        searchResults.hidden = true;
+
+        if (searchResults) {
+            searchResults.hidden = true;
+        }
+
         openBtn.focus();
     }
 
     openBtn.addEventListener('click', openFilter);
-    closeBtn.addEventListener('click', closeFilter);
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeFilter);
+    }
+
     filterOverlay.addEventListener('click', closeFilter);
 
     document.addEventListener('keydown', function (event) {
@@ -154,138 +236,65 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    const searchableFilters = [
-        {
-            title: 'وسایل نقلیه',
-            value: 'وسایل نقلیه',
-            keywords: ['ماشین', 'خودرو', 'اتومبیل', 'موتور']
-        },
-        {
-            title: 'کالای دیجیتال',
-            value: 'کالای دیجیتال',
-            keywords: ['موبایل', 'گوشی', 'لپ‌تاپ', 'کامپیوتر']
-        },
-        {
-            title: 'وسایل خانگی',
-            value: 'وسایل خانگی',
-            keywords: ['چای‌ساز', 'چای ساز', 'یخچال', 'جاروبرقی']
-        },
-        {
-            title: 'سرگرمی و ورزش',
-            value: 'سرگرمی',
-            keywords: ['بازی', 'ورزش', 'دوچرخه']
-        },
-        {
-            title: 'املاک',
-            value: 'املاک',
-            keywords: ['خانه', 'آپارتمان', 'زمین', 'ویلا']
-        },
-        {
-            title: 'خدمات',
-            value: 'خدمات',
-            keywords: ['تعمیر', 'خدمات']
-        },
-        {
-            title: 'مد و پوشاک',
-            value: 'مد و پوشاک',
-            keywords: ['لباس', 'کفش', 'کیف']
-        },
-        {
-            title: 'موبایل و لوازم جانبی',
-            value: 'موبایل',
-            keywords: ['موبایل', 'گوشی']
-        },
-        {
-            title: 'کامپیوتر و لپ‌تاپ',
-            value: 'کامپیوتر',
-            keywords: ['لپ‌تاپ', 'کامپیوتر']
-        }
-    ];
+    if (clearSearch && searchInput) {
+        clearSearch.addEventListener('click', function () {
+            searchInput.value = '';
 
-    function renderSearchResults(value) {
-        const query = value.trim().toLowerCase();
-
-        searchResults.innerHTML = '';
-        clearSearch.classList.toggle('visible', query.length > 0);
-
-        if (!query) {
-            searchResults.hidden = true;
-            return;
-        }
-
-        const results = searchableFilters.filter(function (item) {
-            return item.title.toLowerCase().includes(query) ||
-                item.keywords.some(function (keyword) {
-                    return keyword.toLowerCase().includes(query);
-                });
-        });
-
-        if (!results.length) {
-            searchResults.innerHTML = '<div class="filter-search-empty">نتیجه‌ای پیدا نشد.</div>';
-            searchResults.hidden = false;
-            return;
-        }
-
-        results.forEach(function (item) {
-            const button = document.createElement('button');
-            button.type = 'button';
-
-            const icon = document.createElement('i');
-            icon.className = 'fa-solid fa-arrow-left';
-
-            const label = document.createElement('span');
-            label.textContent = item.title;
-
-            button.append(label, icon);
-
-            button.addEventListener('click', function () {
-                const checkbox = Array.from(
-                    modal.querySelectorAll('input[name="category"]')
-                ).find(function (input) {
-                    return input.value === item.value;
-                });
-
-                if (checkbox) {
-                    checkbox.checked = true;
-                }
-
-                searchInput.value = item.title;
+            if (searchResults) {
+                searchResults.innerHTML = '';
                 searchResults.hidden = true;
-            });
+            }
 
-            searchResults.appendChild(button);
+            clearSearch.classList.remove('visible');
+            searchInput.focus();
         });
-
-        searchResults.hidden = false;
     }
 
-    searchInput.addEventListener('input', function () {
-        renderSearchResults(this.value);
-    });
+    if (searchInput && clearSearch) {
+        searchInput.addEventListener('input', function () {
+            clearSearch.classList.toggle('visible', this.value.trim().length > 0);
 
-    clearSearch.addEventListener('click', function () {
-        searchInput.value = '';
-        renderSearchResults('');
-        searchInput.focus();
-    });
-
-    resetBtn.addEventListener('click', function () {
-        modal.querySelectorAll('input[type="checkbox"]').forEach(function (input) {
-            input.checked = false;
+            if (searchResults) {
+                searchResults.innerHTML = '';
+                searchResults.hidden = true;
+            }
         });
+    }
 
-        document.getElementById('filterCity').value = '';
-        searchInput.value = '';
-        searchResults.hidden = true;
-        clearSearch.classList.remove('visible');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+            modal.querySelectorAll('input[type="checkbox"]').forEach(function (input) {
+                input.checked = false;
+            });
 
-        if (minRange && maxRange) {
-            minRange.value = 500000;
-            maxRange.value = 8000000;
-            updateSlider();
-        }
-    });
+            const filterCity = document.getElementById('filterCity');
 
+            if (filterCity) {
+                filterCity.value = '';
+            }
+
+            if (searchInput) {
+                searchInput.value = '';
+            }
+
+            if (searchResults) {
+                searchResults.innerHTML = '';
+                searchResults.hidden = true;
+            }
+
+            if (clearSearch) {
+                clearSearch.classList.remove('visible');
+            }
+
+            if (minRange && maxRange) {
+                minRange.value = 500000;
+                maxRange.value = 8000000;
+                updateSlider();
+            }
+        });
+    }
+
+    /*
     applyBtn.addEventListener('click', function () {
         const filters = {
             categories: Array.from(
@@ -321,58 +330,15 @@ document.addEventListener('DOMContentLoaded', function () {
         closeFilter();
         console.log('Selected filters:', filters);
     });
+    */
 });
 
+/*
 window.addEventListener('ads:filters-submit', function (event) {
     const filters = event.detail;
     console.log(filters);
 });
-
-const minRange = document.getElementById('min-range');
-const maxRange = document.getElementById('max-range');
-const minValue = document.getElementById('min-value');
-const maxValue = document.getElementById('max-value');
-const sliderRange = document.getElementById('slider-range');
-
-const minGap = 100000;
-const maxPrice = 10000000;
-
-function formatPrice(value) {
-    return new Intl.NumberFormat('en-US').format(value);
-}
-
-function updateSlider() {
-    if (!minRange || !maxRange || !minValue || !maxValue || !sliderRange) return;
-
-    let min = Number(minRange.value);
-    let max = Number(maxRange.value);
-
-    if (max - min < minGap) {
-        if (document.activeElement === minRange) {
-            minRange.value = max - minGap;
-        } else {
-            maxRange.value = min + minGap;
-        }
-
-        min = Number(minRange.value);
-        max = Number(maxRange.value);
-    }
-
-    minValue.textContent = formatPrice(min);
-    maxValue.textContent = formatPrice(max);
-
-    const minPercent = (min / maxPrice) * 100;
-    const maxPercent = (max / maxPrice) * 100;
-
-    sliderRange.style.left = minPercent + '%';
-    sliderRange.style.width = (maxPercent - minPercent) + '%';
-}
-
-if (minRange && maxRange) {
-    minRange.addEventListener('input', updateSlider);
-    maxRange.addEventListener('input', updateSlider);
-    updateSlider();
-}
+*/
 
 document.addEventListener('DOMContentLoaded', function () {
     const mobileCategories = [
