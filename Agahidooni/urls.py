@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('home.urls'), name='home'),
     path('accounts/', include('accounts.urls'), name='accounts'),
     path("contact-us/", include("contact_us.urls", namespace="contact_us")),
+    path("content/", include("site_content.urls", namespace="site_content")),
 ]
 
 if settings.DEBUG:

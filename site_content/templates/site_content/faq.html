@@ -1,0 +1,338 @@
+{% extends "base.html" %}
+{% load static %}
+
+{# css #}
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/faq.css" %}">
+{% endblock css %}
+
+{# title #}
+{% block title %}
+    آگهی دونی || سوالات متداول
+{% endblock title %}
+
+{# content #}
+{% block content %}
+    <div class="faq-page">
+        <header class="faq-header">
+            <a href="#" class="faq-logo">
+                <span class="logo-icon">
+                    <img src="{% static "media/images/Agahidooni_without_agahidooni1.png" %}" class="logo" alt="logo">
+                </span>
+                <span>آگهی‌دونی</span>
+            </a>
+
+            <div class="header-actions">
+                <a href="#" class="back-home">
+                    <i class="fa-solid fa-arrow-right"></i>
+                    بازگشت به صفحه اصلی
+                </a>
+
+                <button type="button" class="theme-toggle" id="themeToggle" aria-label="تغییر حالت نمایش">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="faq-main">
+
+            <section class="faq-intro">
+                <div class="faq-intro-icon">
+                    <i class="fa-regular fa-circle-question"></i>
+                </div>
+
+                <span class="faq-eyebrow">مرکز راهنمای آگهی‌دونی</span>
+
+                <h1>سؤالات متداول</h1>
+
+                <p>
+                    پاسخ سؤالات خود را درباره ثبت آگهی و حساب کاربری و جستجو و سایر امکانات آگهی‌دونی پیدا کنید.
+                </p>
+            </section>
+
+            <section class="faq-content">
+
+                <div class="faq-section">
+
+                    <div class="faq-section-title">
+                        <span class="section-icon">
+                            <i class="fa-solid fa-rectangle-ad"></i>
+                        </span>
+
+                        <div>
+                            <h2>ثبت و مدیریت آگهی</h2>
+                            <p>راهنمای ثبت و مدیریت آگهی‌ها</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-list">
+
+                        <article class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>چطور می‌توانم در آگهی‌دونی آگهی ثبت کنم؟</span>
+                                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                            </button>
+
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    برای ثبت آگهی ابتدا وارد حساب کاربری خود شوید سپس گزینه ثبت آگهی را انتخاب کنید و
+                                    اطلاعات موردنیاز را وارد کنید.
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>برای ثبت آگهی باید حساب کاربری داشته باشم؟</span>
+                                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                            </button>
+
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    بله برای ثبت و مدیریت آگهی‌ها باید در آگهی‌دونی حساب کاربری داشته باشید.
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>چطور می‌توانم آگهی خود را حذف کنم؟</span>
+                                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                            </button>
+
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    وارد بخش آگهی‌های من شوید و آگهی موردنظر را انتخاب کنید سپس از گزینه حذف آگهی
+                                    استفاده کنید.
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <div class="faq-section">
+
+                    <div class="faq-section-title">
+                        <span class="section-icon">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+
+                        <div>
+                            <h2>حساب کاربری</h2>
+                            <p>راهنمای ثبت‌نام و مدیریت حساب</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-list">
+
+                        <article class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>چطور در آگهی‌دونی ثبت‌نام کنم؟</span>
+                                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                            </button>
+
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    از طریق گزینه ورود یا حساب من وارد صفحه ثبت‌نام شوید و اطلاعات موردنیاز را تکمیل
+                                    کنید.
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>اگر رمز عبورم را فراموش کنم چه کار کنم؟</span>
+                                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                            </button>
+
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    از گزینه بازیابی رمز عبور استفاده کنید.
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>چطور از حساب کاربری خارج شوم؟</span>
+                                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                            </button>
+
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    از منوی حساب کاربری گزینه خروج از حساب را انتخاب کنید.
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <div class="faq-section">
+
+                    <div class="faq-section-title">
+                        <span class="section-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+
+                        <div>
+                            <h2>جستجو و علاقه‌مندی‌ها</h2>
+                            <p>راهنمای جستجو و پیدا کردن آگهی‌ها</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-list">
+
+                        <article class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>چطور آگهی موردنظرم را پیدا کنم؟</span>
+                                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                            </button>
+
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    نام کالا یا خدمات موردنظر خود را در نوار جستجو وارد کنید یا از دسته‌بندی‌های سایت
+                                    استفاده کنید.
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>چطور آگهی‌ها را بر اساس قیمت فیلتر کنم؟</span>
+                                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                            </button>
+
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    از بخش فیلترها محدوده قیمت موردنظر خود را مشخص کنید تا آگهی‌های متناسب با آن نمایش
+                                    داده شوند.
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>چطور شهر موردنظرم را انتخاب کنم؟</span>
+                                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                            </button>
+
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    از قسمت انتخاب شهر نام شهر موردنظر خود را جستجو و انتخاب کنید.
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>چطور با آگهی‌دهنده ارتباط برقرار کنم؟</span>
+                                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                            </button>
+
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    اطلاعات تماس آگهی‌دهنده در زیر هر آگهی درج شده است.
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <div class="faq-section">
+
+                    <div class="faq-section-title">
+                        <span class="section-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </span>
+
+                        <div>
+                            <h2>امنیت و اعتماد</h2>
+                            <p>نکات امنیتی هنگام استفاده از آگهی‌دونی</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-list">
+
+                        <article class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>چطور از معتبر بودن یک آگهی مطمئن شوم؟</span>
+                                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                            </button>
+
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    اطلاعات آگهی را بررسی کنید و قبل از پرداخت از صحت مشخصات کالا و اطلاعات آگهی‌دهنده
+                                    مطمئن شوید.
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>اگر با آگهی مشکوک مواجه شدم چه کار کنم؟</span>
+                                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                            </button>
+
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    از پرداخت وجه خودداری کنید و از طریق گزینه گزارش آگهی موضوع را اطلاع دهید.
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>آیا آگهی‌دونی مسئولیت معاملات کاربران را برعهده می‌گیرد؟</span>
+                                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                            </button>
+
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    مسئولیت بررسی اطلاعات طرف مقابل و شرایط معامله برعهده کاربران است و برای اطلاع از
+                                    حدود مسئولیت آگهی‌دونی باید قوانین سایت را مطالعه کنید.
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <div class="faq-section">
+
+                    <div class="faq-section-title">
+                        <span class="section-icon">
+                            <i class="fa-solid fa-headset"></i>
+                        </span>
+
+                        <div>
+                            <h2>پشتیبانی و راهنمایی</h2>
+                            <p>راهنمای رفع مشکلات و دریافت پشتیبانی</p>
+                        </div>
+                    </div>
+                    <div class="faq-list">
+                        <article class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span>اگر هنگام ثبت آگهی با مشکل مواجه شوم چه کار کنم؟</span>
+                                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">
+                                    اطلاعات واردشده و اتصال اینترنت خود را بررسی کنید و در صورت ادامه مشکل با پشتیبانی
+                                    تماس بگیرید.
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+{% endblock content %}
+
+{# js #}
+{% block js %}
+    <script src="{% static "js/faq.js" %}"></script>
+{% endblock js %}

@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load static %}
+
+{# css #}
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/terms_and_conditions.css" %}">
+{% endblock css %}
+
+{# title #}
+{% block title %}
+    آگهی دونی || قوانین و مقررات
+{% endblock title %}
+
+{# content #}
+{% block content %}
+    <!--کانتیر اصلی-->
+    <main class="terms-container">
+        <!--بنر صفحه-->
+        <div class="page-banner">
+            <!--آیکون-->
+            <div class="banner-icon">
+                <i class="bi bi-shield-check"></i>
+            </div>
+            <!--تکست-->
+            <div class="banner-text">
+                <h1>قوانین و مقررات</h1>
+                <p>با مطالعه این صفحه ، میتوانید با اطمینان خاطر از خدماتی که تیم آگهی دونی به شما ارائه میدهد بهره مند
+                    شوید</p>
+                <span class="last-update"><i class="bi bi-clock-history"></i> آخرین به‌روزرسانی : آبان 1405</span>
+            </div>
+        </div>
+        <!--محتوای اصلی-->
+        <div class="terms-grid">
+            <!--سایدبار فهرست مطالب-->
+            <aside class="terms-sidebar">
+                <h3><i class="bi bi-list-ul"></i> فهرست مطالب</h3>
+                <ul>
+                    <li><a href="#intro" class="active"><i class="bi bi-chevron-left"></i> مقدمه</a></li>
+                    <li><a href="#usage"><i class="bi bi-chevron-left"></i> شرایط استفاده</a></li>
+                    <li><a href="#ads"><i class="bi bi-chevron-left"></i> ثبت آگهی</a></li>
+                    <li><a href="#content"><i class="bi bi-chevron-left"></i> محتوای مجاز</a></li>
+                    <li><a href="#privacy"><i class="bi bi-chevron-left"></i> حریم خصوصی</a></li>
+                </ul>
+            </aside>
+            <!--متن اصلی قوانین-->
+            <article class="terms-content">
+                <!--مقدمه-->
+                <section id="intro" class="term-section">
+                    <div class="section-icon"><i class="bi bi-info-circle"></i></div>
+                    <div class="section-text">
+                        <h2>مقدمه</h2>
+                        <p>به آگهی دونی خوش آمدید. این پلتفرم با تسهیل ثبت و انتشار آگهی و ایجاد ارتباط میان کاربران
+                            طراحی شده است . استفاده از خدمات آگهی دونی به منزله پذیرش قوانین و مقررات این وبسایت است .
+                            لطفا پیش از استفاده از خدمات ، این قوانین رو مطالعه کرده و مفاد آن پایبند باشید</p>
+                    </div>
+                </section>
+                <!--شرایط استفاده-->
+                <section id="usage" class="term-section">
+                    <div class="section-icon"><i class="bi bi-person-check"></i></div>
+                    <div class="section-text">
+                        <h2>شرایط استفاده</h2>
+                        <ul>
+                            <li>کاربران موظفند هنگام ثبت نام اطلاعات صحیح و معتبر ارائه دهند</li>
+                            <li>هر کاربر مسئول حفظ امنیت حساب کاربری و اطلاعات ورود خود است</li>
+                            <li>استفاده از حساب کاربری دیگران بدون اجازه آن ها ممنوع است</li>
+                            <li>کاربران موظف اند از خدمات آگهی دونی مطابق قوانین و مقررات استفاده کنند</li>
+                            <li>آگهی دونی در صورت مشاهده تخلف یا سوء استفاده ، حق محدود سازی یا مسدود سازی حساب کاربری
+                                را دارد
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <!--ثبت آگهی-->
+                <section id="ads" class="term-section">
+                    <div class="section-icon"><i class="bi bi-megaphone"></i></div>
+                    <div class="section-text">
+                        <h2>ثبت آگهی</h2>
+                        <ul>
+                            <li>اطلاعات آگهی باید صحیح ، واقعی و مطابق با موضوع آن باشد</li>
+                            <li>کاربران موظف اند آگهی را در دسته بندی مناسب ثبت کنند</li>
+                            <li>ثبت آگهی های تکراری ، گمراه کننده یا دارای اطلاعات نادرست ممنوع است</li>
+                            <li>تصاویر و توضیحات آگهی باید با کالا یا خدمات ارائه شده مطابقت داشته باشند</li>
+                            <li>کاربران مسئول به روزرسانی یا حذف آگهی منقضی شده و نا معتبر خود هستند</li>
+                            <li>آگهی دونی حق برسی رد یا حذف آگهی های مغایر با مقررات را دارد</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <i class="bi bi-lightbulb"></i>
+                            <p><strong>نکته مهم:</strong> آگهی‌هایی که عکس واضح نداشته باشند یا قیمت غیرواقعی داشته
+                                باشند،
+                                تایید نمی‌شوند</p>
+                        </div>
+                    </div>
+                </section>
+                <!--محتوای مجاز-->
+                <section id="content" class="term-section">
+                    <div class="section-icon"><i class="bi bi-slash-circle"></i></div>
+                    <div class="section-text">
+                        <h2>محتوای مجاز</h2>
+                        <ul>
+                            <li>انتشار محتوای غیر قانونی ، توهین آمیز یا تهدید آمیز ممنوع است</li>
+                            <li>انتشار آگهی های حاوی اطلاعات جعلی فریبنده یا گمراه کننده مجاز نیست</li>
+                            <li>تبلیغ یا فروش کالا ها و خدمات ممنوعه و غیر مجاز امکان پذیر نیست</li>
+                            <li>انتشار محتوای ناقض حقوق مالکیت فکری یا حریم خصوصی دیگران ممنوع است</li>
+                            <li>آگهی دونی حق برسی و حذف محتوای مغایر با این مقررات را دارد</li>
+                        </ul>
+                    </div>
+                </section>
+                <!--حریم خصوصی-->
+                <section id="privacy" class="term-section">
+                    <div class="section-icon"><i class="bi bi-shield-lock"></i></div>
+                    <div class="section-text">
+                        <h2>حریم خصوصی</h2>
+                        <ul>
+                            <li>اطلاعات شخصی کاربران صرفا در راستای ارائه و بهبود خدمات آگهی دونی استفاده میشود</li>
+                            <li>آگهی دونی متعهد به حفاظت از اطلاعات کاربران و جلوگیری از دسترسی غیر مجاز به آن هاست</li>
+                            <li>اطلاعات کاربران بدون مجوز قانونی یا رضایت آن در اختیار اشخاص ثالث قرار نمیگیرد</li>
+                            <li>کاربران موظف اند در حفظ اطلاعات شخصی خود و اطلاعات ورود به حساب کاربری دقت کنند</li>
+                        </ul>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+{% endblock content %}
+
+{# js #}
+{% block js %}
+
+{% endblock js %}

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{# css #}
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/how_to_post_an_ad.css" %}">
+{% endblock css %}
+
+{# title #}
+{% block title %}
+    آگهی دونی || نحوه ثبت آدرس
+{% endblock title %}
+
+{# content #}
+{% block content %}
+    <main class="post-an-ad-container">
+        <!--بنر بالای صفحه-->
+        <div class="page-banner">
+            <div class="banner-icon">
+                <i class="bi bi-rocket-takeoff"></i>
+            </div>
+            <div class="banner-text">
+                <h1>چطور آگهی مان را در آگهی دونی منتشر کنیم ؟</h1>
+                <p>با مطالعه این صفحه ، شما قادر خواهید بود طی شش مرحله آگهی های خودتان را در آگهی دونی متنشر کنید</p>
+            </div>
+        </div>
+        <!--مراحل ثبت آگهی-->
+        <div class="post-an-ad-grid">
+            <!--مرحله 1-->
+            <div class="info-card">
+                <div class="card-number">01</div>
+                <div class="card-icon" style="color: #087F72; background: #E0F2EF;">
+                    <i class="bi bi-person-plus"></i>
+                </div>
+                <h3>ورود یا ثبت نام</h3>
+                <p>برای ثبت آگهی ، ابتدا وارد حساب کاربری خود شوید یا یک حساب کاربری جدید بسازید</p>
+            </div>
+            <!--مرحله 2-->
+            <div class="info-card">
+                <div class="card-number">02</div>
+                <div class="card-icon" style="color: #2E7D32; background: #E8F5E9;">
+                    <i class="bi bi-grid"></i>
+                </div>
+                <h3>شروع ثبت آگهی</h3>
+                <p>از طریق گزینه «ثبت آگهی» وارد فرم ثبت آگهی شوید</p>
+            </div>
+            <!--مرحله 3-->
+            <div class="info-card">
+                <div class="card-number">03</div>
+                <div class="card-icon" style="color: #E65100; background: #FFF3E0;">
+                    <i class="bi bi-tags"></i>
+                </div>
+                <h3>انتخاب دسته بندی</h3>
+                <p>دسته بندی و گروه مرتبط با آگهی خود را انتخاب کنید</p>
+            </div>
+            <!--مرحله 4-->
+            <div class="info-card">
+                <div class="card-number">04</div>
+                <div class="card-icon" style="color: #1565C0; background: #E3F2FD;">
+                    <i class="bi bi-pencil-square"></i>
+                </div>
+                <h3>تکمیل اطلاعات</h3>
+                <p>عنوان ، توضیحات ، قیمت و سایر اطلاعات مورد نیاز آگهی را وارد کنید</p>
+            </div>
+            <!--مرحله 5-->
+            <div class="info-card">
+                <div class="card-number">05</div>
+                <div class="card-icon" style="color: #C2185B; background: #FCE4EC;">
+                    <i class="bi bi-images"></i>
+                </div>
+                <h3>افزودن تصاویر</h3>
+                <p>تصاویر واضح و مرتبط با کالا یا خدمات را بارگذاری کنید</p>
+            </div>
+            <!--مرحله 6-->
+            <div class="info-card">
+                <div class="card-number">06</div>
+                <div class="card-icon" style="color: #37c218; background: #e5f8ac;">
+                    <i class="bi bi-check2-circle"></i>
+                </div>
+                <h3>ثبت آگهی</h3>
+                <p>اطلاعات وارد شده را بررسی کنید و روی دکمه ثبت آگهی را فشار دهید</p>
+            </div>
+        </div>
+        <!--نکته مهم پایین صفحه-->
+        <div class="highlight-box bottom-highlight">
+            <i class="bi bi-lightbulb"></i>
+            <p><strong> نکته طلایی : </strong>با درج اطلاعات دقیق ، انتخاب قیمت مناسب و استفاده از تصاویر با کیفیت ،
+                آگهی جذاب تر و کامل تری ثبت نمایید</p>
+        </div>
+    </main>
+{% endblock content %}
+
+{# js #}
+{% block js %}
+
+{% endblock js %}

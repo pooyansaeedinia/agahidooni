@@ -4,8 +4,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css"/>
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="{% static 'media/images/favicons/apple-touch-icon.png' %}">
+
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="{% static 'media/images/favicons/favicon-32x32.png' %}">
+
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="{% static 'media/images/favicons/favicon-16x16.png' %}">
     <title>
         {% block title %}
             آگهی دونی | خرید و فروش کالا و خدمات
@@ -13,7 +23,7 @@
     </title>
     <meta name="description" content="آگهی دونی؛ خرید و فروش کالا و خدمات در سراسر ایران">
     {% block css %}
-        
+
     {% endblock css %}
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer-style.css' %}">
@@ -29,7 +39,7 @@
         <div class="header-container">
 
             <button class="menu-toggle" id="menuToggle" type="button"
-                aria-label="باز کردن منو" aria-controls="mobileMenu" aria-expanded="false">
+                    aria-label="باز کردن منو" aria-controls="mobileMenu" aria-expanded="false">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
@@ -46,37 +56,39 @@
                 <div class="location-input-wrap">
                     <i class="fa-solid fa-location-dot"></i>
                     <input type="text" id="cityInput" list="citiesList"
-                        placeholder="انتخاب شهر..." value="تهران"
-                        autocomplete="off" aria-label="انتخاب شهر">
+                           placeholder="انتخاب شهر..." value="تهران"
+                           autocomplete="off" aria-label="انتخاب شهر">
                 </div>
             </div>
 
             <form class="search-box" id="searchForm" role="search"
-                method="get" action="{% url 'ads:ads-list' %}">
+                  method="get" action="{% url 'ads:ads-list' %}">
                 <i class="fa-solid fa-search search-icon"></i>
                 <input type="search" id="searchInput" name="q"
-                    placeholder="جستجو در همه کالاها و خدمات..."
-                    aria-label="جستجو در همه کالاها و خدمات"
-                    value="{{ request.GET.q|default:'' }}">
+                       placeholder="جستجو در همه کالاها و خدمات..."
+                       aria-label="جستجو در همه کالاها و خدمات"
+                       value="{{ request.GET.q|default:'' }}">
             </form>
 
             <div class="header-actions">
-                
+
                 {% if user.is_authenticated %}
-                    <a href="{% url 'accounts:login' %}" class="btn-login" id="loginBtn" aria-label="ورود به حساب کاربری">
-                    <i class="fa-solid fa-user"></i>
-                    <span>داشبورد من</span>
-                </a>
+                    <a href="{% url 'accounts:login' %}" class="btn-login" id="loginBtn"
+                       aria-label="ورود به حساب کاربری">
+                        <i class="fa-solid fa-user"></i>
+                        <span>داشبورد من</span>
+                    </a>
                 {% else %}
-                <a href="{% url 'accounts:login' %}" class="btn-login" id="loginBtn" aria-label="ورود به حساب کاربری">
-                    <i class="fa-solid fa-user"></i>
-                    <span>ورود / حساب من</span>
-                </a>
+                    <a href="{% url 'accounts:login' %}" class="btn-login" id="loginBtn"
+                       aria-label="ورود به حساب کاربری">
+                        <i class="fa-solid fa-user"></i>
+                        <span>ورود / حساب من</span>
+                    </a>
                 {% endif %}
 
                 <div class="user-menu" id="userMenu" hidden>
                     <button class="user-avatar-btn" id="userAvatarBtn"
-                        type="button" aria-label="منوی حساب کاربری" aria-expanded="false">
+                            type="button" aria-label="منوی حساب کاربری" aria-expanded="false">
                         <i class="fa-solid fa-user"></i>
                     </button>
 
@@ -143,7 +155,7 @@
     <div class="filter-overlay" id="filterOverlay"></div>
 
     <section class="filter-modal" id="filterModal"
-        role="dialog" aria-modal="true" aria-labelledby="filterTitle">
+             role="dialog" aria-modal="true" aria-labelledby="filterTitle">
 
         <div class="filter-modal-header">
             <button type="button" class="filter-close-btn" id="filterCloseBtn" aria-label="بستن فیلترها">
@@ -385,10 +397,10 @@
                 <section class="mobile-filter-accordion">
 
                     <button class="mobile-filter-accordion-toggle mobile-category-toggle"
-                        id="mobileCategoryToggle"
-                        type="button"
-                        aria-expanded="false"
-                        aria-controls="mobileCategorySubmenu">
+                            id="mobileCategoryToggle"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="mobileCategorySubmenu">
 
                         <i class="fa-solid fa-border-all menu-icon"></i>
                         <span>دسته‌بندی آگهی</span>
@@ -396,9 +408,9 @@
                     </button>
 
                     <div class="mobile-filter-accordion-content"
-                        id="mobileCategorySubmenu"
-                        aria-hidden="true"
-                        inert>
+                         id="mobileCategorySubmenu"
+                         aria-hidden="true"
+                         inert>
 
                         <div class="mobile-filter-options" id="mobileCategoryOptions"></div>
 
@@ -414,9 +426,9 @@
                 <section class="mobile-filter-accordion">
 
                     <button class="mobile-filter-accordion-toggle"
-                        type="button"
-                        aria-expanded="false"
-                        aria-controls="mobileConditionSubmenu">
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="mobileConditionSubmenu">
 
                         <i class="fa-solid fa-box-open menu-icon"></i>
                         <span>وضعیت کالا</span>
@@ -424,9 +436,9 @@
                     </button>
 
                     <div class="mobile-filter-accordion-content"
-                        id="mobileConditionSubmenu"
-                        aria-hidden="true"
-                        inert>
+                         id="mobileConditionSubmenu"
+                         aria-hidden="true"
+                         inert>
 
                         <div class="mobile-filter-options">
 
@@ -464,9 +476,9 @@
                 <section class="mobile-filter-accordion">
 
                     <button class="mobile-filter-accordion-toggle"
-                        type="button"
-                        aria-expanded="false"
-                        aria-controls="mobilePriceSubmenu">
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="mobilePriceSubmenu">
 
                         <i class="fa-solid fa-money-bill-wave menu-icon"></i>
                         <span>محدوده قیمت</span>
@@ -474,22 +486,22 @@
                     </button>
 
                     <div class="mobile-filter-accordion-content"
-                        id="mobilePriceSubmenu"
-                        aria-hidden="true"
-                        inert>
+                         id="mobilePriceSubmenu"
+                         aria-hidden="true"
+                         inert>
 
                         <div class="mobile-price-fields">
 
                             <label>
                                 <span>از قیمت (تومان)</span>
                                 <input type="number" id="mobileMinPrice"
-                                    placeholder="حداقل قیمت" min="0">
+                                       placeholder="حداقل قیمت" min="0">
                             </label>
 
                             <label>
                                 <span>تا قیمت (تومان)</span>
                                 <input type="number" id="mobileMaxPrice"
-                                    placeholder="حداکثر قیمت" min="0">
+                                       placeholder="حداکثر قیمت" min="0">
                             </label>
 
                         </div>
@@ -506,9 +518,9 @@
                 <section class="mobile-filter-accordion">
 
                     <button class="mobile-filter-accordion-toggle"
-                        type="button"
-                        aria-expanded="false"
-                        aria-controls="mobileLocationSubmenu">
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="mobileLocationSubmenu">
 
                         <i class="fa-solid fa-location-dot menu-icon"></i>
                         <span>محدوده مکانی</span>
@@ -516,16 +528,16 @@
                     </button>
 
                     <div class="mobile-filter-accordion-content"
-                        id="mobileLocationSubmenu"
-                        aria-hidden="true"
-                        inert>
+                         id="mobileLocationSubmenu"
+                         aria-hidden="true"
+                         inert>
 
                         <div class="mobile-city-field">
                             <input type="text"
-                                id="mobileFilterCity"
-                                list="citiesList"
-                                placeholder="انتخاب شهر..."
-                                autocomplete="off">
+                                   id="mobileFilterCity"
+                                   list="citiesList"
+                                   placeholder="انتخاب شهر..."
+                                   autocomplete="off">
                         </div>
 
                         <div class="mobile-filter-actions">
@@ -540,9 +552,9 @@
                 <section class="mobile-filter-accordion">
 
                     <button class="mobile-filter-accordion-toggle"
-                        type="button"
-                        aria-expanded="false"
-                        aria-controls="mobileFeaturesSubmenu">
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="mobileFeaturesSubmenu">
 
                         <i class="fa-solid fa-sliders menu-icon"></i>
                         <span>سایر امکانات</span>
@@ -550,9 +562,9 @@
                     </button>
 
                     <div class="mobile-filter-accordion-content"
-                        id="mobileFeaturesSubmenu"
-                        aria-hidden="true"
-                        inert>
+                         id="mobileFeaturesSubmenu"
+                         aria-hidden="true"
+                         inert>
 
                         <div class="mobile-filter-options">
 
@@ -615,7 +627,7 @@
             <div class="location-input-wrap">
                 <i class="fa-solid fa-location-dot"></i>
                 <input type="text" id="mobileCityInput" list="citiesList" value="تهران"
-                    placeholder="انتخاب شهر..." autocomplete="off">
+                       placeholder="انتخاب شهر..." autocomplete="off">
             </div>
         </div>
 
@@ -631,86 +643,85 @@
 {% endblock content %}
 
 {% block footer %}
-<footer id="footer-container">
-    <section class="footer-section">
+    <footer id="footer-container">
+        <section class="footer-section">
 
-        <section class="footer-cards footer-about">
-            <div class="footer-logo-box footer-logo">
-                <img src="../assets/img/Agahidooni_logo.png" alt="LOGO" class="footer-logo-img">
-                <p class="footer-logo-title">اگهی دونی</p>
-            </div>
-            <p class="footer-about-text">پلتفرم نیازمندیهای اینترنتی و درج آگهی رایگان خرید و فروش کالاهای نو و دست
-                دوم، املاک،
-                خودرو، استخدام و خدمات در سراسر کشور.</p>
+            <section class="footer-cards footer-about">
+                <div class="footer-logo-box footer-logo">
+                    <img src="{% static "icon/Agahidooni_logo.png" %}" alt="LOGO" class="footer-logo-img">
+                    <p class="footer-logo-title">اگهی دونی</p>
+                </div>
+                <p class="footer-about-text">پلتفرم نیازمندیهای اینترنتی و درج آگهی رایگان خرید و فروش کالاهای نو و دست
+                    دوم، املاک،
+                    خودرو، استخدام و خدمات در سراسر کشور.</p>
 
+
+            </section>
+            <section class="socialmedia-box">
+                <p class="socialmedia-box-text">
+                    ما را در شبکه‌های اجتماعی دنبال کنید!
+                </p>
+
+                <div class="socialmedia-icons">
+                    <img src="{% static "icon/facebook-light.png" %}" alt="facebook" class="socialmedia-box-img light-icon">
+                    <img src="{% static "icon/instagram-light.png" %}" alt="instagram" class="socialmedia-box-img light-icon">
+                    <img src="{% static "icon/linkedin-light.png" %}" alt="linkedin" class="socialmedia-box-img light-icon">
+                    <img src="{% static "icon/telegram-light.png" %}" alt="telegram" class="socialmedia-box-img light-icon">
+                    <img src="{% static "icon/whatsapp-light.png" %}" alt="whatsapp" class="socialmedia-box-img light-icon">
+                    <img src="{% static "icon/facebook-dark.png" %}" alt="facebook" class="socialmedia-box-img dark-icon">
+                    <img src="{% static "icon/instagram-dark.png" %}" alt="instagram" class="socialmedia-box-img dark-icon">
+                    <img src="{% static "icon/linkedin-dark.png" %}" alt="linkedin" class="socialmedia-box-img dark-icon">
+                    <img src="{% static "icon/telegram-dark.png" %}" alt="telegram" class="socialmedia-box-img dark-icon">
+                    <img src="{% static "icon/whatsapp-dark.png" %}" alt="whatsapp" class="socialmedia-box-img dark-icon">
+                </div>
+            </section>
+            <section class="footer-cards footer-categories">
+                <p class="footer-links-title">دسته بندی ها</p>
+                <ul class="footer-links">
+                    <li><a href="*">املاک و مسکن</a></li>
+                    <li><a href="*">وسایل نقلیه</a></li>
+                    <li><a href="*">لوازم الکترونیکی</a></li>
+                    <li><a href="*">مربوط به خانه</a></li>
+                    <li><a href="*">خدمات کسب و کار</a></li>
+                </ul>
+            </section>
+
+            <section class="footer-cards footer-account">
+                <p class="footer-links-title">حساب کاربری</p>
+                <ul class="footer-links">
+                    <li><a href="*"> ورود به حساب </a></li>
+                    <li><a href="*">ثبت نام سریع</a></li>
+                    <li><a href="*">آگهی های من</a></li>
+                    <li><a href="*">نشان ها و یادداشت ها</a></li>
+                    <li><a href="*">افزایش بازدید آگهی</a></li>
+                </ul>
+            </section>
+
+            <section class="footer-cards footer-support">
+                <p class="footer-links-title">پشتیبانی</p>
+                <ul class="footer-links">
+                    <li><a href="*">مرکز پشتیبانی و امداد </a></li>
+                    <li><a href="*">راهنمای ثبت اگهی</a></li>
+                    <li><a href="*">شیوه های پرداخت امن</a></li>
+                    <li><a href="*">گزارش تخلف آگهی</a></li>
+                    <li><a href="*">تماس با ما</a></li>
+                </ul>
+            </section>
+
+            <section class="footer-cards footer-rules">
+                <p class="footer-links-title">قوانین و مقررات</p>
+                <ul class="footer-links">
+                    <li><a href="*">قوانین انتشار آگهی</a></li>
+                    <li><a href="*">حریم خصوصی کاربران</a></li>
+                    <li><a href="*">شرایط استفاده</a></li>
+                    <li><a href="*">بلاگ و اخبار</a></li>
+                </ul>
+            </section>
 
         </section>
-        <section class="socialmedia-box">
-            <p class="socialmedia-box-text">
-                ما را در شبکه‌های اجتماعی دنبال کنید!
-            </p>
-
-            <div class="socialmedia-icons">
-                <img src="../assets/img/facebook-light.png" alt="facebook" class="socialmedia-box-img light-icon">
-                <img src="../assets/img/instagram-light.png" alt="instagram" class="socialmedia-box-img light-icon">
-                <img src="../assets/img/linkedin-light.png" alt="linkedin" class="socialmedia-box-img light-icon">
-                <img src="../assets/img/telegram-light.png" alt="telegram" class="socialmedia-box-img light-icon">
-                <img src="../assets/img/whatsapp-light.png" alt="whatsapp" class="socialmedia-box-img light-icon">
-                <img src="../assets/img/facebook-dark.png" alt="facebook" class="socialmedia-box-img dark-icon">
-                <img src="../assets/img/instagram-dark.png" alt="instagram" class="socialmedia-box-img dark-icon">
-                <img src="../assets/img/linkedin-dark.png" alt="linkedin" class="socialmedia-box-img dark-icon">
-                <img src="../assets/img/telegram-dark.png" alt="telegram" class="socialmedia-box-img dark-icon">
-                <img src="../assets/img/whatsapp-dark.png" alt="whatsapp" class="socialmedia-box-img dark-icon">
-            </div>
-        </section>
-        <section class="footer-cards footer-categories">
-            <p class="footer-links-title">دسته بندی ها</p>
-            <ul class="footer-links">
-                <li><a href="*">املاک و مسکن</a></li>
-                <li><a href="*">وسایل نقلیه</a></li>
-                <li><a href="*">لوازم الکترونیکی</a></li>
-                <li><a href="*">مربوط به خانه</a></li>
-                <li><a href="*">خدمات و کسب و کار</a></li>
-            </ul>
-        </section>
-
-        <section class="footer-cards footer-account">
-            <p class="footer-links-title">حساب کاربری</p>
-            <ul class="footer-links">
-                <li><a href="*"> ورود به حساب </a></li>
-                <li><a href="*">ثبت نام سریع</a></li>
-                <li><a href="*">اگهی های من</a></li>
-                <li><a href="*">نشان ها و یادداشت ها</a></li>
-                <li><a href="*">افزایش بازدید اگهی</a></li>
-            </ul>
-        </section>
-
-        <section class="footer-cards footer-support">
-            <p class="footer-links-title">پشتیبانی</p>
-            <ul class="footer-links">
-                <li><a href="*">مرکز پشتیبانی و امداد </a></li>
-                <li><a href="*">راهنمای ثبت اگهی</a></li>
-                <li><a href="*">شیوه های پرداخت امن</a></li>
-                <li><a href="*">گزارش تخلف اگهی</a></li>
-                <li><a href="*">تماس با ما</a></li>
-            </ul>
-        </section>
-
-        <section class="footer-cards footer-rules">
-            <p class="footer-links-title">قوانین و مقررات</p>
-            <ul class="footer-links">
-                <li><a href="*">قوانین انتشار اگهی</a></li>
-                <li><a href="*">حریم خصوصی کاربران</a></li>
-                <li><a href="*">شرایط استفاده</a></li>
-                <li><a href="*">بلاگ و اخبار</a></li>
-            </ul>
-        </section>
-
-    </section>
 
 
-
-</footer>
+    </footer>
 {% endblock footer %}
 
 <script src="{% static 'js/header.js' %}"></script>

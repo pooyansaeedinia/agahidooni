@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'ads',
     'accounts',
     'home',
-    "contact_us"
+    "contact_us",
+    "site_content"
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
