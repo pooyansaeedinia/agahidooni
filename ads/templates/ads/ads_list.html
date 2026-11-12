@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-    <!--فو آیکون ها-->
+<!--فو آیکون ها-->
 
 {% block css %}
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'media/images/faviocns/apple-touch-icon.png' %}">
@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="{% static 'css/ads_list.css' %}">
     <link rel="stylesheet" href="{% static 'css/public.css' %}">
 {% endblock css %}
-    {% block title %}
+{% block title %}
     آگهی دونی || لیست آگهی ها
-    {% endblock title %}
+{% endblock title %}
 
 {% comment %} {% block header %}
 {% endblock header %}
@@ -21,78 +21,82 @@
 {% endblock footer %} {% endcomment %}
 
 {% block content %}
-<main class="ads-container">
-    <!--تول بار بالای صفحه-->
-    <div class="ads-toolbar">
-        <!--سمت راست-->
-        <div class="toolbar-right">
-            <!--دکمه فیلتر-->
-            <!--مرتب سازی آگهی ها بر اساس ارزان ترین آگهی ها ، گران ترین آگهی ها ، جدیدترین آگهی ها و قدیمی ترین آگهی ها-->
-            <div class="sort-options">
-                <button class="sort-btn">ارزان‌ترین</button>
-                <button class="sort-btn">گران ترین</button>
-                <button class="sort-btn">جدیدترین</button>
-                <button class="sort-btn">قدیمی‌ترین</button>
+    <main class="ads-container">
+        <!--تول بار بالای صفحه-->
+        <div class="ads-toolbar">
+            <!--سمت راست-->
+            <div class="toolbar-right">
+                <!--دکمه فیلتر-->
+                <!--مرتب سازی آگهی ها بر اساس ارزان ترین آگهی ها ، گران ترین آگهی ها ، جدیدترین آگهی ها و قدیمی ترین آگهی ها-->
+                <div class="sort-options">
+                    <button class="sort-btn">ارزان‌ترین</button>
+                    <button class="sort-btn">گران ترین</button>
+                    <button class="sort-btn">جدیدترین</button>
+                    <button class="sort-btn">قدیمی‌ترین</button>
+                </div>
             </div>
         </div>
-    </div>
-    <!--گرید آگهی‌ها-->
-    <section class="ads-grid">
-        <!--آگهی شماره یک-->
-        {% for ad in ads %}
-        <article class="ad-card" data-category="{{ ad.category }}" data-price="{{ ad.price }}" data-province="{{ ad.province }}"
-                 data-city="{{ ad.city }}" data-date="{{ ad.date_added|date:'Y-m-d H:i:s' }}">
-            <a href="{{ ad.get_absolute_url }}" class="ad-link">
-                <div class="ad-img-wrapper">
-                    {% with img=ad.images.first %}
-                    {% if img %}
-                        <img src="{{ img.image.url }}" alt="{{ ad.title }}">
+        <!--گرید آگهی‌ها-->
+        <section class="ads-grid">
+            <!--آگهی شماره یک-->
+            {% for ad in ads %}
+                <article class="ad-card" data-category="{{ ad.category }}" data-price="{{ ad.price }}"
+                         data-province="{{ ad.province }}"
+                         data-city="{{ ad.city }}" data-date="{{ ad.date_added|date:'Y-m-d H:i:s' }}">
+                    <a href="{{ ad.get_absolute_url }}" class="ad-link">
+                        <div class="ad-img-wrapper">
+                            {% with img=ad.images.first %}
+                                {% if img %}
+                                    <img src="{{ img.image.url }}" alt="{{ ad.title }}">
+                                {% endif %}
+                            {% endwith %}
+                            <!--دکمه علاقه‌مندی-->
+                            {% if related_ad.badge %}
+                                <span class="badge">فوری</span>
+                            {% endif %}
+                        </div>
+                        <!--اطلاعات آگهی-->
+                        <div class="ad-info">
+                            <h3 class="ad-title">{{ ad.title }}</h3>
+                            <div class="ad-meta">
+                                <span><i class="bi bi-geo-alt"></i>{{ ad.city.name }}</span>
+                                <span><i class="bi bi-clock"></i>{{ ad.date_added|timesince }} پیش </span>
+                            </div>
+                            <p class="ad-price"> {{ ad.price|floatformat:0 }} تومان</p>
+                        </div>
+                    </a>
+                </article>
+            {% endfor %}
+        </section>
+        <!--پیجینیشن-->
+        {% if is_paginated %}
+            <nav class="pagination">
+
+                {% if page_obj.has_previous %}
+                    <a class="page-btn" href="?page=
+                            {{ page_obj.previous_page_number }}{% if querystring %}&{{ querystring }}{% endif %}">&laquo;</a>
+                {% endif %}
+
+                {% for num in paginator.page_range %}
+                    {% if num == page_obj.number %}
+                        <a class="page-btn active">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="page-btn"
+                           href="?page={{ num }}{% if querystring %}&{{ querystring }}{% endif %}">{{ num }}</a>
                     {% endif %}
-                    {% endwith %}
-                    <!--دکمه علاقه‌مندی-->
-                    {% if related_ad.badge %}
-                        <span class="badge">فوری</span>
-                    {% endif %}
-                </div>
-                <!--اطلاعات آگهی-->
-                <div class="ad-info">
-                    <h3 class="ad-title">{{ ad.title }}</h3>
-                    <div class="ad-meta">
-                        <span><i class="bi bi-geo-alt"></i>{{ ad.city.name }}</span>
-                        <span><i class="bi bi-clock"></i>{{ ad.date_added|timesince }} پیش </span>
-                    </div>
-                    <p class="ad-price"> {{ ad.price|floatformat:0 }} تومان</p>
-                </div>
-            </a>
-        </article>
-        {% endfor %}
-    </section>
-    <!--پیجینیشن-->
-    {% if is_paginated %}
-    <nav class="pagination">
+                {% endfor %}
 
-        {% if page_obj.has_previous %}
-            <a class="page-btn" href="?page={{ page_obj.previous_page_number }}{% if querystring %}&{{ querystring }}{% endif %}">&laquo;</a>
+                {% if page_obj.has_next %}
+                    <a class="page-btn"
+                       href="?page={{ page_obj.next_page_number }}{% if querystring %}&{{ querystring }}{% endif %}">&raquo;</a>
+                {% endif %}
+
+            </nav>
         {% endif %}
-
-        {% for num in paginator.page_range %}
-            {% if num == page_obj.number %}
-                <a class="page-btn active">{{ num }}</a>
-            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                <a class="page-btn" href="?page={{ num }}{% if querystring %}&{{ querystring }}{% endif %}">{{ num }}</a>
-            {% endif %}
-        {% endfor %}
-
-        {% if page_obj.has_next %}
-            <a class="page-btn" href="?page={{ page_obj.next_page_number }}{% if querystring %}&{{ querystring }}{% endif %}">&raquo;</a>
-        {% endif %}
-
-    </nav>
-    {% endif %}
-</main>
+    </main>
 {% endblock content %}
 
-{% block js %}
-<!--فایل های js-->
-<script src="{% static 'js/ads.js' %}"></script>
-{% endblock js %}
+{% block scripts %}
+    <!--فایل های js-->
+    <script src="{% static 'js/ads.js' %}"></script>
+{% endblock scripts %}
