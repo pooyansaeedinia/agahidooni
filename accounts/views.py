@@ -24,7 +24,7 @@ class SignUpView(CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect("test_accounts:welcome")
+            return redirect("home:home")
 
         return super().dispatch(request, *args, **kwargs)
 

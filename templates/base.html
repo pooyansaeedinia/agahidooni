@@ -678,19 +678,17 @@
             <section class="footer-cards footer-categories">
                 <p class="footer-links-title">دسته بندی ها</p>
                 <ul class="footer-links">
-                    <li><a href="*">املاک و مسکن</a></li>
-                    <li><a href="*">وسایل نقلیه</a></li>
-                    <li><a href="*">لوازم الکترونیکی</a></li>
-                    <li><a href="*">مربوط به خانه</a></li>
-                    <li><a href="*">خدمات کسب و کار</a></li>
+                    {% for category in footer_categories %}
+                    <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+                    {% endfor %}
                 </ul>
             </section>
 
             <section class="footer-cards footer-account">
                 <p class="footer-links-title">حساب کاربری</p>
                 <ul class="footer-links">
-                    <li><a href="*"> ورود به حساب </a></li>
-                    <li><a href="*">ثبت نام سریع</a></li>
+                    <li><a href="{% url 'accounts:login' %}"> ورود به حساب </a></li>
+                    <li><a href="{% url 'accounts:signup' %}">ثبت نام سریع</a></li>
                     <li><a href="*">آگهی های من</a></li>
                     <li><a href="*">نشان ها و یادداشت ها</a></li>
                     <li><a href="*">افزایش بازدید آگهی</a></li>
@@ -701,19 +699,19 @@
                 <p class="footer-links-title">پشتیبانی</p>
                 <ul class="footer-links">
                     <li><a href="*">مرکز پشتیبانی و امداد </a></li>
-                    <li><a href="*">راهنمای ثبت اگهی</a></li>
+                    <li><a href="{% url 'site_content:how-to-post-an-ad' %}">راهنمای ثبت اگهی</a></li>
                     <li><a href="*">شیوه های پرداخت امن</a></li>
                     <li><a href="*">گزارش تخلف آگهی</a></li>
-                    <li><a href="*">تماس با ما</a></li>
+                    <li><a href="{% url 'contact_us:contact-us' %}">تماس با ما</a></li>
                 </ul>
             </section>
 
             <section class="footer-cards footer-rules">
                 <p class="footer-links-title">قوانین و مقررات</p>
                 <ul class="footer-links">
-                    <li><a href="*">قوانین انتشار آگهی</a></li>
+                    <li><a href="{% url 'site_content:terms' %}">قوانین انتشار آگهی</a></li>
                     <li><a href="*">حریم خصوصی کاربران</a></li>
-                    <li><a href="*">شرایط استفاده</a></li>
+                    <li><a href="{% url 'site_content:faq' %}">شرایط استفاده</a></li>
                     <li><a href="*">بلاگ و اخبار</a></li>
                 </ul>
             </section>
@@ -726,9 +724,9 @@
 
 <script src="{% static 'js/header.js' %}"></script>
 <script src="{% static 'js/footer.js' %}"></script>
-{% block scripts %}
+{% block js %}
 
-{% endblock scripts %}
+{% endblock js %}
 
 </body>
 </html>
