@@ -198,3 +198,5 @@ if (mainImage && thumbItems.length > 0) {
         });
     });
 }
+
+console.log("hello")
