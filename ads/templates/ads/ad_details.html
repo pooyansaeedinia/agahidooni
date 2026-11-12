@@ -12,6 +12,7 @@
     <link rel="manifest" href="{% static 'media/images/faviocns/site.webmanifest' %}">
     <!--فایل های css-->
     <link rel="stylesheet" href="{% static 'css/ad_details.css' %}">
+    <link rel="stylesheet" href="{% static "css/public.css" %}">
 {% endblock css %}
 
 {% block title %}
@@ -26,213 +27,219 @@
 
 
 {% block content %}
-<!--مودال تماس با فروشنده-->
-<div class="contact-modal" id="contactModal">
-    <div class="modal-content">
-        <button class="close-modal" id="closeModalBtn"><i class="bi bi-x-lg"></i></button>
-        <h3>شماره تماس فروشنده</h3>
-        <p class="phone-number" id="phoneNumber">09915064012</p>
-        <div class="modal-actions">
-            <a href="#" class="btn btn-primary">
-                <i class="bi bi-telephone-fill"></i> تماس مستقیم
-            </a>
-            <button class="btn btn-outline" id="copyBtn">
-                <i class="bi bi-clipboard"></i> کپی شماره
-            </button>
-        </div>
-    </div>
-</div>
-<!--مودال گزارش تخلف-->
-<div class="report-modal" id="reportModal">
-    <div class="report-modal-overlay" id="reportModalOverlay"></div>
-
-    <div class="report-modal-container">
-        <!--هدر مودال-->
-        <div class="report-modal-header">
-            <h3><i class="bi bi-flag"></i> گزارش تخلف</h3>
-            <button class="report-modal-close" id="reportModalClose">
-                <i class="bi bi-x-lg"></i>
-            </button>
-        </div>
-        <!--بدنه مودال-->
-        <div class="report-modal-body">
-            <form id="reportForm" action="#" method="POST">
-                <!-- فیلد مخفی برای آیدی آگهی -->
-                <input type="hidden" name="ad_id" value="">
-                <div class="form-group">
-                    <label for="violationType">نوع تخلف <span class="required">*</span></label>
-                    <select id="violationType" name="violation_type" required>
-                        <option value="">لطفا یک گزینه را انتخاب کنید</option>
-                        <option value="fake">آگهی جعلی یا فریبنده</option>
-                        <option value="duplicate">آگهی تکراری</option>
-                        <option value="wrong_category">دسته‌بندی اشتباه</option>
-                        <option value="offensive">محتوای توهین‌آمیز</option>
-                        <option value="spam">تبلیغات مزاحم (اسپم)</option>
-                        <option value="other">سایر موارد</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="reportDescription">توضیحات <span class="required">*</span></label>
-                    <textarea id="reportDescription" name="description" rows="4"
-                              placeholder="لطفا مشکل را توضیح دهید" required></textarea>
-                    <small class="field-hint">هرچه توضیحات دقیق‌تر باشد، بررسی سریع‌تر انجام می‌شود</small>
-                </div>
-            </form>
-        </div>
-        <!--فوتر مودال-->
-        <div class="report-modal-footer">
-            <button type="button" class="btn-outline" id="reportModalCancel">انصراف</button>
-            <button type="submit" class="btn-primary danger-btn" form="reportForm">
-                <i class="bi bi-send"></i> ارسال گزارش
-            </button>
-        </div>
-    </div>
-</div>
-<!--تست نوتیفیکیشن-->
-<div class="toast-notification" id="toastNotification">
-    <div class="toast-icon">
-        <i class="bi bi-check-circle-fill" id="toastIcon"></i>
-    </div>
-    <div class="toast-content">
-        <span class="toast-title" id="toastTitle"></span>
-        <span class="toast-message" id="toastMessage"></span>
-    </div>
-    <button class="toast-close" id="toastClose">
-        <i class="bi bi-x-lg"></i>
-    </button>
-</div>
-<main class="ad-details-container">
-    <!--مسیر صفحه یا به اصطلاح Breadcrumb-->
-    <nav class="breadcrumb">
-        <a href="{% url 'home:home' %}">خانه</a>
-        <i class="bi bi-chevron-left"></i>
-        <a href="{% url 'ads:ads-list' %}">آگهی‌ها</a>
-        <i class="bi bi-chevron-left"></i>
-        <a href="{% url 'ads:ad-detail' pk=ad.pk %}">یخچال ساید بای ساید</a>
-    </nav>
-    <!--گرید جزئیات آگهی ها-->
-    <section class="ad-details-grid card-bg">
-        <!--ستون سمت راست برای اطلاعات آگهی میباشد-->
-        <div class="ad-info-col">
-            <!--عنوان آگهی و قیمت آن-->
-            <div class="header-info-card">
-                <h1 class="ad-main-title">{{ ad.title }}</h1>
-                <p class="ad-price">{{ ad.price|floatformat:0 }} تومان</p>
-                <!--دکمه های تماس با فروشنده و افزودن به علاقه مندی ها-->
-                <div class="ad-actions">
-                    <button class="btn btn-primary" id="contactBtn">
-                        <i class="bi bi-telephone-fill"></i> تماس با فروشنده
-                    </button>
-                    <a href="#" class="btn btn-outline" id="favBtn">
-                        <i class="bi bi-heart"></i> افزودن به علاقه‌مندی‌ها
-                    </a>
-                    <button class="btn btn-outline danger" id="reportBtn">
-                        <i class="bi bi-flag"></i> گزارش تخلف
-                    </button>
-                </div>
-            </div>
-            <!--اطلاعات آگهی-->
-            <div class="ad-base-info">
-                <h2><i class="bi bi-info-circle"></i> اطلاعات آگهی</h2>
-                <ul>
-                    <li>
-                        <span><i class="bi bi-geo-alt"></i> استان:</span>
-                        <strong>{{ ad.city.province }}</strong>
-                    </li>
-                    <li>
-                        <span><i class="bi bi-pin-map"></i> شهر:</span>
-                        <strong>{{ ad.city.name }}</strong>
-                    </li><li>
-                        <span><i class="bi bi-house"></i> آدرس:</span>
-                        <strong>{{ ad.city.name }}</strong>
-                    </li>
-                    <li>
-                        <span><i class="bi bi-tag"></i> دسته‌بندی:</span>
-                        <strong>{{ ad.category }}</strong>
-                    </li>
-                    <li>
-                        <span><i class="bi bi-calendar"></i> تاریخ انتشار:</span>
-                        <strong>{{ ad.date_added|date:"Y/m/d" }}</strong>
-                    </li>
-                </ul>
-            </div>
-            <!--توضیحات فروشنده-->
-            <div class="ad-description">
-                <h2>توضیحات</h2>
-                <p>
-                    {{ ad.description }}
-                </p>
-            </div>
-        </div>
-        <!--ستون سمت چب برای عکس اصلی آگهی و گالری عکس میباشد-->
-        <div class="ad-gallery-col card-bg">
-            <!--عکس اصلی آگهی-->
-            <div class="main-image-wrapper">
-                <img src="{{ ad.images.first.image.url }}" alt="عکس اصلی آگهی" id="mainImage">
-            </div>
-            <!--گالری عکس-->
-            <div class="gallery-thumbnails">
-                {% for image in ad.images.all %}
-                <div class="thumb-item"><img src="{{ image.image.url }}" alt="گالری"></div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-    <!--آگهی های مشابه-->
-    <section class="related-products">
-        <div class="container">
-            <div class="section-header">
-                <h2>آگهی‌های مشابه</h2>
-                <a href="{% url 'ads:ads-list' %}" class="view-all">مشاهده همه آگهی‌ ها</a>
-            </div>
-            <!--اسلایدر-->
-            <div class="slider-container">
-                <!--دکمه قبلی-->
-                <button class="slider-btn prev-btn" id="prevNewBtn">
-                    <i class="bi bi-chevron-right"></i>
+    <!--مودال تماس با فروشنده-->
+    <div class="contact-modal" id="contactModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModalBtn"><i class="bi bi-x-lg"></i></button>
+            <h3>شماره تماس فروشنده</h3>
+            <p class="phone-number" id="phoneNumber">09915064012</p>
+            <div class="modal-actions">
+                <a href="#" class="btn btn-primary">
+                    <i class="bi bi-telephone-fill"></i> تماس مستقیم
+                </a>
+                <button class="btn btn-outline" id="copyBtn">
+                    <i class="bi bi-clipboard"></i> کپی شماره
                 </button>
-                <div class="slider-wrapper" id="newSliderWrapper">
-                    <div class="slider-track" id="newSliderTrack">
-                        <!--آگهی شماره یک-->
-                        {% for related_ad in ads %}
-                        <article class="ad-card" data-category="{{ related_ad.category }}" data-price="{{ related_ad.price }}" data-province="{{ related_ad.province }}"
-                                data-city="{{ related_ad.city }}" data-date="">
-                            <a href="{{ related_ad.get_absolute_url }}" class="ad-link">
-                                <div class="ad-img-wrapper">
-                                    {% with img=related_ad.images.first %}
-                                    {% if img %}
-                                        <img src="{{ img.image.url }}" alt="{{ related_ad.title }}">
-                                    {% endif %}
-                                    {% endwith %}
-                                    {% if related_ad.badge %}
-                                        <span class="badge">فوری</span>
-                                    {% endif %}
-                                </div>
-                                <!--اطلاعات آگهی-->
-                                <div class="ad-info">
-                                    <h3 class="ad-title">{{ related_ad.title }}</h3>
-                                    <div class="ad-meta">
-                                        <span><i class="bi bi-geo-alt"></i>{{ related_ad.city }}</span>
-                                        <span><i class="bi bi-clock"></i>{{ ad.date_added|timesince }} پیش </span>
-                                    </div>
-                                    <p class="ad-price"> {{ ad.price|floatformat:0 }} تومان</p>
-                                </div>
-                            </a>
-                        </article>
-                        {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!--مودال گزارش تخلف-->
+    <div class="report-modal" id="reportModal">
+        <div class="report-modal-overlay" id="reportModalOverlay"></div>
+
+        <div class="report-modal-container">
+            <!--هدر مودال-->
+            <div class="report-modal-header">
+                <h3><i class="bi bi-flag"></i> گزارش تخلف</h3>
+                <button class="report-modal-close" id="reportModalClose">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <!--بدنه مودال-->
+            <div class="report-modal-body">
+                <form id="reportForm" action="#" method="POST">
+                    <!-- فیلد مخفی برای آیدی آگهی -->
+                    <input type="hidden" name="ad_id" value="">
+                    <div class="form-group">
+                        <label for="violationType">نوع تخلف <span class="required">*</span></label>
+                        <select id="violationType" name="violation_type" required>
+                            <option value="">لطفا یک گزینه را انتخاب کنید</option>
+                            <option value="fake">آگهی جعلی یا فریبنده</option>
+                            <option value="duplicate">آگهی تکراری</option>
+                            <option value="wrong_category">دسته‌بندی اشتباه</option>
+                            <option value="offensive">محتوای توهین‌آمیز</option>
+                            <option value="spam">تبلیغات مزاحم (اسپم)</option>
+                            <option value="other">سایر موارد</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reportDescription">توضیحات <span class="required">*</span></label>
+                        <textarea id="reportDescription" name="description" rows="4"
+                                  placeholder="لطفا مشکل را توضیح دهید" required></textarea>
+                        <small class="field-hint">هرچه توضیحات دقیق‌تر باشد، بررسی سریع‌تر انجام می‌شود</small>
+                    </div>
+                </form>
+            </div>
+            <!--فوتر مودال-->
+            <div class="report-modal-footer">
+                <button type="button" class="btn-outline" id="reportModalCancel">انصراف</button>
+                <button type="submit" class="btn-primary danger-btn" form="reportForm">
+                    <i class="bi bi-send"></i> ارسال گزارش
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--تست نوتیفیکیشن-->
+    <div class="toast-notification" id="toastNotification">
+        <div class="toast-icon">
+            <i class="bi bi-check-circle-fill" id="toastIcon"></i>
+        </div>
+        <div class="toast-content">
+            <span class="toast-title" id="toastTitle"></span>
+            <span class="toast-message" id="toastMessage"></span>
+        </div>
+        <button class="toast-close" id="toastClose">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+    <main class="ad-details-container">
+        <!--مسیر صفحه یا به اصطلاح Breadcrumb-->
+        <nav class="breadcrumb">
+            <a href="{% url 'home:home' %}">خانه</a>
+            <i class="bi bi-chevron-left"></i>
+            <a href="{% url 'ads:ads-list' %}">آگهی‌ها</a>
+            <i class="bi bi-chevron-left"></i>
+            <a href="{% url 'ads:ad-detail' pk=ad.pk %}">{{ ad.title }}</a>
+        </nav>
+        <!--گرید جزئیات آگهی ها-->
+        <section class="ad-details-grid card-bg">
+            <!--ستون سمت راست برای اطلاعات آگهی میباشد-->
+            <div class="ad-info-col">
+                <!--عنوان آگهی و قیمت آن-->
+                <div class="header-info-card">
+                    <h1 class="ad-main-title">{{ ad.title }}</h1>
+                    <p class="ad-price">{{ ad.price|floatformat:0 }} تومان</p>
+                    <!--دکمه های تماس با فروشنده و افزودن به علاقه مندی ها-->
+                    <div class="ad-actions">
+                        <button class="btn btn-primary" id="contactBtn">
+                            <i class="bi bi-telephone-fill"></i> تماس با فروشنده
+                        </button>
+                        <a href="#" class="btn btn-outline" id="favBtn">
+                            <i class="bi bi-heart"></i> افزودن به علاقه‌مندی‌ها
+                        </a>
+                        <button class="btn btn-outline danger" id="reportBtn">
+                            <i class="bi bi-flag"></i> گزارش تخلف
+                        </button>
                     </div>
                 </div>
-                <!--دکمه بعدی-->
-                <button class="slider-btn next-btn" id="nextNewBtn">
-                    <i class="bi bi-chevron-left"></i>
-                </button>
+                <!--اطلاعات آگهی-->
+                <div class="ad-base-info">
+                    <h2><i class="bi bi-info-circle"></i> اطلاعات آگهی</h2>
+                    <ul>
+                        <li>
+                            <span><i class="bi bi-geo-alt"></i> استان:</span>
+                            <strong>{{ ad.city.province }}</strong>
+                        </li>
+                        <li>
+                            <span><i class="bi bi-pin-map"></i> شهر:</span>
+                            <strong>{{ ad.city.name }}</strong>
+                        </li>
+                        <li>
+                            <span><i class="bi bi-house"></i> آدرس:</span>
+                            <strong>{{ ad.city.name }}</strong>
+                        </li>
+                        <li>
+                            <span><i class="bi bi-tag"></i> دسته‌بندی:</span>
+                            <strong>{{ ad.category }}</strong>
+                        </li>
+                        <li>
+                            <span><i class="bi bi-calendar"></i> تاریخ انتشار:</span>
+                            <strong>{{ ad.date_added|date:"Y/m/d" }}</strong>
+                        </li>
+                    </ul>
+                </div>
+                <!--توضیحات فروشنده-->
+                <div class="ad-description">
+                    <h2>توضیحات</h2>
+                    <p>
+                        {{ ad.description }}
+                    </p>
+                </div>
             </div>
-        </div>
-    </section>
-</main>
+            <!--ستون سمت چب برای عکس اصلی آگهی و گالری عکس میباشد-->
+            <div class="ad-gallery-col card-bg">
+                <!--عکس اصلی آگهی-->
+                <div class="main-image-wrapper">
+                    <img src="{{ ad.images.first.image.url }}" alt="عکس اصلی آگهی" id="mainImage">
+                </div>
+                <!--گالری عکس-->
+                <div class="gallery-thumbnails">
+                    {% for image in ad.images.all %}
+                        <div class="thumb-item"><img src="{{ image.image.url }}" alt="گالری"></div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!--آگهی های مشابه-->
+        <section class="related-products">
+            {# اینجا اسم related به کلاس اضافه شد #}
+            <div class="related-container">
+                <div class="section-header">
+                    <h2>آگهی‌های مشابه</h2>
+                    <a href="{% url 'ads:ads-list' %}" class="view-all">مشاهده همه آگهی‌ ها</a>
+                </div>
+                <!--اسلایدر-->
+                {# اینجا اسم related به کلاس اضافه شد #}
+                <div class="related-slider-container">
+                    <!--دکمه قبلی-->
+                    <button class="slider-btn prev-btn" id="prevNewBtn">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                    <div class="slider-wrapper" id="newSliderWrapper">
+                    {# اینجا اسم related به کلاس اضافه شد #}
+                        <div class="related-slider-track" id="newSliderTrack">
+                            <!--آگهی شماره یک-->
+                            {% for related_ad in ads %}
+                                <article class="ad-card" data-category="{{ related_ad.category }}"
+                                         data-price="{{ related_ad.price }}" data-province="{{ related_ad.province }}"
+                                         data-city="{{ related_ad.city }}" data-date="">
+                                    <a href="{{ related_ad.get_absolute_url }}" class="ad-link">
+                                        <div class="ad-img-wrapper">
+                                            {% with img=related_ad.images.first %}
+                                                {% if img %}
+                                                    <img src="{{ img.image.url }}" alt="{{ related_ad.title }}">
+                                                {% endif %}
+                                            {% endwith %}
+                                            {% if related_ad.badge %}
+                                                <span class="badge">فوری</span>
+                                            {% endif %}
+                                        </div>
+                                        <!--اطلاعات آگهی-->
+                                        <div class="ad-info">
+                                            <h3 class="ad-title">{{ related_ad.title }}</h3>
+                                            <div class="ad-meta">
+                                                <span><i class="bi bi-geo-alt"></i>{{ related_ad.city }}</span>
+                                                <span><i
+                                                        class="bi bi-clock"></i>{{ ad.date_added|timesince }} پیش </span>
+                                            </div>
+                                            <p class="ad-price"> {{ ad.price|floatformat:0 }} تومان</p>
+                                        </div>
+                                    </a>
+                                </article>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!--دکمه بعدی-->
+                    <button class="slider-btn next-btn" id="nextNewBtn">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
 {% endblock content %}
 
 {% block js %}
-<!--فایل های js-->
-<script src="{% static 'js/adDetails.js' %}"></script>
+    <!--فایل های js-->
+    <script src="{% static 'js/adDetails.js' %}"></script>
 {% endblock js %}

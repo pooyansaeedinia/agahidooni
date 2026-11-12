@@ -36,95 +36,12 @@
             </div>
         </div>
     </div>
-    <!--فیلتر ساید بار-->
-    <aside class="filter-sidebar" id="filterSidebar">
-        <div class="filter-header">
-            <h2>فیلترها</h2>
-            <button class="close-filter" id="closeFilterBtn" aria-label="بستن">
-                <i class="bi bi-x-lg"></i>
-            </button>
-        </div>
-        <div class="filter-body">
-            <!--دسته ‌بندی-->
-            <div class="filter-group">
-                <h3>دسته ‌بندی</h3>
-                <label class="filter-checkbox">
-                    <input type="checkbox" name="category" value="وسایل خانگی">
-                    <span>وسایل خانگی</span>
-                </label>
-                <label class="filter-checkbox">
-                    <input type="checkbox" name="category" value="سرگرمی">
-                    <span>سرگرمی</span>
-                </label>
-                <label class="filter-checkbox">
-                    <input type="checkbox" name="category" value="وسایل نقلیه">
-                    <span>وسایل نقلیه</span>
-                </label>
-                <label class="filter-checkbox">
-                    <input type="checkbox" name="category" value="کالای دیجیتال">
-                    <span>کالای دیجیتال</span>
-                </label>
-            </div>
-            <!--محدوده قیمت-->
-            <div class="filter-group">
-                <h3>محدوده قیمت</h3>
-                <div class="price-inputs">
-                    <input type="number" placeholder="از (تومان)" id="minPrice">
-                    <input type="number" placeholder="تا (تومان)" id="maxPrice">
-                </div>
-            </div>
-            <!--استان-->
-            <div class="filter-group">
-                <h3>استان</h3>
-                <select class="filter-select" id="provinceFilter">
-                    <option value="">همه استان ها</option>
-                    <option value="تهران">تهران</option>
-                    <option value="مرکزی">مرکزی</option>
-                    <option value="اصفهان">اصفهان</option>
-                    <option value="فارس">فارس</option>
-                    <option value="آذربایجان">آذربایجان</option>
-                </select>
-            </div>
-            <!--شهر-->
-            <div class="filter-group">
-                <h3>شهر</h3>
-                <select class="filter-select" id="cityFilter">
-                    <option value="">همه شهرها</option>
-                    <option value="تهران">تهران</option>
-                    <option value="اراک">اراک</option>
-                    <option value="اصفحهان">اصفهان</option>
-                    <option value="شیراز">شیراز</option>
-                    <option value="تبریز">تبریز</option>
-                </select>
-            </div>
-            <!--نوع آگهی-->
-            <div class="filter-group">
-                <h3>نوع آگهی</h3>
-                <label class="filter-checkbox">
-                    <input type="checkbox" name="type" value="ویژه">
-                    <span>آگهی‌های ویژه</span>
-                </label>
-                <label class="filter-checkbox">
-                    <input type="checkbox" name="type" value="فوری">
-                    <span>آگهی‌های فوری</span>
-                </label>
-            </div>
-        </div>
-        <div class="filter-footer">
-            <button class="apply-filter-btn" id="applyFilterBtn">اعمال فیلترها</button>
-            <button class="clear-filter-btn" id="clearFilterBtn">حذف همه فیلترها</button>
-        </div>
-        <!--        <div class="filter-footer">-->
-        <!--            <button class="apply-filter-btn" id="applyFilterBtn"><i class="bi bi-funnel"></i></button>-->
-        <!--            <button class="clear-filter-btn" id="clearFilterBtn"><i class="bi bi-trash2-fill"></i></button>-->
-        <!--        </div>-->
-    </aside>
     <!--گرید آگهی‌ها-->
     <section class="ads-grid">
         <!--آگهی شماره یک-->
         {% for ad in ads %}
         <article class="ad-card" data-category="{{ ad.category }}" data-price="{{ ad.price }}" data-province="{{ ad.province }}"
-                 data-city="{{ ad.city }}" data-date="">
+                 data-city="{{ ad.city }}" data-date="{{ ad.date_added|date:'Y-m-d H:i:s' }}">
             <a href="{{ ad.get_absolute_url }}" class="ad-link">
                 <div class="ad-img-wrapper">
                     {% with img=ad.images.first %}

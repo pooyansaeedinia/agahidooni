@@ -63,8 +63,8 @@ body {
 /*کانتینر جزئیات آگهی*/
 .ad-details-container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 120px 20px 60px;
+    margin: 30px auto;
+
 }
 
 /*مسیر صفحات*/
@@ -338,7 +338,7 @@ body {
 }
 
 /*کانتینر*/
-.container {
+.related-container {
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -373,7 +373,7 @@ body {
 }
 
 /*ساختار اصلی اسلایدر*/
-.slider-container {
+.related-slider-container {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -430,14 +430,14 @@ body {
 }
 
 /*مسیر اسلایدر*/
-.slider-track {
+.related-slider-track {
     display: flex;
     gap: 20px;
     padding: 4px;
 }
 
 /*اگهی کارت های داخل اسلایدر*/
-.slider-track .ad-card {
+.related-slider-track .ad-card {
     flex: 0 0 calc(25% - 15px);
     scroll-snap-align: start;
     background-color: var(--surface);
@@ -449,12 +449,12 @@ body {
     flex-direction: column;
 }
 
-.slider-track .ad-card:hover {
+.related-slider-track .ad-card:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     transform: translateY(-3px);
 }
 
-.slider-track .ad-link {
+.related-slider-track .ad-link {
     display: flex;
     flex-direction: column;
     text-decoration: none;
@@ -462,7 +462,7 @@ body {
     height: 100%;
 }
 
-.slider-track .ad-img-wrapper {
+.related-slider-track .ad-img-wrapper {
     position: relative;
     width: 100%;
     aspect-ratio: 4 / 3;
@@ -470,18 +470,18 @@ body {
     background-color: var(--bg-color);
 }
 
-.slider-track .ad-img-wrapper img {
+.related-slider-track .ad-img-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: var(--transition);
 }
 
-.slider-track .ad-card:hover .ad-img-wrapper img {
+.related-slider-track .ad-card:hover .ad-img-wrapper img {
     transform: scale(1.05);
 }
 
-.slider-track .fav-btn {
+.related-slider-track .fav-btn {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -501,12 +501,12 @@ body {
     text-decoration: none;
 }
 
-.slider-track .fav-btn:hover {
+.related-slider-track .fav-btn:hover {
     color: var(--danger);
     background: #fff;
 }
 
-.slider-track .badge {
+.related-slider-track .badge {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -519,25 +519,25 @@ body {
     z-index: 2;
 }
 
-.slider-track .ad-info {
+.related-slider-track .ad-info {
     padding: 16px;
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.slider-track .ad-title {
+.related-slider-track .ad-title {
     font-size: 16px;
     font-weight: 700;
     color: var(--text-primary);
     transition: var(--transition);
 }
 
-.slider-track .ad-card:hover .ad-title {
+.related-slider-track .ad-card:hover .ad-title {
     color: var(--primary);
 }
 
-.slider-track .ad-meta {
+.related-slider-track .ad-meta {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -545,13 +545,13 @@ body {
     color: var(--text-secondary);
 }
 
-.slider-track .ad-meta span {
+.related-slider-track .ad-meta span {
     display: flex;
     align-items: center;
     gap: 4px;
 }
 
-.slider-track .ad-price {
+.related-slider-track .ad-price {
     font-size: 16px;
     font-weight: 800;
     color: var(--primary);
@@ -904,7 +904,7 @@ body {
         gap: 24px;
     }
 
-    .slider-track .ad-card {
+    .related-slider-track .ad-card {
         flex: 0 0 calc(33.333% - 14px);
     }
 }
@@ -919,7 +919,7 @@ body {
         order: -1;
     }
 
-    .slider-container {
+    .related-slider-container {
         display: flex;
         align-items: center;
         gap: 8px;
@@ -938,7 +938,7 @@ body {
         min-width: 0; /* بسیار مهم برای جلوگیری از شکستن عرض */
     }
 
-    .slider-track .ad-card {
+    .related-slider-track .ad-card {
         flex: 0 0 100%;
         scroll-snap-align: center;
     }

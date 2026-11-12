@@ -119,11 +119,12 @@ function sortAds(sortType) {
             break;
 
         case "جدیدترین":
-            sortedCards.sort((a, b) => parseInt(a.dataset.date) - parseInt(b.dataset.date));
+            // 🔴 استفاده از new Date به جای parseInt
+            sortedCards.sort((a, b) => new Date(b.dataset.date) - new Date(a.dataset.date));
             break;
 
         case "قدیمی‌ترین":
-            sortedCards.sort((a, b) => parseInt(b.dataset.date) - parseInt(a.dataset.date));
+            sortedCards.sort((a, b) => new Date(a.dataset.date) - new Date(b.dataset.date));
             break;
     }
 
