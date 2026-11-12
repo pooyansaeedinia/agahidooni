@@ -48,19 +48,14 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-primary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
     direction: rtl;
 }
 
 /*کانتینر اصلی*/
 .ads-container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 120px 20px 80px;
+    margin: 30px auto;
+    padding: 0 20px;
 }
 
 /*تول بار*/
