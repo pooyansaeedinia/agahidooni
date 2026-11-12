@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('ads.urls'), name='ads'),
     path('', include('home.urls'), name='home'),
     path('accounts/', include('accounts.urls'), name='accounts'),
+    path("contact-us/", include("contact_us.urls", namespace="contact_us")),
 ]
 
 if settings.DEBUG:

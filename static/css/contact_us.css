@@ -48,19 +48,14 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-primary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
-    padding: 20px;
     direction: rtl;
 }
 
 /*کانتینر تماس با ما*/
 .contact-container {
     max-width: 1300px;
-    margin: 0 auto;
-    padding: 120px 20px 60px;
+    margin: 30px auto;
 }
 
 /*بنر بالای صفحه*/

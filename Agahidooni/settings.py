@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     # my apps
     'ads',
     'accounts',
-    'home'
+    'home',
+    "contact_us"
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
