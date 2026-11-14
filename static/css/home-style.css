@@ -45,9 +45,9 @@
 }
 
 .carousel-slide a {
-  display: block;
-  width: 100%;
-  height: 100%;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .carousel-arrows {
@@ -275,11 +275,7 @@
     }
 
     .ads-gallery {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 1rem;
-        padding-block: 0;
-        overflow: visible;
     }
 
     .ad-badge,
@@ -293,7 +289,7 @@
     }
 
     .ad-card {
-        width: 100%;
+        flex: 0 0 calc((100% - 3rem) / 4);
         min-width: 0;
     }
 }

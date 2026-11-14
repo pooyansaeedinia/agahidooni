@@ -27,6 +27,7 @@
     {% endblock css %}
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/public.css' %}">
     <link rel="stylesheet" href="{% static 'css/css-reset.css' %}">
     <link rel="stylesheet" href="{% static 'fonts/FA/css/all.min.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -43,7 +44,9 @@
                 <i class="fa-solid fa-bars"></i>
             </button>
 
-            <img class="img_logo" src="{% static 'logo/Agahidooni_without_agahidooni1.png' %}" alt="آگهی دونی لوگو">
+            <a href="/">
+                <img class="img_logo" src="{% static 'logo/Agahidooni_without_agahidooni1.png' %}" alt="آگهی دونی لوگو">
+            </a>
 
             <nav class="main-nav" aria-label="منوی اصلی">
                 <button class="nav-item filter-open-btn" id="filterOpenBtn" type="button">

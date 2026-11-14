@@ -77,18 +77,23 @@
             <section class="main-box ad-main-box">
 
                 <!-- اگهی اول -->
-
+                {% if ads %}
+                {% for ad in ads %}
                 <section class="fav-item-box">
                     <div class="ad-img-item">
-                        <img src="../assets/media/images/kmc_j7.jpg" alt="khoneh">
+                        {% with img=ad.images.first %}
+                            {% if img %}
+                                <img src="{{ img.image.url }}" alt="{{ ad.title }}">
+                            {% endif %}
+                        {% endwith %}
                     </div>
                     <div class="ad-info">
-                        <h3 class="ad-title">KMC J7</h3>
+                        <h3 class="ad-title">{{ ad.title }}</h3>
                         <div class="ad-meta">
-                            <span><i class="fa-solid fa-location-dot"></i>اصفهان</span>
-                            <span><i class="fa-regular fa-clock"></i> 5 ساعت پیش</span>
+                            <span><i class="fa-solid fa-location-dot">{{ ad.city.name }}</i></span>
+                            <span><i class="fa-regular fa-clock"></i> {{ ad.date_added|timesince }} پیش</span>
                         </div>
-                        <p class="ad-price">4000000000 تومان</p>
+                        <p class="ad-price">{{ ad.price }} تومان</p>
                     </div>
                     <div class="fav-icon-heart">
                         <button class="favorite-toggle active" type="button" onclick="openFavoriteModal(this)">
@@ -98,83 +103,14 @@
                         </button>
                     </div>
                 </section>
+                {% endfor %}
+                {% else %}
+                    <section class="no-aditem">
+                        <h2> <i class="fa-regular fa-heart"></i> هنوز چیزی اینجا نیست</h2>
+                        <p>مورد های موردعلاقتون را ذخیره کنید تا همیشه در دسترس شما باشند.</p>
+                    </section> 
+                {% endif %}
 
-                <!-- اگهی دوم -->
-
-                <section class="fav-item-box">
-                    <div class="ad-img-item">
-                        <img src="../assets/media/images/khoneh.png" alt="khoneh">
-                    </div>
-                    <div class="ad-info">
-                        <h3 class="ad-title">۱۲۵متری|غرب تهران</h3>
-                        <div class="ad-meta">
-                            <span><i class="fa-solid fa-location-dot"></i>تهران</span>
-                            <span><i class="fa-regular fa-clock"></i> 8 ساعت پیش</span>
-                        </div>
-                        <p class="ad-price">7000000000 تومان</p>
-                    </div>
-                    <div class="fav-icon-heart">
-                        <button class="favorite-toggle active" type="button" onclick="openFavoriteModal(this)">
-
-                            <a href="#"><i class="fa-solid fa-heart"></i></a>
-
-                        </button>
-                    </div>
-                </section>
-
-                <!-- اگهی سوم -->
-
-                <section class="fav-item-box">
-                    <div class="ad-img-item">
-                        <img src="../assets/media/images/fc27.jpg" alt="fc27">
-                    </div>
-                    <div class="ad-info">
-                        <h3 class="ad-title">fc27</h3>
-                        <div class="ad-meta">
-                            <span><i class="fa-solid fa-location-dot"></i>مشهد</span>
-                            <span><i class="fa-regular fa-clock"></i> 3روز پیش</span>
-                        </div>
-                        <p class="ad-price">8000000 تومان</p>
-                    </div>
-                    <div class="fav-icon-heart">
-                        <button class="favorite-toggle active" type="button" onclick="openFavoriteModal(this)">
-
-                            <a href="#"><i class="fa-solid fa-heart"></i></a>
-
-                        </button>
-                    </div>
-                </section>
-
-
-                  <!-- اگهی چهارم -->
-
-                <section class="fav-item-box">
-                    <div class="ad-img-item">
-                        <img src="../assets/media/images/refrigerator.jpg" alt="refrigerator">
-                    </div>
-                    <div class="ad-info">
-                        <h3 class="ad-title">refrigerator</h3>
-                        <div class="ad-meta">
-                            <span><i class="fa-solid fa-location-dot"></i>مشهد</span>
-                            <span><i class="fa-regular fa-clock"></i> ۵ روز پیش</span>
-                        </div>
-                        <p class="ad-price">۹۷۰۰۰۰۰ تومان</p>
-                    </div>
-                    <div class="fav-icon-heart">
-                        <button class="favorite-toggle active" type="button" onclick="openFavoriteModal(this)">
-
-                            <a href="#"><i class="fa-solid fa-heart"></i></a>
-
-                        </button>
-                    </div>
-                </section>
-
-
-                <!-- <section class="no-aditem">
-                    <h2> <i class="fa-regular fa-heart"></i> هنوز چیزی اینجا نیست</h2>
-                    <p>مورد های موردعلاقتون را ذخیره کنید تا همیشه در دسترس شما باشند.</p>
-
-                </section> -->
                 <section class="con-pagination">
                     <div class="aditem-pagination">
                         <button class="page-btn prev">

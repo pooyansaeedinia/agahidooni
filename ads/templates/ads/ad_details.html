@@ -20,12 +20,6 @@
     آگهی دونی || لیست آگهی ها
 {% endblock title %}
 
-{% comment %} {% block header %}
-{% endblock header %}
-
-{% block footer %}
-{% endblock footer %} {% endcomment %}
-
 
 {% block content %}
     <!--مودال تماس با فروشنده-->
@@ -125,8 +119,15 @@
                         <button class="btn btn-primary" id="contactBtn">
                             <i class="bi bi-telephone-fill"></i> تماس با فروشنده
                         </button>
-                        <a href="#" class="btn btn-outline" id="favBtn">
-                            <i class="bi bi-heart"></i> افزودن به علاقه‌مندی‌ها
+                        <form id="favForm" method="post" action="{% url 'ads:favorite-toggle' ad.pk %}" hidden>
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                        </form>
+
+                        <a href="#" class="btn btn-outline" id="favBtn"
+                        onclick="document.getElementById('favForm').submit(); return false;">
+                            <i class="bi {% if is_favorite %}bi-heart-fill{% else %}bi-heart{% endif %}"></i>
+                            {% if is_favorite %}حذف از علاقه‌مندی‌ها{% else %}افزودن به علاقه‌مندی‌ها{% endif %}
                         </a>
                         <button class="btn btn-outline danger" id="reportBtn">
                             <i class="bi bi-flag"></i> گزارش تخلف

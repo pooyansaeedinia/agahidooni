@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: "Vazir";
-    src: url(../font/vazir/Vazirmatn-SemiBold.woff2) format("woff2");
+    src: url(../fonts/vazir/Vazirmatn-SemiBold.woff2) format("woff2");
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -12,7 +12,7 @@
 
 @font-face {
     font-family: "Vazir";
-    src: url(../font/vazir/Vazirmatn-Bold.woff2) format("woff2");
+    src: url(../fonts/vazir/Vazirmatn-Bold.woff2) format("woff2");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -20,7 +20,7 @@
 
 @font-face {
     font-family: "Estedad";
-    src: url(../font/estedad/Estedad-Regular.woff2) format("woff2");
+    src: url(../fonts/estedad/Estedad-Regular.woff2) format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -28,7 +28,7 @@
 
 @font-face {
     font-family: "Estedad";
-    src: url(../font/estedad/Estedad-SemiBold.woff2) format("woff2");
+    src: url(../fonts/estedad/Estedad-SemiBold.woff2) format("woff2");
     font-weight: 600;
     font-style: normal;
     font-display: swap;

@@ -6,6 +6,11 @@ from ads.models import Ads, AdsGallery, Category, City
 from .models import UserAddress
 from django.contrib import messages
 from django.db import transaction
+from django.shortcuts import get_object_or_404, redirect
+from django.utils.http import url_has_allowed_host_and_scheme
+from django.views import View
+
+from dashboard.models import Favorite
 
 from django.db.models import Q
 
@@ -55,9 +60,13 @@ class AdDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         ad = self.get_object()
+        user = self.request.user
+        context["is_favorite"] = (
+            user.is_authenticated
+            and user.favorites.filter(ad=self.object).exists()
+        )
         context['ad'] = ad
-        # context['ads'] = Ads.objects.filter(city=ad.city).exclude(id=ad.id)[:10]
-        context['ads'] = Ads.objects.filter(city=ad.city)[:10]
+        context['ads'] = Ads.objects.filter(city=ad.city).exclude(id=ad.id)[:10]
         return context
     
     
@@ -94,3 +103,21 @@ class PostAdViewM(PostAdView):
 
 class PostAdViewK(PostAdView):
     ad_type = "service"
+
+
+class ToggleFavoriteView(LoginRequiredMixin, View):
+    def post(self, request, pk):
+        ad = get_object_or_404(Ads, pk=pk)
+        favorite, created = Favorite.objects.get_or_create(user=request.user, ad=ad)
+
+        if created:
+            messages.success(request, "به علاقه‌مندی‌ها اضافه شد.")
+        else:
+            favorite.delete()
+            messages.info(request, "از علاقه‌مندی‌ها حذف شد.")
+
+        # go back to the page the user came from
+        next_url = request.POST.get("next", "")
+        if url_has_allowed_host_and_scheme(next_url, allowed_hosts={request.get_host()}):
+            return redirect(next_url)
+        return redirect(ad.get_absolute_url())

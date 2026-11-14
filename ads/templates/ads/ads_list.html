@@ -15,10 +15,6 @@
     آگهی دونی || لیست آگهی ها
 {% endblock title %}
 
-{% comment %} {% block header %}
-{% endblock header %}
-{% block footer %}
-{% endblock footer %} {% endcomment %}
 
 {% block content %}
     <main class="ads-container">
@@ -42,7 +38,7 @@
             {% for ad in ads %}
                 <article class="ad-card" data-category="{{ ad.category }}" data-price="{{ ad.price }}"
                          data-province="{{ ad.province }}"
-                         data-city="{{ ad.city }}" data-date="{{ ad.date_added|date:'Y-m-d H:i:s' }}">
+                         data-city="{{ ad.city.name }}" data-date="{{ ad.date_added|date:'Y-m-d H:i:s' }}">
                     <a href="{{ ad.get_absolute_url }}" class="ad-link">
                         <div class="ad-img-wrapper">
                             {% with img=ad.images.first %}

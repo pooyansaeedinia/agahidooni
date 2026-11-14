@@ -72,36 +72,42 @@
 
             <section class="main-box ad-main-box">
 
+                {% if ads %}
+                {% for ad in ads %}
                 <!-- آگهی اول -->
                 <section class="ad-item-box">
                     <div class="ad-img-item">
-                        <img src="../assets/media/images/kmc_j7.jpg" alt="kmc_j7">
+                        {% with img=ad.images.first %}
+                            {% if img %}
+                                <img src="{{ img.image.url }}" alt="{{ ad.title }}">
+                            {% endif %}
+                        {% endwith %}
                     </div>
                     <div class="laptop-ad-info">
-                        <h3 class="ad-title">KMC J7</h3>
-                        <p class="ad-price">4000000000 تومان</p>
+                        <h3 class="ad-title">{{ ad.title }}</h3>
+                        <p class="ad-price">{{ ad.price }} تومان</p>
                     </div>
 
                     <div class=" mobile-ad-info">
-                        <h3 class="ad-title">KMC J7</h3>
+                        <h3 class="ad-title">{{ ad.title }}</h3>
                         <div class="ad-meta">
                             <span><i class="fa-regular fa-clock"></i>1404.05.13/1405.01.06</span>
                         </div>
-                        <p class="ad-price">4000000000 تومان</p>
+                        <p class="ad-price">{{ ad.price }} تومان</p>
                     </div>
                     <div class="ad-category">
                         <span class="ad-label">دسته‌بندی</span>
-                        <span class="ad-desc">وسیله نقلیه</span>
+                        <span class="ad-desc">{{ ad.category.name }}</span>
                     </div>
 
                     <div class="ad-date">
                         <span class="ad-label">تاریخ ثبت / انقضا</span>
-                        <span class="ad-desc">1405.01.06 / 1404.05.13</span>
+                        <span class="ad-desc">1405.01.06 / {{ ad.date_added }}</span>
                     </div>
 
                     <div class="ad-location">
                         <span class="ad-label">مکان</span>
-                        <span class="ad-desc">تهران</span>
+                        <span class="ad-desc">{{ ad.city.name }}</span>
                     </div>
 
                     <div class="ad-actions">
@@ -114,100 +120,15 @@
                         </button>
                     </div>
                 </section>
+                {% endfor %}
+                {% else %}
+                    <section class="no-aditem">
+                            <h2> <i class="fa-regular fa-file-lines"></i> هنوز اگهی ای ثبت نکرده اید</h2>
+                            <p>اولین اگهی شما می تواند شروع یک تجربه تازه باشد.</p>
+                    </section>
+                {% endif %}
 
-
-                <!-- آگهی دوم -->
-                <section class="ad-item-box">
-                    <div class="ad-img-item">
-                        <img src="../assets/media/images/khoneh.png" alt="khoneh">
-                    </div>
-                    <div class="laptop-ad-info">
-                        <h3 class="ad-title">۱۲۵متری|غرب تهران</h3>
-                        <p class="ad-price">6800000000 تومان</p>
-                    </div>
-
-                    <div class=" mobile-ad-info">
-                        <h3 class="ad-title">۱۲۵متری|غرب تهران</h3>
-                        <div class="ad-meta">
-                            <span><i class="fa-regular fa-clock"></i>1404.05.13/1405.01.06</span>
-                        </div>
-                        <p class="ad-price">6800000000 تومان</p>
-                    </div>
-                    <div class="ad-category">
-                        <span class="ad-label">دسته‌بندی</span>
-                        <span class="ad-desc">املاک</span>
-                    </div>
-
-                    <div class="ad-date">
-                        <span class="ad-label">تاریخ ثبت / انقضا</span>
-                        <span class="ad-desc">1405.01.06 / 1404.05.13</span>
-                    </div>
-
-                    <div class="ad-location">
-                        <span class="ad-label">مکان</span>
-                        <span class="ad-desc">شیراز</span>
-                    </div>
-
-                    <div class="ad-actions">
-                        <i class="fa-solid fa-pen-to-square" title="ویرایش"></i>
-                        <button type="button" onclick="openRenewModal(this)">
-                            <a href="#"><i class="fa-solid fa-rotate" title="تمدید"></i></a>
-                        </button>
-                        <button onclick="opendeletemodal(this)">
-                            <a href="#"><i class="fa-solid fa-trash" title="حذف"></i></a>
-                        </button>
-                    </div>
-                </section>
-
-
-                <!-- آگهی سوم -->
-                <section class="ad-item-box">
-                    <div class="ad-img-item">
-                        <img src="../assets/media/images/goshi.png" alt="ghoshi">
-                    </div>
-                    <div class="laptop-ad-info">
-                        <h3 class="ad-title">phone 16</h3>
-                        <p class="ad-price">250000000 تومان</p>
-                    </div>
-
-                    <div class=" mobile-ad-info">
-                        <h3 class="ad-title">iphone 16</h3>
-                        <div class="ad-meta">
-                            <span><i class="fa-regular fa-clock"></i>1404.05.13/1405.01.06</span>
-                        </div>
-                        <p class="ad-price">250000000 تومان</p>
-                    </div>
-                    <div class="ad-category">
-                        <span class="ad-label">دسته‌بندی</span>
-                        <span class="ad-desc">دیجیتال</span>
-                    </div>
-
-                    <div class="ad-date">
-                        <span class="ad-label">تاریخ ثبت / انقضا</span>
-                        <span class="ad-desc">1405.01.06 / 1404.05.13</span>
-                    </div>
-
-                    <div class="ad-location">
-                        <span class="ad-label">مکان</span>
-                        <span class="ad-desc">تهران</span>
-                    </div>
-
-                    <div class="ad-actions">
-                        <i class="fa-solid fa-pen-to-square" title="ویرایش"></i>
-                        <button type="button" onclick="openRenewModal(this)">
-                            <a href="#"><i class="fa-solid fa-rotate" title="تمدید"></i></a>
-                        </button>
-                        <button onclick="opendeletemodal(this)">
-                            <a href="#"><i class="fa-solid fa-trash" title="حذف"></i></a>
-                        </button>
-                    </div>
-                </section>
-
-                <!-- <section class="no-aditem">
-                        <h2> <i class="fa-regular fa-file-lines"></i> هنوز اگهی ای ثبت نکرده اید</h2>
-                        <p>اولین اگهی شما می تواند شروع یک تجربه تازه باشد.</p>
-
-                    </section> -->
+                
                 <section class="con-pagination">
                     <div class="aditem-pagination">
                         <button class="page-btn prev">
