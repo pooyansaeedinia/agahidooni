@@ -1,8 +1,7 @@
 // گرفتن المان‌ها
 const modal = document.querySelector("#addressModal");
 const titleInput = document.querySelector("#addressTitle");
-const provinceInput = document.querySelector("#addressProvince");
-const cityInput = document.querySelector("#addressCity");
+const addressProvinceInput = document.querySelector("#addressProvince");
 const fullInput = document.querySelector("#addressFull");
 const postalCodeInput = document.querySelector("#addressPostalCode");
 const phoneInput = document.querySelector("#addressPhone");
@@ -34,7 +33,7 @@ document.querySelectorAll("[data-id]:not(.danger)").forEach(btn => {
         // پر کردن فیلدها با دیتا هایی که از سمت دیتابیس می آید
         document.querySelector("#editingAddressId").value = this.dataset.id;
         titleInput.value = this.dataset.title;
-        provinceInput.value = this.dataset.province;
+        addressProvinceInput.value = this.dataset.province;
         cityInput.value = this.dataset.city;
         fullInput.value = this.dataset.address;
         postalCodeInput.value = this.dataset.postalCode;
@@ -133,3 +132,4 @@ function confirmAddressDelete() {
 // برای پاک کردن حافظه کش
 // localStorage.removeItem("skipAddressConfirmation");
 // sessionStorage.clear();
+console.log("hello world")

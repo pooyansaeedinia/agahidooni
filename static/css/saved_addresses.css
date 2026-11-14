@@ -107,7 +107,7 @@
     color: #FFFFFF;
     border: none;
     border-radius: 12px;
-    font-family: var(--font-family);
+    font-family: var(--font-family) !important;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
