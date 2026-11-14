@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <!--فو آیکون ها-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'media/images/faviocns/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'media/images/faviocns/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'media/images/faviocns/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'media/images/faviocns/site.webmanifest' %}">
+    <!--فایل های css-->
+    <link rel="stylesheet" href="{% static 'css/public.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main-dashboard-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/css-reset.css' %}">
+    <link rel="stylesheet" href="{% static 'font/FA/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/respansive.css' %}">
+{% endblock css %}
+
+{% block title %}آگهی دونی | اطلاعات حساب{% endblock title %}
+
+{% block content %}
+    <section class="dashboard_container">
+        <!-- sidebar part -->
+
+        <aside class="sidebar-dashboard" id="sidebar">
+            <section class="profile-section">
+                <h3 class="title-profile"> پروفایل کاربری </h3>
+                <span class="detail-profile">مدیریت حساب و دسترسی ها</span>
+                <button class="sidebar-newbut"> ثبت اگهی</button>
+            </section>
+
+            <section class="sidebar-items">
+                <nav class="sidebar-links">
+                    <ul>
+                        <li>
+                            <i class="fa-solid fa-house"></i>
+                            <a href="{% url 'dashboard:dashboard' %}">نمایه کلی</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-rectangle-list"></i>
+                            <a href="{% url 'dashboard:my_ads' %}">آگهی های من</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-heart"></i>
+                            <a href="{% url 'dashboard:favorite' %}">علاقه مندی ها</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-user"></i>
+                            <a href="{% url 'dashboard:profile' %}">اطلاعات حساب</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <a href="{% url 'dashboard:saved_addresses' %}">آدرس ها</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-key"></i>
+                            <a href="{% url 'dashboard:change_password' %}">تغییر رمز عبور</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'accounts:logout' %}">خروج</a>
+                             <i class="fa-solid fa-right-from-bracket"></i>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+        </aside>
+        <main class="main-container">
+            <div class="page-box-title">
+                <h3 class="page-title">اطلاعات حساب</h3>
+                <p class="page-title-detail">اطلاعات شخصی خود را مدیریت کنید</p>
+            </div>
+            <section class="main-box">
+                <!-- فرم اطلاعات حساب -->
+                <form class="profile-form" action="#" method="POST" enctype="multipart/form-data">
+                    <!-- آپلود عکس پروفایل -->
+                    <div class="avatar-section">
+                        <div class="avatar-preview">
+                            <img src="../../assets/media/images/Amirhossein.png" alt="عکس پروفایل">
+                        </div>
+                        <div class="avatar-actions">
+                            <label for="avatarInput" class="btn-upload">
+                                <i class="bi bi-camera"></i> آپلود عکس
+                            </label>
+                            <input type="file" id="avatarInput" name="avatar" accept="image/*" hidden>
+                            <button type="button" class="btn-remove">
+                                <i class="fa-solid fa-trash"></i> حذف
+                            </button>
+                        </div>
+                    </div>
+                    <!-- فیلدهای اطلاعات -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">نام</label>
+                            <input type="text" id="firstName" name="first_name" placeholder="لطفا نام خود را وارد کنید">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">نام خانوادگی</label>
+                            <input type="text" id="lastName" name="last_name"
+                                placeholder="لطفا نام خانوادگی خود را وارد کنید">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">ایمیل</label>
+                            <input type="email" id="email" name="email" placeholder="لطفا ایمیل خود را وارد کنید">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">شماره موبایل</label>
+                            <input type="tel" id="phone" name="phone" placeholder="لطفا شماره موبایل خود را وارد کنید">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="birthday">تاریخ تولد</label>
+                            <input type="date" id="birthday" name="birthday">
+                        </div>
+                        <div class="form-group">
+                            <label>جنسیت</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="مرد">
+                                    <span>مرد</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="زن">
+                                    <span>زن</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="bi bi-check-lg"></i> ذخیره تغییرات
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </section>
+{% endblock content %}
+
+{% block js %}
+    <script src="{% static 'js/ads.js' %}"></script>
+{% endblock js %}

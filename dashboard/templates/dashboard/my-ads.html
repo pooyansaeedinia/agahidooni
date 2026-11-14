@@ -1,0 +1,348 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}آگهی دونی | آگهی های من {% endblock title %}
+{% block css %}
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'media/images/faviocns/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'media/images/faviocns/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'media/images/faviocns/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'media/images/faviocns/site.webmanifest' %}">
+    <!-- لینک های css -->
+    <link rel="stylesheet" href="{% static 'css/public.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main-dashboard-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/css-reset.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/FA/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/agahi-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/respansive.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+    <section class="dashboard_container">
+        <!-- sidebar part -->
+
+         <aside class="sidebar-dashboard" id="sidebar">
+            <section class="profile-section">
+                <h3 class="title-profile"> پروفایل کاربری </h3>
+                <span class="detail-profile">مدیریت حساب و دسترسی ها</span>
+                <button class="sidebar-newbut"> ثبت اگهی</button>
+            </section>
+
+            <section class="sidebar-items">
+                <nav class="sidebar-links">
+                    <ul>
+                        <li>
+                            <i class="fa-solid fa-house"></i>
+                            <a href="{% url 'dashboard:dashboard' %}">نمایه کلی</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-rectangle-list"></i>
+                            <a href="{% url 'dashboard:my_ads' %}">آگهی های من</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-heart"></i>
+                            <a href="{% url 'dashboard:favorite' %}">علاقه مندی ها</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-user"></i>
+                            <a href="{% url 'dashboard:profile' %}">اطلاعات حساب</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <a href="{% url 'dashboard:saved_addresses' %}">آدرس ها</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-key"></i>
+                            <a href="{% url 'dashboard:change_password' %}">تغییر رمز عبور</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'accounts:logout' %}">خروج</a>
+                             <i class="fa-solid fa-right-from-bracket"></i>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+        </aside>
+        <!-- main part -->
+        <main class="main-container">
+            <div class="page-box-title">
+                <h3 class="page-title">آگهی های من</h3>
+                <p class="page-title-detail"> تمام اگهی ها در یک نگاه</p>
+            </div>
+
+            <section class="main-box ad-main-box">
+
+                <!-- آگهی اول -->
+                <section class="ad-item-box">
+                    <div class="ad-img-item">
+                        <img src="../assets/media/images/kmc_j7.jpg" alt="kmc_j7">
+                    </div>
+                    <div class="laptop-ad-info">
+                        <h3 class="ad-title">KMC J7</h3>
+                        <p class="ad-price">4000000000 تومان</p>
+                    </div>
+
+                    <div class=" mobile-ad-info">
+                        <h3 class="ad-title">KMC J7</h3>
+                        <div class="ad-meta">
+                            <span><i class="fa-regular fa-clock"></i>1404.05.13/1405.01.06</span>
+                        </div>
+                        <p class="ad-price">4000000000 تومان</p>
+                    </div>
+                    <div class="ad-category">
+                        <span class="ad-label">دسته‌بندی</span>
+                        <span class="ad-desc">وسیله نقلیه</span>
+                    </div>
+
+                    <div class="ad-date">
+                        <span class="ad-label">تاریخ ثبت / انقضا</span>
+                        <span class="ad-desc">1405.01.06 / 1404.05.13</span>
+                    </div>
+
+                    <div class="ad-location">
+                        <span class="ad-label">مکان</span>
+                        <span class="ad-desc">تهران</span>
+                    </div>
+
+                    <div class="ad-actions">
+                        <i class="fa-solid fa-pen-to-square" title="ویرایش"></i>
+                        <button type="button" onclick="openRenewModal(this)">
+                            <a href="#"><i class="fa-solid fa-rotate" title="تمدید"></i></a>
+                        </button>
+                        <button onclick="opendeletemodal(this)">
+                            <a href="#"><i class="fa-solid fa-trash" title="حذف"></i></a>
+                        </button>
+                    </div>
+                </section>
+
+
+                <!-- آگهی دوم -->
+                <section class="ad-item-box">
+                    <div class="ad-img-item">
+                        <img src="../assets/media/images/khoneh.png" alt="khoneh">
+                    </div>
+                    <div class="laptop-ad-info">
+                        <h3 class="ad-title">۱۲۵متری|غرب تهران</h3>
+                        <p class="ad-price">6800000000 تومان</p>
+                    </div>
+
+                    <div class=" mobile-ad-info">
+                        <h3 class="ad-title">۱۲۵متری|غرب تهران</h3>
+                        <div class="ad-meta">
+                            <span><i class="fa-regular fa-clock"></i>1404.05.13/1405.01.06</span>
+                        </div>
+                        <p class="ad-price">6800000000 تومان</p>
+                    </div>
+                    <div class="ad-category">
+                        <span class="ad-label">دسته‌بندی</span>
+                        <span class="ad-desc">املاک</span>
+                    </div>
+
+                    <div class="ad-date">
+                        <span class="ad-label">تاریخ ثبت / انقضا</span>
+                        <span class="ad-desc">1405.01.06 / 1404.05.13</span>
+                    </div>
+
+                    <div class="ad-location">
+                        <span class="ad-label">مکان</span>
+                        <span class="ad-desc">شیراز</span>
+                    </div>
+
+                    <div class="ad-actions">
+                        <i class="fa-solid fa-pen-to-square" title="ویرایش"></i>
+                        <button type="button" onclick="openRenewModal(this)">
+                            <a href="#"><i class="fa-solid fa-rotate" title="تمدید"></i></a>
+                        </button>
+                        <button onclick="opendeletemodal(this)">
+                            <a href="#"><i class="fa-solid fa-trash" title="حذف"></i></a>
+                        </button>
+                    </div>
+                </section>
+
+
+                <!-- آگهی سوم -->
+                <section class="ad-item-box">
+                    <div class="ad-img-item">
+                        <img src="../assets/media/images/goshi.png" alt="ghoshi">
+                    </div>
+                    <div class="laptop-ad-info">
+                        <h3 class="ad-title">phone 16</h3>
+                        <p class="ad-price">250000000 تومان</p>
+                    </div>
+
+                    <div class=" mobile-ad-info">
+                        <h3 class="ad-title">iphone 16</h3>
+                        <div class="ad-meta">
+                            <span><i class="fa-regular fa-clock"></i>1404.05.13/1405.01.06</span>
+                        </div>
+                        <p class="ad-price">250000000 تومان</p>
+                    </div>
+                    <div class="ad-category">
+                        <span class="ad-label">دسته‌بندی</span>
+                        <span class="ad-desc">دیجیتال</span>
+                    </div>
+
+                    <div class="ad-date">
+                        <span class="ad-label">تاریخ ثبت / انقضا</span>
+                        <span class="ad-desc">1405.01.06 / 1404.05.13</span>
+                    </div>
+
+                    <div class="ad-location">
+                        <span class="ad-label">مکان</span>
+                        <span class="ad-desc">تهران</span>
+                    </div>
+
+                    <div class="ad-actions">
+                        <i class="fa-solid fa-pen-to-square" title="ویرایش"></i>
+                        <button type="button" onclick="openRenewModal(this)">
+                            <a href="#"><i class="fa-solid fa-rotate" title="تمدید"></i></a>
+                        </button>
+                        <button onclick="opendeletemodal(this)">
+                            <a href="#"><i class="fa-solid fa-trash" title="حذف"></i></a>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- <section class="no-aditem">
+                        <h2> <i class="fa-regular fa-file-lines"></i> هنوز اگهی ای ثبت نکرده اید</h2>
+                        <p>اولین اگهی شما می تواند شروع یک تجربه تازه باشد.</p>
+
+                    </section> -->
+                <section class="con-pagination">
+                    <div class="aditem-pagination">
+                        <button class="page-btn prev">
+                            <a href="#"><i class="fa-solid fa-angles-right"></i></i></a>
+                        </button>
+
+                        <button class="page-btn prev">
+                            <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+                        </button>
+
+                        <button class="page-btn next">
+                            <a href="#"><i class="fa-solid fa-chevron-left"></i></a>
+                        </button>
+
+                        <button class="page-btn prev">
+                            <a href="#"><i class="fa-solid fa-angles-left"></i></a>
+                        </button>
+                    </div>
+                </section>
+
+            </section>
+        </main>
+    </section>
+
+    <!-- مودال -->
+    <div class="delete-modal" id="deleteModal">
+
+        <div class="delete-modal-overlay" onclick="closeDeleteModal()"></div>
+
+        <div class="delete-modal-container">
+
+            <div class="delete-modal-header">
+
+                <h3>تایید حذف آگهی</h3>
+
+                <button class="delete-modal-close" onclick="closeDeleteModal()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+
+
+
+            </div>
+
+            <div class="delete-modal-body">
+
+                <div class="delete-modal-icon">
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+
+                <p>آیا از حذف این آگهی اطمینان دارید؟</p>
+
+                <label class="delete-modal-checkbox">
+                    <input type="checkbox" id="dontAskAgain">
+                    <span>دیگر پرسیده نشود</span>
+                </label>
+
+            </div>
+
+            <div class="delete-modal-footer">
+
+                <button class="btn-secondary" onclick="closeDeleteModal()">
+                    انصراف
+                </button>
+
+                <button class="btn-danger" onclick="confirmDelete()">
+                    <i class="fa-solid fa-trash"></i>
+                    تایید حذف
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- مودال تمدید -->
+    <!-- مودال تمدید آگهی -->
+    <div class="delete-modal" id="renewModal">
+
+        <div class="delete-modal-overlay" onclick="closeRenewModal()"></div>
+
+        <div class="delete-modal-container renew-modal-container">
+
+            <!-- Header -->
+            <div class="delete-modal-header">
+                <h3>تمدید آگهی</h3>
+                <button class="delete-modal-close" onclick="closeRenewModal()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+
+            </div>
+
+            <!-- Body -->
+            <div class="renew-modal-body">
+
+                <form id="renewForm">
+
+                    <!-- فرم اول -->
+                    <div class="form-group">
+                        <label for="renew-title">عنوان آگهی</label>
+                        <input type="text" id="renew-title" readonly>
+                    </div>
+
+                    <!-- فرم دوم -->
+                    <div class="form-group">
+                        <label for="renew-duration">مدت زمان تمدید</label>
+
+                        <select id="renew-duration">
+                            <option value="یک ماه">یک ماه</option>
+                        </select>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="delete-modal-footer">
+
+                <button class="btn-secondary" onclick="closeRenewModal()">
+                    انصراف
+                </button>
+
+                <button class="btn-danger" onclick="confirmRenew()">
+                    <i class="fa-solid fa-rotate"></i>
+                    تمدید آگهی
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block js %}
+    <script src="{% static 'js/aghahi.js' %}"></script>
+{% endblock js %}

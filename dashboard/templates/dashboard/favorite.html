@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'media/images/faviocns/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'media/images/faviocns/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'media/images/faviocns/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'media/images/faviocns/site.webmanifest' %}">
+    <!-- لینک های css -->
+    <link rel="stylesheet" href="{% static 'css/public.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main-dashboard-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/agahi-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/css-reset.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/FA/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/respansive.css' %}">
+{% endblock css %}
+
+{% block title %}
+    آگهی دونی | موردعلاقه ها
+{% endblock title %}
+
+{% block content %}
+    <section class="dashboard_container">
+        <!-- sidebar part -->
+
+        <aside class="sidebar-dashboard" id="sidebar">
+            <section class="profile-section">
+                <h3 class="title-profile"> پروفایل کاربری </h3>
+                <span class="detail-profile">مدیریت حساب و دسترسی ها</span>
+                <button class="sidebar-newbut"> ثبت اگهی</button>
+            </section>
+
+            <section class="sidebar-items">
+                <nav class="sidebar-links">
+                    <ul>
+                        <li>
+                            <i class="fa-solid fa-house"></i>
+                            <a href="{% url 'dashboard:dashboard' %}">نمایه کلی</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-rectangle-list"></i>
+                            <a href="{% url 'dashboard:my_ads' %}">آگهی های من</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-heart"></i>
+                            <a href="{% url 'dashboard:favorite' %}">علاقه مندی ها</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-user"></i>
+                            <a href="{% url 'dashboard:profile' %}">اطلاعات حساب</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <a href="{% url 'dashboard:saved_addresses' %}">آدرس ها</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-key"></i>
+                            <a href="{% url 'dashboard:change_password' %}">تغییر رمز عبور</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'accounts:logout' %}">خروج</a>
+                             <i class="fa-solid fa-right-from-bracket"></i>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+        </aside>
+        <!-- main part -->
+        <main class="main-container">
+            <div class="page-box-title">
+                <h3 class="page-title">علاقه مندی ها</h3>
+                <div class="page-title-row">
+                    <p class="page-title-detail">مجموعه ای از اگهی های منتخب شما</p>
+                </div>
+            </div>
+            <section class="main-box ad-main-box">
+
+                <!-- اگهی اول -->
+
+                <section class="fav-item-box">
+                    <div class="ad-img-item">
+                        <img src="../assets/media/images/kmc_j7.jpg" alt="khoneh">
+                    </div>
+                    <div class="ad-info">
+                        <h3 class="ad-title">KMC J7</h3>
+                        <div class="ad-meta">
+                            <span><i class="fa-solid fa-location-dot"></i>اصفهان</span>
+                            <span><i class="fa-regular fa-clock"></i> 5 ساعت پیش</span>
+                        </div>
+                        <p class="ad-price">4000000000 تومان</p>
+                    </div>
+                    <div class="fav-icon-heart">
+                        <button class="favorite-toggle active" type="button" onclick="openFavoriteModal(this)">
+
+                            <a href="#"><i class="fa-solid fa-heart "></i></a>
+
+                        </button>
+                    </div>
+                </section>
+
+                <!-- اگهی دوم -->
+
+                <section class="fav-item-box">
+                    <div class="ad-img-item">
+                        <img src="../assets/media/images/khoneh.png" alt="khoneh">
+                    </div>
+                    <div class="ad-info">
+                        <h3 class="ad-title">۱۲۵متری|غرب تهران</h3>
+                        <div class="ad-meta">
+                            <span><i class="fa-solid fa-location-dot"></i>تهران</span>
+                            <span><i class="fa-regular fa-clock"></i> 8 ساعت پیش</span>
+                        </div>
+                        <p class="ad-price">7000000000 تومان</p>
+                    </div>
+                    <div class="fav-icon-heart">
+                        <button class="favorite-toggle active" type="button" onclick="openFavoriteModal(this)">
+
+                            <a href="#"><i class="fa-solid fa-heart"></i></a>
+
+                        </button>
+                    </div>
+                </section>
+
+                <!-- اگهی سوم -->
+
+                <section class="fav-item-box">
+                    <div class="ad-img-item">
+                        <img src="../assets/media/images/fc27.jpg" alt="fc27">
+                    </div>
+                    <div class="ad-info">
+                        <h3 class="ad-title">fc27</h3>
+                        <div class="ad-meta">
+                            <span><i class="fa-solid fa-location-dot"></i>مشهد</span>
+                            <span><i class="fa-regular fa-clock"></i> 3روز پیش</span>
+                        </div>
+                        <p class="ad-price">8000000 تومان</p>
+                    </div>
+                    <div class="fav-icon-heart">
+                        <button class="favorite-toggle active" type="button" onclick="openFavoriteModal(this)">
+
+                            <a href="#"><i class="fa-solid fa-heart"></i></a>
+
+                        </button>
+                    </div>
+                </section>
+
+
+                  <!-- اگهی چهارم -->
+
+                <section class="fav-item-box">
+                    <div class="ad-img-item">
+                        <img src="../assets/media/images/refrigerator.jpg" alt="refrigerator">
+                    </div>
+                    <div class="ad-info">
+                        <h3 class="ad-title">refrigerator</h3>
+                        <div class="ad-meta">
+                            <span><i class="fa-solid fa-location-dot"></i>مشهد</span>
+                            <span><i class="fa-regular fa-clock"></i> ۵ روز پیش</span>
+                        </div>
+                        <p class="ad-price">۹۷۰۰۰۰۰ تومان</p>
+                    </div>
+                    <div class="fav-icon-heart">
+                        <button class="favorite-toggle active" type="button" onclick="openFavoriteModal(this)">
+
+                            <a href="#"><i class="fa-solid fa-heart"></i></a>
+
+                        </button>
+                    </div>
+                </section>
+
+
+                <!-- <section class="no-aditem">
+                    <h2> <i class="fa-regular fa-heart"></i> هنوز چیزی اینجا نیست</h2>
+                    <p>مورد های موردعلاقتون را ذخیره کنید تا همیشه در دسترس شما باشند.</p>
+
+                </section> -->
+                <section class="con-pagination">
+                    <div class="aditem-pagination">
+                        <button class="page-btn prev">
+                            <a href="#"><i class="fa-solid fa-angles-right"></i></i></a>
+                        </button>
+
+                        <button class="page-btn prev">
+                            <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+                        </button>
+
+                        <button class="page-btn next">
+                            <a href="#"><i class="fa-solid fa-chevron-left"></i></a>
+                        </button>
+
+                        <button class="page-btn prev">
+                            <a href="#"><i class="fa-solid fa-angles-left"></i></a>
+                        </button>
+                    </div>
+                </section>
+
+    </section>
+        </main>
+
+    </section>
+    <!-- مودال حذف -->
+    <div class="delete-modal" id="favoriteDeleteModal">
+
+        <div class="delete-modal-overlay" onclick="closeFavoriteModal()"></div>
+
+        <div class="delete-modal-container">
+
+            <div class="delete-modal-header">
+                <h3> حذف علاقه مندی ها</h3>
+                <button class="delete-modal-close" onclick="closeFavoriteModal()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+            <div class="delete-modal-body">
+
+                <div class="delete-modal-icon">
+                    <i class="fa-solid fa-heart-crack"></i>
+                </div>
+
+                <p>آیا از حذف این آگهی از علاقه‌مندی‌ها اطمینان دارید؟</p>
+
+                <label>
+                    <input type="checkbox" id="dontAskFavoriteAgain">
+                    دیگه این پیام رو نشون نده
+                </label>
+            </div>
+
+            <div class="delete-modal-footer">
+
+                <button class="btn-secondary" onclick="closeFavoriteModal()">
+                    انصراف
+                </button>
+
+                <button class="btn-danger" onclick="confirmFavoriteDelete()">
+                    <i class="fa-solid fa-heart-crack"></i>
+                    تأیید حذف
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock content %}
+
+{% block js %}
+    <script src="{% static 'js/favorite.js' %}"></script>
+{% endblock js %}

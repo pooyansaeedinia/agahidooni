@@ -1,0 +1,546 @@
+/*  استایل ایتم ها و عنوان ها*/
+.ad-item-box {
+    display: grid;
+    grid-template-columns: 85px 1fr 1fr 1fr 1fr auto;
+}
+
+.fav-item-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.ad-item-box,
+.fav-item-box {
+    gap: 20px;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-family: "Estedad", sans-serif;
+    line-height: 1.4;
+    border: 1px solid var(--primary);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    margin: clamp(2px, 2vh, 8px) clamp(4px, 2vw, 10px);
+    overflow: hidden;
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        max-height 0.3s ease,
+        padding 0.3s ease,
+        margin 0.3s ease;
+}
+
+.ad-item-box.removing,
+.fav-item-box.removing {
+    opacity: 0;
+    transform: translateY(15px) scale(0.95);
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-width: 0;
+}
+
+.ad-item-box:hover,
+.ad-item-box:active,
+.fav-item-box:hover,
+.fav-item-box:active {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(8, 127, 114, 0.1);
+
+}
+
+.ad-img-item {
+    width: 83px;
+    height: 83px;
+    border-radius: 5px;
+    overflow: hidden;
+
+}
+
+.ad-img-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0
+}
+
+.ad-title {
+    font-family: "Estedad", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+
+}
+
+.ad-meta {
+    display: flex;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.ad-info {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+
+    flex: 1;
+}
+
+.ad-meta span {
+    display: flex;
+    gap: 4px;
+}
+
+.ad-meta i {
+    font-size: 14px;
+}
+
+.ad-price {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-top: 2px;
+}
+
+.ad-date,
+.ad-category,
+.ad-location {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ad-label {
+    font-size: 16px;
+    color: var(--primary-hover);
+}
+
+.ad-desc {
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.fav-icon-heart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    margin-right: auto;
+    margin-left: 20px;
+
+}
+
+.fav-icon-heart i,
+.ad-actions i {
+    color: var(--primary-hover);
+    flex-shrink: 0
+}
+
+
+.ad-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    gap: 10px;
+}
+
+.laptop-ad-info {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    flex: 1;
+}
+
+.mobile-ad-info {
+    display: none;
+
+}
+
+
+.no-aditem {
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    font-size: 16px;
+}
+
+.no-aditem h2 {
+    font-family: var(--font-family);
+    color: var(--text-primary);
+    font-size: 18px;
+}
+
+
+.no-aditem-but {
+    font-family: "Estedad", sans-serif;
+    font-weight: 500;
+    border: 1px solid #ffe9f2;
+    border-radius: 15px;
+    background-color: #ffe9f2;
+    color: var(--text-primary);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 12px 24px;
+    transition: all 0.2s ease;
+}
+
+.ad-main-box {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.ad-main-box .con-pagination {
+    margin-top: auto;
+    padding-top: 20px;
+
+}
+
+.aditem-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    direction: rtl;
+}
+
+.page-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-primary);
+}
+
+.page-btn:hover {
+    border-color: var(--primary-hover);
+    color: var(--primary-hover);
+}
+
+.page-btn:active {
+    transform: scale(0.96);
+}
+
+.page-btn-disabled {
+    background: transparent;
+    color: #cbd5e1;
+    border-color: #e2e8f0;
+    cursor: not-allowed;
+    pointer-events: none;
+    filter: brightness(0.8);
+}
+
+/* استایل مودال */
+
+.delete-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.delete-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.delete-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    z-index: 1;
+}
+
+.delete-modal-container {
+    position: relative;
+    z-index: 2;
+    background-color: var(--surface);
+    width: 100%;
+    max-width: 450px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.delete-modal.active .delete-modal-container {
+    transform: translateY(0);
+}
+
+/* Header */
+.delete-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.delete-modal-header h3 {
+    font-family: var(--font-family);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.delete-modal-close {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-modal-close:hover {
+    color: var(--danger);
+}
+
+/* Body modal */
+.delete-modal-body {
+    padding: 24px;
+    text-align: center;
+}
+
+.delete-modal-body p {
+    font-size: 14px;
+    color: var(--text-primary);
+    margin: 0 0 24px;
+}
+
+.delete-modal-icon {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--danger);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+}
+
+/* Checkbox modal */
+.delete-modal-checkbox {
+    font-family: var(--font-family);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.delete-modal-checkbox input {
+    accent-color: var(--primary);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.delete-modal-footer {
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+}
+
+.delete-modal-footer .btn-danger {
+    font-family: var(--font-family);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: var(--primary);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 12px;
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-modal-footer .btn-danger:hover {
+    filter: brightness(0.9);
+}
+
+.delete-modal-footer .btn-secondary {
+    padding: 10px 20px;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    font-family: var(--font-family, inherit);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-modal-footer .btn-secondary:hover {
+    border-color: var(--text-secondary);
+}
+
+
+/* مودال تمدید آگهی */
+
+.renew-modal-container {
+    max-width: 520px;
+}
+
+/* بدنه مودال */
+.renew-modal-body {
+    padding: 24px;
+    overflow-y: auto;
+}
+
+/* فرم ها */
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--primary-tint);
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-size: 14px;
+    background-color: var(--surface);
+    color: var(--text-primary);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(8, 127, 114, 0.12);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* آکاردئون */
+.renew-accordion {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.renew-accordion-header {
+    font-family: var(--font-family);
+    width: 100%;
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface);
+    color: var(--text-primary);
+    border: none;
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.renew-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 16px;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.renew-accordion.active .renew-accordion-content {
+    max-height: 200px;
+    padding: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.accordion-icon {
+    transition: transform 0.3s ease;
+}
+
+.renew-accordion.active .accordion-icon {
+    transform: rotate(180deg);
+}
+
+/* فوتر مودال */
+.renew-modal-container .delete-modal-footer {
+    justify-content: flex-end;
+}
+
+.address-card {
+    overflow: hidden;
+    transition:
+        max-height 0.45s ease,
+        opacity 0.45s ease,
+        padding 0.45s ease,
+        margin 0.45s ease;
+}
+
+.address-card.removing {
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}

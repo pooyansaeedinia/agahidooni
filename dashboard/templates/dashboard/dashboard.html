@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'media/images/faviocns/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'media/images/faviocns/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'media/images/faviocns/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'media/images/faviocns/site.webmanifest' %}">
+    <!-- لینک های css -->
+    <link rel="stylesheet" href="{% static 'css/public.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main-dashboard-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/css-reset.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/FA/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/respansive.css' %}">
+{% endblock css %}
+
+   
+{% block title %}آگهی دونی | نمایه کلی {% endblock title %}
+
+{% block content %}
+    <section class="dashboard_container">
+        <!-- sidebar part -->
+        <aside class="sidebar-dashboard" id="sidebar">
+            <section class="profile-section">
+                <h3 class="title-profile"> پروفایل کاربری </h3>
+                <span class="detail-profile">مدیریت حساب و دسترسی ها</span>
+                <button class="sidebar-newbut"> ثبت اگهی</button>
+            </section>
+
+            <section class="sidebar-items">
+                <nav class="sidebar-links">
+                    <ul>
+                        <li>
+                            <i class="fa-solid fa-house"></i>
+                            <a href="{% url 'dashboard:dashboard' %}">نمایه کلی</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-rectangle-list"></i>
+                            <a href="{% url 'dashboard:my_ads' %}">آگهی های من</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-heart"></i>
+                            <a href="{% url 'dashboard:favorite' %}">علاقه مندی ها</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-user"></i>
+                            <a href="{% url 'dashboard:profile' %}">اطلاعات حساب</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <a href="{% url 'dashboard:saved_addresses' %}">آدرس ها</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-key"></i>
+                            <a href="{% url 'dashboard:change_password' %}">تغییر رمز عبور</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'accounts:logout' %}">خروج</a>
+                             <i class="fa-solid fa-right-from-bracket"></i>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+        </aside>
+
+        <!-- main part -->
+        <main class="main-container">
+            <div class="page-box-title">
+                <h3 class="page-title">نمایه کلی</h3>
+                <p class="page-title-detail">آمار کلی آگهی ها و فروش شما</p>
+            </div>
+
+            <section class="main-box">
+                <section class="con-stats-cards">
+
+                    <!-- آگهی های فروخته شده -->
+                    <div class="stat-card stat-sold">
+                        <div class="stat-card-info">
+                            <span class="stat-title">آگهی‌های فروخته‌شده</span>
+                            <span class="stat-number">۸</span>
+                            <span class="stat-detail">فروش موفق</span>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-check-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- علاقه مندی ها -->
+                    <div class="stat-card stat-favorite">
+                        <div class="stat-card-info">
+                            <span class="stat-title">علاقه‌مندی‌ها</span>
+                            <span class="stat-number">۲۴</span>
+                            <span class="stat-detail">آگهی ذخیره‌شده</span>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                    </div>
+
+                    <!-- آگهی های منتشر شده -->
+                    <div class="stat-card stat-published">
+                        <div class="stat-card-info">
+                            <span class="stat-title">آگهی‌های منتشرشده</span>
+                            <span class="stat-number">۱۲</span>
+                            <span class="stat-detail">آگهی فعال</span>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                    </div>
+
+                    <!-- در آستانه انقضا -->
+                    <div class="stat-card stat-expiring">
+                        <div class="stat-card-info">
+                            <span class="stat-title">آگهی‌های در آستانه انقضا</span>
+                            <span class="stat-number">۲</span>
+                            <span class="stat-detail">نیازمند تمدید</span>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                    </div>
+
+                    <!-- کل آگهی ها -->
+                    <div class="stat-card stat-total">
+                        <div class="stat-card-info">
+                            <span class="stat-title">کل آگهی‌های من</span>
+                            <span class="stat-number">۲۳</span>
+                            <span class="stat-detail">مجموع آگهی‌ها</span>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-rectangle-list"></i>
+                        </div>
+                    </div>
+
+                    <!-- آگهی های منقضی شده -->
+                    <div class="stat-card stat-expired">
+                        <div class="stat-card-info">
+                            <span class="stat-title">آگهی‌های منقضی‌شده</span>
+                            <span class="stat-number">۳</span>
+                            <span class="stat-detail">منقضی‌شده</span>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-calendar-xmark"></i>
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+        </main>
+{% endblock content %}

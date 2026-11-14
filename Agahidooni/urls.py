@@ -26,6 +26,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls'), name='accounts'),
     path("contact-us/", include("contact_us.urls", namespace="contact_us")),
     path("content/", include("site_content.urls", namespace="site_content")),
+    path("dashboard/", include("dashboard.urls", namespace="dashboard"))
 ]
 
 if settings.DEBUG:

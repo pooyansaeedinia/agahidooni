@@ -1,0 +1,540 @@
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+
+    .dashboard_container {
+        grid-template-columns: minmax(170px, 20%) minmax(0, 1fr);
+    }
+
+    /* Profile */
+    .profile-section {
+        gap: 8px;
+        padding: 12px 8px;
+    }
+
+    .img-profile {
+        width: 45px;
+        height: 45px;
+    }
+
+    .title-profile {
+        font-size: 18px;
+    }
+
+    .detail-profile {
+        font-size: 12px;
+    }
+
+    .sidebar-newbut {
+        padding: 2%;
+        font-size: 14px;
+    }
+
+    /* Sidebar menu */
+    .sidebar-items {
+        padding: 12px 8px;
+    }
+
+    .sidebar-links li {
+        padding: 12px 8px;
+        gap: 8px;
+    }
+
+    .sidebar-links a {
+        font-size: 14px;
+    }
+
+    .sidebar-links i {
+        font-size: 17px;
+        width: 22px;
+    }
+
+    /* استایل نمایه کلی */
+    .con-stats-cards {
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 18px;
+    }
+
+    .stat-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
+
+    .stat-number {
+        font-size: 42px;
+    }
+
+    /* استایل favorite و  MY ADS */
+
+    .ad-item-box {
+        display: grid;
+        grid-template-columns: 85px 1fr 1fr auto;
+    }
+
+    .ad-item-box .ad-location,
+    .ad-item-box .ad-category {
+        display: none;
+    }
+
+    .ad-item-box .ad-date,
+    .ad-item-box .mobile-label {
+        font-size: 16px;
+    }
+
+    .ad-item-box .ad-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+    }
+
+    .ad-img-item {
+        width: 80px;
+        height: 80px;
+    }
+
+}
+
+
+/* tablet */
+@media screen and (max-width: 768px) {
+
+    /* داشبورد استایل */
+
+    .dashboard_container {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: "container";
+    }
+
+    .sidebar-dashboard {
+        display: none;
+    }
+
+    .main-container {
+        width: 100%;
+    }
+
+    /* استایل صفحه نمایه کل */
+    .con-stats-cards {
+        grid-template-areas:
+            "sold favorite"
+            "published expiring"
+            "total expired";
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto;
+        height: auto;
+        gap: 12px;
+    }
+
+    .stat-card {
+        min-height: 150px;
+        padding: 16px;
+        border-radius: 16px;
+        gap: 10px;
+    }
+
+    .stat-card-info {
+        gap: 8px;
+    }
+
+    .stat-title {
+        font-size: 12px;
+    }
+
+    .stat-number {
+        font-size: 28px;
+    }
+
+    .stat-detail {
+        font-size: 10px;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 17px;
+        border-radius: 12px;
+    }
+
+    /*FAVORITE*/
+
+    .fav-item-box {
+        gap: 12px;
+        padding: 8px;
+    }
+
+    .fav-item-box .ad-img-item {
+        width: 75px;
+        height: 75px;
+    }
+
+    .fav-item-box .ad-info {
+        padding: 5px;
+        gap: 6px;
+    }
+
+    .fav-item-box .ad-title,
+    .fav-item-box .ad-price {
+        font-size: 14px;
+    }
+
+    .fav-item-box .ad-meta {
+        font-size: 11px;
+        gap: 8px;
+    }
+
+    .fav-item-box .fav-icon-heart {
+        font-size: 18px;
+        margin-left: 0;
+    }
+
+
+    /*MY ADS PAGE*/
+
+
+    .ad-item-box {
+        display: grid;
+        grid-template-columns: 75px minmax(0, 1fr) 25px;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        margin: 10px 12px;
+        border: 1px solid var(--primary);
+        border-radius: 15px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        direction: rtl;
+        text-align: right;
+    }
+
+    .ad-item-box::after {
+        display: none;
+    }
+
+    .ad-item-box .mobile-ad-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        text-align: right;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .ad-item-box .laptop-ad-info {
+        display: none;
+    }
+
+    .ad-item-box .ad-img-item {
+        width: 70px;
+        height: 70px;
+    }
+
+    .ad-item-box .ad-img-item img {
+        width: 100%;
+        height: 100%;
+        border-radius: 7px;
+        object-fit: cover;
+    }
+
+    .ad-item-box .mobile-ad-info .ad-title {
+        font-size: 14px;
+        text-align: right;
+        align-items: flex-start;
+    }
+
+    .ad-item-box .mobile-ad-info .ad-price {
+        font-size: 14px;
+    }
+
+    .ad-item-box .ad-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 8px;
+        min-width: 0;
+    }
+
+    .ad-item-box .mobile-label {
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--text-secondary);
+    }
+
+    .ad-item-box .ad-value {
+        font-weight: 800;
+    }
+
+    .ad-item-box .ad-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 13px;
+        font-size: 15px;
+    }
+
+    .ad-item-box .ad-date,
+    .ad-item-box .ad-location,
+    .ad-item-box .ad-category {
+        display: none;
+    }
+
+    .no-aditem {
+        font-size: 14px;
+    }
+
+    .no-aditem h2 {
+        font-size: 16px;
+    }
+
+    /* pagination */
+
+    .fav-main-box .con-pagination {
+        padding-top: 15px;
+    }
+
+    .aditem-pagination {
+        gap: 10px;
+    }
+
+    .page-btn {
+        padding: 9px 15px;
+        font-size: 13px;
+
+
+        /* saved-address */
+
+
+        .addresses-list {
+            grid-template-columns: 1fr;
+        }
+
+        .address-modal-body .form-row {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .delete-modal-footer {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .delete-modal-footer .btn-danger,
+    .delete-modal-footer .btn-secondary {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    /* seved-address */
+
+    .address-card {
+        padding: 16px;
+    }
+
+    .address-actions {
+        flex-direction: column;
+    }
+
+    .add-address-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .address-modal-container {
+        max-height: 95vh;
+    }
+
+    .address-modal-header,
+    .address-modal-body,
+    .address-modal-footer {
+        padding: 16px;
+    }
+
+    .address-modal-footer {
+        flex-direction: column-reverse;
+    }
+
+    .address-modal-footer .btn-primary,
+    .address-modal-footer .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* delete-modal */
+    .delete-modal-footer {
+        flex-direction: column-reverse;
+    }
+
+    .delete-modal-footer button {
+        width: 100%;
+    }
+
+
+    /* FAVORITE PAGE */
+
+    .fav-item-box .ad-title,
+    .fav-item-box .ad-price {
+        font-size: 13px;
+    }
+
+    .fav-item-box .ad-meta {
+        font-size: 10px;
+    }
+
+    .fav-item-box .fav-icon-heart {
+        font-size: 17px;
+    }
+
+
+    /* MY ADS PAGE */
+
+    .ad-item-box .mobile-ad-info .ad-title,
+    .ad-item-box .mobile-ad-info .ad-price {
+        font-size: 13px;
+    }
+
+    .ad-item-box .ad-meta {
+        font-size: 10px;
+    }
+
+    .ad-item-box .ad-actions {
+        font-size: 14px;
+    }
+
+    /*pagination  */
+
+    .fav-main-box .con-pagination {
+        padding-top: 12px;
+    }
+
+    .aditem-pagination {
+        gap: 8px;
+    }
+
+    .page-btn {
+        padding: 8px 13px;
+        font-size: 12px;
+        border-radius: 8px;
+    }
+
+    /* change-password */
+
+    .form-actions {
+        justify-content: stretch;
+    }
+
+    .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+
+}
+
+@media screen and (max-width: 360px) {
+
+    /* dashboard */
+    .con-stats-cards {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "sold"
+            "favorite"
+            "published"
+            "expiring"
+            "total"
+            "expired";
+    }
+
+    .stat-card {
+        min-height: 130px;
+    }
+
+    /* FAVORITE PAGE*/
+
+    .fav-item-box {
+        gap: 8px;
+        padding: 6px;
+    }
+
+    .fav-item-box .ad-img-item {
+        width: 60px;
+        height: 65px;
+    }
+
+    .fav-item-box .ad-info {
+        padding: 3px;
+        gap: 5px;
+    }
+
+    .fav-item-box .ad-title,
+    .fav-item-box .ad-price {
+        font-size: 12px;
+    }
+
+    .fav-item-box .ad-meta {
+        font-size: 9px;
+        gap: 5px;
+    }
+
+    .fav-item-box .fav-icon-heart {
+        font-size: 16px;
+        margin: 0;
+    }
+
+
+    /* MY ADS */
+
+    .ad-item-box {
+        grid-template-columns: 60px minmax(0, 1fr) 20px;
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .ad-item-box .ad-img-item {
+        width: 58px;
+        height: 58px;
+    }
+
+    .ad-item-box .ad-actions {
+        font-size: 13px;
+        gap: 10px;
+    }
+
+    .ad-item-box .mobile-label,
+    .ad-item-box .ad-value {
+        font-size: 9px;
+    }
+
+    .no-aditem {
+        font-size: 12px;
+    }
+
+    .no-aditem h2 {
+        font-size: 14px;
+    }
+
+    /*  pagination*/
+
+    .fav-main-box .con-pagination {
+        padding-top: 10px;
+    }
+
+    .aditem-pagination {
+        gap: 6px;
+    }
+
+    .page-btn {
+        padding: 7px 10px;
+        font-size: 11px;
+        gap: 5px;
+    }
+
+    .page-btn i {
+        font-size: 10px;
+    }
+}

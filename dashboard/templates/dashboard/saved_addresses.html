@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <!--فو آیکون ها-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'media/images/faviocns/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'media/images/faviocns/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'media/images/faviocns/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'media/images/faviocns/site.webmanifest' %}">
+    <!--فایل های css-->
+    <link rel="stylesheet" href="{% static 'css/saved_addresses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main-dashboard-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/public.css' %}">
+    <link rel="stylesheet" href="{% static 'css/css-reset.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/FA/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/respansive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/agahi-style.css' %}">
+    <title>آگهی دونی | آدرس های ذخیره شده</title>
+{% endblock css %}
+
+{% block content %}
+    <section class="dashboard_container">
+        <!-- sidebar part -->
+
+                <aside class="sidebar-dashboard" id="sidebar">
+            <section class="profile-section">
+                <h3 class="title-profile"> پروفایل کاربری </h3>
+                <span class="detail-profile">مدیریت حساب و دسترسی ها</span>
+                <button class="sidebar-newbut"> ثبت اگهی</button>
+            </section>
+
+            <section class="sidebar-items">
+                <nav class="sidebar-links">
+                    <ul>
+                        <li>
+                            <i class="fa-solid fa-house"></i>
+                            <a href="{% url 'dashboard:dashboard' %}">نمایه کلی</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-rectangle-list"></i>
+                            <a href="{% url 'dashboard:my_ads' %}">آگهی های من</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-heart"></i>
+                            <a href="{% url 'dashboard:favorite' %}">علاقه مندی ها</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-user"></i>
+                            <a href="{% url 'dashboard:profile' %}">اطلاعات حساب</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <a href="{% url 'dashboard:saved_addresses' %}">آدرس ها</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-key"></i>
+                            <a href="{% url 'dashboard:change_password' %}">تغییر رمز عبور</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'accounts:logout' %}">خروج</a>
+                             <i class="fa-solid fa-right-from-bracket"></i>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+        </aside>
+        <main class="main-container">
+            <div class="page-box-title">
+                <h3 class="page-title">آدرس‌ها</h3>
+                <p class="page-title-detail">آدرس‌های ثبت‌شده خود را مدیریت کنید</p>
+            </div>
+            <section class="main-box">
+                <div class="addresses-list">
+                    <!--آدرس پیش فرض-->
+                    <div class="address-card">
+                        <div class="address-header">
+                            <h4>خانه</h4>
+                            <span class="default-badge">پیش‌فرض</span>
+                        </div>
+                        <p>آدرس : تهران، خیابان ولیعصر، کوچه بهار، پلاک 12<br>کد پستی : 1234567890<br>تلفن : 09915064012
+                        </p>
+                        <div class="address-actions">
+                            <a class="btn-outline" data-id="1" data-title="خانه" data-province="تهران" data-city="تهران"
+                                data-address="تهران، خیابان ولیعصر، کوچه بهار، پلاک 12" data-postal-code="1234567890"
+                                data-phone="09915064012" data-is-default="true">ویرایش</a>
+                            <button type="button" class="btn-outline danger" onclick="openAddressDeleteModal(this)">
+                                حذف
+                            </button>
+                        </div>
+                    </div>
+
+                
+                </div>
+
+                <a class="btn-primary add-address-btn">
+                    <i class="fa-solid fa-plus"></i> افزودن آدرس جدید
+                </a>
+            </section>
+        </main>
+    </section>
+    <!--ویرایش یا افزودن آدرس جدید-->
+    <div class="address-modal" id="addressModal">
+        <div class="address-modal-overlay" id="addressModalOverlay"></div>
+        <div class="address-modal-container">
+            <div class="address-modal-header">
+                <h3 id="addressModalTitle">افزودن آدرس جدید</h3>
+                <button class="address-modal-close" id="addressModalClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+            <!--فرم-->
+            <div class="address-modal-body">
+                <form id="addressForm" method="POST" action="#">
+                    <div class="form-group">
+                        <label for="addressTitle">عنوان آدرس</label>
+                        <input type="text" id="addressTitle" name="title" placeholder="خانه ، محل کار" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="addressProvince">استان</label>
+                            <select id="addressProvince" name="province" required>
+                                <option value="">انتخاب استان</option>
+                                <option value="تهران">تهران</option>
+                                <option value="اصفهان">اصفهان</option>
+                                <option value="فارس">فارس</option>
+                                <option value="مرکزی">مرکزی</option>
+                                <option value="آذربایجان شرقی">آذربایجان شرقی</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressCity">شهر</label>
+                            <select id="addressCity" name="city" required>
+                                <option value="">انتخاب شهر</option>
+                                <option value="تهران">تهران</option>
+                                <option value="اصفهان">اصفهان</option>
+                                <option value="شیراز">شیراز</option>
+                                <option value="اراک">اراک</option>
+                                <option value="تبریز">تبریز</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="addressFull">آدرس کامل</label>
+                        <textarea id="addressFull" name="full_address" rows="3"
+                            placeholder="خیابان، کوچه، پلاک، واحد..." required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="addressPostalCode">کد پستی</label>
+                            <input type="text" id="addressPostalCode" name="postal_code" placeholder="کد پستی 10 رقمی"
+                                maxlength="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="addressPhone">شماره موبایل</label>
+                            <input type="tel" id="addressPhone" name="phone" placeholder="شماره موبایل خود را وارد کنید"
+                                maxlength="11">
+                        </div>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="addressIsDefault" name="is_default">
+                            <span>این آدرس را به عنوان آدرس پیش‌فرض تنظیم کن</span>
+                        </label>
+                    </div>
+                    <input type="hidden" name="address_id" id="editingAddressId">
+                </form>
+            </div>
+            <div class="address-modal-footer">
+                <button type="button" class="btn-secondary" id="addressModalCancel">انصراف</button>
+                <button type="submit" class="btn-primary" form="addressForm" id="addressModalSubmit">
+                    <i class="fa-solid fa-check"></i> ذخیره آدرس
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال حذف آدرس -->
+    <div class="delete-modal" id="addressDeleteModal">
+
+        <div class="delete-modal-overlay" onclick="closeAddressDeleteModal()"></div>
+
+        <div class="delete-modal-container">
+
+            <div class="delete-modal-header">
+                <h3>تایید حذف آدرس</h3>
+                <button class="delete-modal-close" onclick="closeAddressDeleteModal()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+
+            </div>
+
+            <div class="delete-modal-body">
+
+                <div class="delete-modal-icon">
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+
+                <p>آیا از حذف این آدرس اطمینان دارید؟</p>
+
+                <label class="delete-modal-checkbox">
+                    <input type="checkbox" id="dontAskAddressAgain">
+                    <span>دیگر پرسیده نشود</span>
+                </label>
+
+            </div>
+
+            <div class="delete-modal-footer">
+
+                <button class="btn-secondary" onclick="closeAddressDeleteModal()">
+                    انصراف
+                </button>
+
+                <button class="btn-danger" onclick="confirmAddressDelete()">
+                    <i class="fa-solid fa-trash"></i>
+                    تایید حذف
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock content %}
+
+{% block js %}
+    <script src="{% static 'js/savedAddresses.js' %}"></script>
+{% endblock js %}
