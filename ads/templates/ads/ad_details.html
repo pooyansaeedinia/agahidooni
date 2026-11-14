@@ -52,19 +52,20 @@
             </div>
             <!--بدنه مودال-->
             <div class="report-modal-body">
-                <form id="reportForm" action="#" method="POST">
+                <form id="reportForm" action="{% url "ads:report-create" ad.id %}" method="POST">
+                    {% csrf_token %}
                     <!-- فیلد مخفی برای آیدی آگهی -->
                     <input type="hidden" name="ad_id" value="">
                     <div class="form-group">
                         <label for="violationType">نوع تخلف <span class="required">*</span></label>
                         <select id="violationType" name="violation_type" required>
                             <option value="">لطفا یک گزینه را انتخاب کنید</option>
-                            <option value="fake">آگهی جعلی یا فریبنده</option>
-                            <option value="duplicate">آگهی تکراری</option>
-                            <option value="wrong_category">دسته‌بندی اشتباه</option>
-                            <option value="offensive">محتوای توهین‌آمیز</option>
-                            <option value="spam">تبلیغات مزاحم (اسپم)</option>
-                            <option value="other">سایر موارد</option>
+                            <option value="محتوای جعلی یا فریبنده">محتوای جعلی یا فریبنده</option>
+                            <option value="آگهی تکراری">آگهی تکراری</option>
+                            <option value="دسته بندی اشتباه">دسته‌بندی اشتباه</option>
+                            <option value="محتوای توهین آمیز">محتوای توهین‌آمیز</option>
+                            <option value="تبلیغات مزاحم (اسپم)">تبلیغات مزاحم (اسپم)</option>
+                            <option value="سایر موارد">سایر موارد</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -241,7 +242,7 @@
     </main>
 {% endblock content %}
 
-{% block scripts %}
+{% block js %}
     <!--فایل های js-->
     <script src="{% static 'js/adDetails.js' %}"></script>
-{% endblock scripts %}
+{% endblock js %}

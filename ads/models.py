@@ -35,7 +35,7 @@ class City(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.province.name}"
-    
+
 
 # مدل دسته بندی ها
 class Category(models.Model):
@@ -81,7 +81,7 @@ class Ads(models.Model):
     product_status = models.CharField(max_length=50, choices=PRODUCT_STATUS_CHOICES, blank=True)
     badge = models.BooleanField(default=False, verbose_name="برچسب")
     is_active = models.BooleanField(default=True, verbose_name="فعال")
-    
+
     class Meta:
         verbose_name = "آگهی"
         verbose_name_plural = "آگهی ها"
@@ -123,12 +123,12 @@ class AdsGallery(models.Model):
 
     def __str__(self):
         return self.ad.title
-    
-    
+
 
 # مدل آدرس برای آدرس های چندگانه برای هر کاربر
 class UserAddress(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="addresses", verbose_name="کاربر")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="addresses",
+                             verbose_name="کاربر")
     title = models.CharField(max_length=50, default="خانه", verbose_name="عنوان آدرس")
     province = models.ForeignKey("ads.Province", on_delete=models.PROTECT, verbose_name="استان")
     city = models.ForeignKey("ads.City", on_delete=models.PROTECT, verbose_name="شهر")
@@ -161,3 +161,35 @@ class UserAddress(models.Model):
             ).exclude(pk=self.pk).update(is_default=False)
 
         super().save(*args, **kwargs)
+
+
+class Report(models.Model):
+    VIOLATION_TYPE_CHOICES = [
+        ("محتوای جعلی یا فریبنده", "محتوای جعلی یا فریبنده"),
+        ("آگهی تکراری", "آگهی تکراری"),
+        ("دسته بندی اشتباه", "دسته بندی اشتباه"),
+        ("محتوای توهین آمیز", "محتوای توهین آمیز"),
+        ("تبلیغات مزاحم (اسپم)", "تبلیغات مزاحم (اسپم)"),
+        ("سایر موارد", "سایر موارد"),
+    ]
+    STATUS_CHOICES = [
+        ("در انتظار برسی", "در انتظار برسی"),
+        ("تایید شده", "تایید شده"),
+        ("رد شده", "رد شده")
+    ]
+    ad = models.ForeignKey(Ads, on_delete=models.CASCADE, related_name='reports', verbose_name="آگهی")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name='reports',
+                             verbose_name="گزارش دهنده")
+    violation_type = models.CharField(max_length=50, choices=VIOLATION_TYPE_CHOICES, verbose_name="نوع تخلف")
+    description = models.TextField(verbose_name="توضیحات")
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="در انتظار برسی",
+                              verbose_name="وضعیت برسی")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ثبت")
+
+    class Meta:
+        verbose_name = "گزارش تخلف"
+        verbose_name_plural = "گزارش‌های تخلف"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.user} - {self.ad}"
