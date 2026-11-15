@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import get_user_model, login
+from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth.views import LogoutView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, \
     PasswordResetCompleteView
 from django.core.mail import send_mail
@@ -144,12 +144,13 @@ class LoginView(FormView):
 
 # کلاس زیر عملیات خروح کاربر را انجام میدهد با استفاده از کلاس آماده LogoutView انجام میدهد
 class CustomLogoutView(LogoutView):
-    next_page = reverse_lazy("accounts:login")
-    http_method_names = ["post", "options"]
-
     def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            messages.success(request, "با موفقیت خارج شدید.")
+        if request.method in ["GET", "POST"]:
+            if request.user.is_authenticated:
+                logout(request)
+                messages.success(request, "با موفقیت خارج شدید.")
+
+            return redirect("accounts:login")
 
         return super().dispatch(request, *args, **kwargs)
 
