@@ -150,7 +150,7 @@ class CustomLogoutView(LogoutView):
                 logout(request)
                 messages.success(request, "با موفقیت خارج شدید.")
 
-            return redirect("accounts:login")
+            return redirect("home:home")
 
         return super().dispatch(request, *args, **kwargs)
 
