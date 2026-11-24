@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: "Vazir";
-    src: url(../fonts/vazir/Vazirmatn-SemiBold.woff2) format("woff2");
+    src: url(/static/fonts/vazir/Vazirmatn-SemiBold.woff2) format("woff2");
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -12,7 +12,7 @@
 
 @font-face {
     font-family: "Vazir";
-    src: url(../fonts/vazir/Vazirmatn-Bold.woff2) format("woff2");
+    src: url(/static/fonts/vazir/Vazirmatn-Bold.woff2) format("woff2");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -20,7 +20,7 @@
 
 @font-face {
     font-family: "Estedad";
-    src: url(../fonts/estedad/Estedad-Regular.woff2) format("woff2");
+    src: url(/static/fonts/estedad/Estedad-Regular.woff2) format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -28,7 +28,7 @@
 
 @font-face {
     font-family: "Estedad";
-    src: url(../fonts/estedad/Estedad-SemiBold.woff2) format("woff2");
+    src: url(/static/fonts/estedad/Estedad-SemiBold.woff2) format("woff2");
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -38,24 +38,36 @@
     --bg: #f5f7f7;
     --primary: #087f72;
     --primary-hover: #06665c;
+    --hover: #F1F5F9;
     --primary-tint: #e0f2ef;
     --accent-orange: #e87c00;
     --accent-tint: #ffe7d6;
-    --surface: #ffffff;
+    --surface: #f4f4f4;
     --text-primary: #172a2a;
     --text-secondary: #475252;
     --border: #c2c2c2;
     --color-danger: #ec202a;
-    --shadow: 0 4px 15px rgba(0,0,0,.10);
-    --header-height: 63px;
+    --white-color: #ffffff;
+    --black-color: #000000;
+    --primary-soft: #087f721f;
+    --primary-focus: #087f721a;
     --banner-gap: 16px;
     --page-gutter: 16px;
+    /* متغییر های جدید که تعریف شدن */
+    --ads-gap: 24px;
+    --ads-card-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    --radius-lg: 16px;
+    --radius-sm: 8px;
+    --details-shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.03);
+    --details-shadow-modal: 0 10px 40px rgba(0, 0, 0, 0.15);
+    --details-gap: 24px;
 }
 
 html.dark {
     --bg: #111c1b;
     --primary: #63d2be;
     --primary-hover: #4db8a7;
+    --hover: #263939;
     --primary-tint: #2b6f66;
     --accent-orange: #ffa66b;
     --accent-tint: #ffb98a;
@@ -64,7 +76,10 @@ html.dark {
     --text-secondary: #a2b4b0;
     --border: #30413a;
     --color-danger: #ec202a;
-    --shadow: 0 4px 15px rgba(0,0,0,.30);
+    --white-color: #ffffff;
+    --black-color: #000000;
+    --primary-soft: #12a59524;
+    --primary-focus: #12a59524;
 }
 
 body {
@@ -74,13 +89,19 @@ body {
     color: var(--text-primary);
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Vazir', Tahoma, sans-serif;
     font-weight: 700;
 }
 
 a {
     color: inherit;
+    text-decoration: none;
 }
 
 .main-container {
@@ -88,26 +109,26 @@ a {
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 var(--page-gutter);
-} 
+}
 
 /* shared banners design */
 .common-hero-banner {
-  margin: 12px 0 0;
-  overflow: hidden;
-  border-radius: 12px;
+    margin: 12px 0 0;
+    overflow: hidden;
+    border-radius: 12px;
 }
 
 .common-hero-banner picture {
-  display: block;
-  width: 100%;
-  height: 100%;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .common-hero-banner img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* common ad card styles */
@@ -245,4 +266,12 @@ a {
     display: inline-block;
 }
 
-
+/* reduce animation */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: .01ms;
+        animation-duration: .01ms;
+    }
+}

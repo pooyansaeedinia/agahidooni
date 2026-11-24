@@ -1,73 +1,11 @@
-/*فونت وزیر*/
-/*@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');*/
-@font-face {
-    font-family: 'Vazir';
-    url('assets/fonts/Vazir.woff2') format('woff2'),
-    url("assets/fonts/Vazir.eot") format("eot"),
-    url("assets/fonts/Vazir.ttf") format("truetype"),
-    url("assets/fonts/Vazir.woff") format("woff"),
-}
-
-/*رنگ های پروژه در حالت Light mode*/
-:root {
-    --primary: #087F72;
-    --primary-hover: #06665C;
-    --primary-tint: #E0F2EF;
-    --bg-color: #F5F7F7;
-    --surface: #FFFFFF;
-    --text-primary: #172A2A;
-    --text-secondary: #647474;
-    --border: #E1E8E7;
-    --success: #15803D;
-    --info-bg: #E0F2EF;
-    --info-text: #06665C;
-    --danger: #B91C1C;
-    --font-family: 'Vazir', "Tahoma", "sans-serif";
-    --radius: 8px;
-    --transition: all 0.3s ease;
-    --meta-data: #FF8A3D
-}
-
-/*رنگ های پروژه در حالت Dark mode*/
-@media (prefers-color-scheme: dark) {
-    :root {
-        --primary: #63D2BE;
-        --primary-hover: #85E0D0;
-        --primary-tint: #203B36;
-        --bg-color: #111C1B;
-        --surface: #1A2927;
-        --text-primary: #E6F0ED;
-        --text-secondary: #9BAEAA;
-        --border: #30413E;
-        --info-bg: #203B36;
-        --info-text: #85E0D0;
-    }
-}
-
-/*ستایل های عمومی*/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: var(--font-family) !important;
-}
-
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-primary);
-    direction: rtl;
-    min-height: 100vh;
-}
-
-/*کانتینر جزئیات آگهی*/
+/*کانتینر اصلی*/
 .ad-details-container {
     max-width: 1200px;
     margin: 30px auto;
-
+    padding: 0 20px;
 }
 
-/*مسیر صفحات*/
+/*برید کرامب*/
 .breadcrumb {
     display: flex;
     align-items: center;
@@ -80,7 +18,7 @@ body {
 .breadcrumb a {
     color: var(--text-secondary);
     text-decoration: none;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .breadcrumb a:hover {
@@ -91,15 +29,16 @@ body {
     font-size: 12px;
 }
 
+/*کارت پس‌زمینه*/
 .card-bg {
     background-color: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--details-shadow-soft);
     padding: 24px;
 }
 
-/*گرید جزئیات صفحه*/
+/*گرید جزئیات*/
 .ad-details-grid {
     display: grid;
     grid-template-columns: 1fr 1.1fr;
@@ -107,7 +46,7 @@ body {
     margin-bottom: 40px;
 }
 
-/*سمت چپ - عکس اصلی و گالری عکس ها*/
+/*ستون گالری*/
 .ad-gallery-col {
     padding: 0;
     background: transparent;
@@ -118,7 +57,7 @@ body {
 .main-image-wrapper {
     width: 100%;
     aspect-ratio: 4 / 3;
-    border-radius: var(--radius);
+    border-radius: var(--radius-sm);
     overflow: hidden;
     background-color: var(--border);
     margin-bottom: 16px;
@@ -139,11 +78,11 @@ body {
 .thumb-item {
     width: 100%;
     aspect-ratio: 1 / 1;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     overflow: hidden;
     cursor: pointer;
     border: 2px solid transparent;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     opacity: 0.7;
 }
 
@@ -158,11 +97,11 @@ body {
     object-fit: cover;
 }
 
-/*سمت راست - اطلاعات آگهی*/
+/* ستون اطلاعات */
 .ad-info-col {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: var(--details-gap);
 }
 
 .header-info-card {
@@ -172,38 +111,35 @@ body {
 }
 
 .ad-main-title {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 800;
     color: var(--text-primary);
 }
 
 .ad-price {
-    font-family: var(--font-family) !important;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--primary);
 }
 
-/*دکمه های افزودن به علاقه مندی ها و تماس با فروشنده*/
+/*دکمه‌ها*/
 .ad-actions {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     margin-top: 8px;
 }
 
-/*استایل عمومی دکمه ها*/
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     padding: 12px 20px;
-    border-radius: var(--radius);
-    font-family: var(--font-family);
-    font-size: 11px;
+    border-radius: var(--radius-sm);
+    font-size: 10px;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     text-decoration: none;
     flex: 1;
 }
@@ -229,13 +165,13 @@ body {
     color: var(--primary);
 }
 
-/*اطلاعات محصول*/
+/*اطلاعات آگهی*/
 .ad-base-info {
     background-color: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     padding: 24px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    box-shadow: var(--details-shadow-soft);
     margin-top: 24px;
 }
 
@@ -287,42 +223,12 @@ body {
     font-weight: 600;
 }
 
-/*توضیحات محصول*/
-.ad-attributes h2, .ad-description h2 {
+/*توضیحات*/
+.ad-description h2, .ad-attributes h2 {
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 12px;
     color: var(--text-primary);
-}
-
-.ad-description p {
-    font-size: 80px;
-}
-
-.ad-attributes ul {
-    list-style: none;
-}
-
-.ad-attributes li {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px dashed var(--border);
-    font-size: 14px;
-}
-
-.ad-attributes li:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.ad-attributes li span {
-    color: var(--text-secondary);
-}
-
-.ad-attributes li strong {
-    color: var(--text-primary);
-    font-weight: 600;
 }
 
 .ad-description p {
@@ -332,13 +238,12 @@ body {
     text-align: justify;
 }
 
-/*آگهی های مرتبط*/
+/*آگهی‌های مرتبط*/
 .related-products {
     margin-top: 40px;
 }
 
-/*کانتینر*/
-.related-container {
+.container {
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -365,22 +270,21 @@ body {
     font-weight: 600;
     color: var(--primary);
     text-decoration: none;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .view-all:hover {
     color: var(--primary-hover);
 }
 
-/*ساختار اصلی اسلایدر*/
-.related-slider-container {
+/*اسلایدر*/
+.slider-container, .related-slider-container {
     display: flex;
     align-items: center;
     gap: 12px;
     width: 100%;
 }
 
-/*دکمه‌ های اسلایدر*/
 .slider-btn {
     width: 40px;
     height: 40px;
@@ -392,7 +296,7 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     flex-shrink: 0;
     z-index: 10;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -412,12 +316,11 @@ body {
     border-color: var(--border);
 }
 
-/*اسکرول افقی کانتینر*/
 .slider-wrapper {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     flex-grow: 1;
-    border-radius: var(--radius);
+    border-radius: var(--radius-sm);
     padding-bottom: 5px;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -429,136 +332,18 @@ body {
     display: none;
 }
 
-/*مسیر اسلایدر*/
-.related-slider-track {
+.slider-track, .related-slider-track {
     display: flex;
     gap: 20px;
     padding: 4px;
 }
 
-/*اگهی کارت های داخل اسلایدر*/
 .related-slider-track .ad-card {
     flex: 0 0 calc(25% - 15px);
     scroll-snap-align: start;
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    transition: var(--transition);
-    display: flex;
-    flex-direction: column;
 }
 
-.related-slider-track .ad-card:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    transform: translateY(-3px);
-}
-
-.related-slider-track .ad-link {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-    height: 100%;
-}
-
-.related-slider-track .ad-img-wrapper {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    background-color: var(--bg-color);
-}
-
-.related-slider-track .ad-img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition);
-}
-
-.related-slider-track .ad-card:hover .ad-img-wrapper img {
-    transform: scale(1.05);
-}
-
-.related-slider-track .fav-btn {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    color: var(--text-secondary);
-    transition: var(--transition);
-    backdrop-filter: blur(4px);
-    z-index: 2;
-    text-decoration: none;
-}
-
-.related-slider-track .fav-btn:hover {
-    color: var(--danger);
-    background: #fff;
-}
-
-.related-slider-track .badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: var(--danger);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 12px;
-    z-index: 2;
-}
-
-.related-slider-track .ad-info {
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.related-slider-track .ad-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-primary);
-    transition: var(--transition);
-}
-
-.related-slider-track .ad-card:hover .ad-title {
-    color: var(--primary);
-}
-
-.related-slider-track .ad-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 12px;
-    color: var(--text-secondary);
-}
-
-.related-slider-track .ad-meta span {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.related-slider-track .ad-price {
-    font-size: 16px;
-    font-weight: 800;
-    color: var(--primary);
-    margin-top: 4px;
-}
-
-/*مودال ارتباط با فروشنده*/
+/* مودال تماس */
 .contact-modal {
     position: fixed;
     top: 0;
@@ -572,7 +357,7 @@ body {
     z-index: 2000;
     opacity: 0;
     visibility: hidden;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .contact-modal.active {
@@ -583,13 +368,13 @@ body {
 .modal-content {
     background-color: var(--surface);
     padding: 30px;
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     width: 100%;
     max-width: 400px;
     text-align: center;
     position: relative;
     transform: translateY(20px);
-    transition: var(--transition);
+    transition: all 0.3s ease;
     border: 1px solid var(--border);
 }
 
@@ -606,11 +391,11 @@ body {
     font-size: 20px;
     color: var(--text-secondary);
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .close-modal:hover {
-    color: var(--danger);
+    color: var(--color-danger);
 }
 
 .modal-content h3 {
@@ -635,7 +420,7 @@ body {
     gap: 12px;
 }
 
-/*تست نوتیفیکیشن*/
+/*نوتیفیکیشن*/
 .toast-notification {
     position: fixed;
     bottom: -100px;
@@ -650,14 +435,13 @@ body {
     gap: 16px;
     min-width: 320px;
     max-width: 400px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--details-shadow-modal);
     z-index: 3000;
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     opacity: 0;
     direction: rtl;
 }
 
-/*زمانی که پیغام فعال میشود*/
 .toast-notification.active {
     bottom: 30px;
     opacity: 1;
@@ -700,16 +484,16 @@ body {
     cursor: pointer;
     font-size: 16px;
     padding: 4px;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     flex-shrink: 0;
 }
 
 .toast-close:hover {
-    color: var(--danger);
+    color: var(--color-danger);
     transform: rotate(90deg);
 }
 
-/*مودال گزارش تخلف*/
+/*مودال گزارش*/
 .report-modal {
     position: fixed;
     top: 0;
@@ -746,8 +530,8 @@ body {
     background-color: var(--surface);
     width: 100%;
     max-width: 500px;
-    border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--details-shadow-modal);
     display: flex;
     flex-direction: column;
     transform: translateY(20px);
@@ -759,14 +543,12 @@ body {
     transform: translateY(0);
 }
 
-/*هدر*/
 .report-modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 24px;
     border-bottom: 1px solid var(--border);
-
 }
 
 .report-modal-header h3 {
@@ -785,7 +567,7 @@ body {
     font-size: 18px;
     color: var(--text-secondary);
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -795,10 +577,9 @@ body {
 }
 
 .report-modal-close:hover {
-    color: var(--danger);
+    color: var(--color-danger);
 }
 
-/* بدنه */
 .report-modal-body {
     padding: 24px;
 }
@@ -817,24 +598,23 @@ body {
 }
 
 .report-modal-body .required {
-    color: var(--danger);
+    color: var(--color-danger);
 }
 
 .report-modal-body select, .report-modal-body textarea {
     width: 100%;
     padding: 12px 16px;
     border: 1.5px solid var(--primary-tint);
-    border-radius: 8px;
-    font-family: var(--font-family);
+    border-radius: var(--radius-sm);
     font-size: 14px;
     background-color: var(--surface);
     color: var(--text-primary);
     outline: none;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .report-modal-body select:focus, .report-modal-body textarea:focus {
-    border-color: var(--danger);
+    border-color: var(--color-danger);
     box-shadow: 0 0 0 4px rgba(185, 28, 28, 0.12);
 }
 
@@ -848,14 +628,13 @@ body {
     color: var(--text-secondary);
 }
 
-/*فوتر*/
 .report-modal-footer {
     display: flex;
     justify-content: flex-end;
     gap: 12px;
     padding: 16px 24px;
     border-top: 1px solid var(--border);
-    background-color: var(--bg-color);
+    background-color: var(--bg);
 }
 
 .report-modal-footer .btn-outline {
@@ -863,12 +642,11 @@ body {
     background-color: transparent;
     color: var(--text-primary);
     border: 1.5px solid var(--border);
-    border-radius: 10px;
-    font-family: var(--font-family);
+    border-radius: var(--radius-sm);
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .report-modal-footer .btn-outline:hover {
@@ -877,15 +655,14 @@ body {
 
 .report-modal-footer .danger-btn {
     padding: 10px 20px;
-    background-color: var(--danger);
+    background-color: var(--color-danger);
     color: #fff;
     border: none;
-    border-radius: 10px;
-    font-family: var(--font-family);
+    border-radius: var(--radius-sm);
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -919,23 +696,15 @@ body {
         order: -1;
     }
 
+    .slider-container,
     .related-slider-container {
-        display: flex;
-        align-items: center;
         gap: 8px;
-        width: 100%;
     }
 
     .slider-btn {
         width: 32px;
         height: 32px;
         font-size: 14px;
-        flex-shrink: 0;
-    }
-
-    .slider-wrapper {
-        flex-grow: 1;
-        min-width: 0; /* بسیار مهم برای جلوگیری از شکستن عرض */
     }
 
     .related-slider-track .ad-card {
@@ -949,10 +718,6 @@ body {
 }
 
 @media (max-width: 480px) {
-    .ad-details-container {
-        padding: 100px 16px 40px;
-    }
-
     .card-bg {
         padding: 16px;
     }

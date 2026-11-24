@@ -2,59 +2,46 @@
 {% load static %}
 
 {% block css %}
-    <!--آیکون های بوت استرپ-->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <!--فو آیکون ها-->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'media/images/favicons/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'media/images/favicons/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'media/images/favicons/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'media/images/favicons/site.webmanifest' %}">
-    <!--فایل های css-->
     <link rel="stylesheet" href="{% static 'css/ad_details.css' %}">
-    <link rel="stylesheet" href="{% static "css/public.css" %}">
 {% endblock css %}
 
 {% block title %}
-    آگهی دونی || لیست آگهی ها
+    آگهی دونی || جزئیات آگهی
 {% endblock title %}
 
-
 {% block content %}
-    <!--مودال تماس با فروشنده-->
+    <!-- مودال تماس با فروشنده -->
     <div class="contact-modal" id="contactModal">
         <div class="modal-content">
-            <button class="close-modal" id="closeModalBtn"><i class="bi bi-x-lg"></i></button>
+            <button class="close-modal" id="closeModalBtn"><i class="fa-solid fa-xmark"></i></button>
             <h3>شماره تماس فروشنده</h3>
             <p class="phone-number" id="phoneNumber">09915064012</p>
             <div class="modal-actions">
                 <a href="#" class="btn btn-primary">
-                    <i class="bi bi-telephone-fill"></i> تماس مستقیم
+                    <i class="fa-solid fa-phone"></i> تماس مستقیم
                 </a>
                 <button class="btn btn-outline" id="copyBtn">
-                    <i class="bi bi-clipboard"></i> کپی شماره
+                    <i class="fa-regular fa-clipboard"></i> کپی شماره
                 </button>
             </div>
         </div>
     </div>
-    <!--مودال گزارش تخلف-->
+
+    <!-- مودال گزارش تخلف -->
     <div class="report-modal" id="reportModal">
         <div class="report-modal-overlay" id="reportModalOverlay"></div>
 
         <div class="report-modal-container">
-            <!--هدر مودال-->
             <div class="report-modal-header">
-                <h3><i class="bi bi-flag"></i> گزارش تخلف</h3>
+                <h3><i class="fa-solid fa-flag"></i> گزارش تخلف</h3>
                 <button class="report-modal-close" id="reportModalClose">
-                    <i class="bi bi-x-lg"></i>
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <!--بدنه مودال-->
+
             <div class="report-modal-body">
-                <form id="reportForm" action="{% url "ads:report-create" ad.id %}" method="POST">
+                <form id="reportForm" action="{% url 'ads:report-create' ad.id %}" method="POST">
                     {% csrf_token %}
-                    <!-- فیلد مخفی برای آیدی آگهی -->
                     <input type="hidden" name="ad_id" value="">
                     <div class="form-group">
                         <label for="violationType">نوع تخلف <span class="required">*</span></label>
@@ -76,106 +63,107 @@
                     </div>
                 </form>
             </div>
-            <!--فوتر مودال-->
+
             <div class="report-modal-footer">
                 <button type="button" class="btn-outline" id="reportModalCancel">انصراف</button>
                 <button type="submit" class="btn-primary danger-btn" form="reportForm">
-                    <i class="bi bi-send"></i> ارسال گزارش
+                    <i class="fa-solid fa-paper-plane"></i> ارسال گزارش
                 </button>
             </div>
         </div>
     </div>
-    <!--تست نوتیفیکیشن-->
+
+    <!-- نوتیفیکیشن -->
     <div class="toast-notification" id="toastNotification">
         <div class="toast-icon">
-            <i class="bi bi-check-circle-fill" id="toastIcon"></i>
+            <i class="fa-solid fa-check-circle" id="toastIcon"></i>
         </div>
         <div class="toast-content">
             <span class="toast-title" id="toastTitle"></span>
             <span class="toast-message" id="toastMessage"></span>
         </div>
         <button class="toast-close" id="toastClose">
-            <i class="bi bi-x-lg"></i>
+            <i class="fa-solid fa-xmark"></i>
         </button>
     </div>
+
     <main class="ad-details-container">
-        <!--مسیر صفحه یا به اصطلاح Breadcrumb-->
+        <!-- Breadcrumb -->
         <nav class="breadcrumb">
             <a href="{% url 'home:home' %}">خانه</a>
-            <i class="bi bi-chevron-left"></i>
+            <i class="fa-solid fa-chevron-left"></i>
             <a href="{% url 'ads:ads-list' %}">آگهی‌ها</a>
-            <i class="bi bi-chevron-left"></i>
+            <i class="fa-solid fa-chevron-left"></i>
             <a href="{% url 'ads:ad-detail' pk=ad.pk %}">{{ ad.title }}</a>
         </nav>
-        <!--گرید جزئیات آگهی ها-->
+
+        <!-- گرید جزئیات -->
         <section class="ad-details-grid card-bg">
-            <!--ستون سمت راست برای اطلاعات آگهی میباشد-->
+            <!-- ستون اطلاعات -->
             <div class="ad-info-col">
-                <!--عنوان آگهی و قیمت آن-->
                 <div class="header-info-card">
                     <h1 class="ad-main-title">{{ ad.title }}</h1>
                     <p class="ad-price">{{ ad.price|floatformat:0 }} تومان</p>
-                    <!--دکمه های تماس با فروشنده و افزودن به علاقه مندی ها-->
+
                     <div class="ad-actions">
                         <button class="btn btn-primary" id="contactBtn">
-                            <i class="bi bi-telephone-fill"></i> تماس با فروشنده
+                            <i class="fa-solid fa-phone"></i> تماس با فروشنده
                         </button>
+
                         <form id="favForm" method="post" action="{% url 'ads:favorite-toggle' ad.pk %}" hidden>
                             {% csrf_token %}
                             <input type="hidden" name="next" value="{{ request.get_full_path }}">
                         </form>
 
                         <a href="#" class="btn btn-outline" id="favBtn"
-                        onclick="document.getElementById('favForm').submit(); return false;">
-                            <i class="bi {% if is_favorite %}bi-heart-fill{% else %}bi-heart{% endif %}"></i>
+                           onclick="document.getElementById('favForm').submit(); return false;">
+                            <i class="fa{% if is_favorite %}s{% else %}r{% endif %} fa-heart"></i>
                             {% if is_favorite %}حذف از علاقه‌مندی‌ها{% else %}افزودن به علاقه‌مندی‌ها{% endif %}
                         </a>
+
                         <button class="btn btn-outline danger" id="reportBtn">
-                            <i class="bi bi-flag"></i> گزارش تخلف
+                            <i class="fa-solid fa-flag"></i> گزارش تخلف
                         </button>
                     </div>
                 </div>
-                <!--اطلاعات آگهی-->
+
                 <div class="ad-base-info">
-                    <h2><i class="bi bi-info-circle"></i> اطلاعات آگهی</h2>
+                    <h2><i class="fa-solid fa-circle-info"></i> اطلاعات آگهی</h2>
                     <ul>
                         <li>
-                            <span><i class="bi bi-geo-alt"></i> استان:</span>
+                            <span><i class="fa-solid fa-location-dot"></i> استان:</span>
                             <strong>{{ ad.city.province }}</strong>
                         </li>
                         <li>
-                            <span><i class="bi bi-pin-map"></i> شهر:</span>
+                            <span><i class="fa-solid fa-map-pin"></i> شهر:</span>
                             <strong>{{ ad.city.name }}</strong>
                         </li>
                         <li>
-                            <span><i class="bi bi-house"></i> آدرس:</span>
+                            <span><i class="fa-solid fa-house"></i> آدرس:</span>
                             <strong>{{ ad.city.name }}</strong>
                         </li>
                         <li>
-                            <span><i class="bi bi-tag"></i> دسته‌بندی:</span>
+                            <span><i class="fa-solid fa-tag"></i> دسته‌بندی:</span>
                             <strong>{{ ad.category }}</strong>
                         </li>
                         <li>
-                            <span><i class="bi bi-calendar"></i> تاریخ انتشار:</span>
+                            <span><i class="fa-solid fa-calendar"></i> تاریخ انتشار:</span>
                             <strong>{{ ad.date_added|date:"Y/m/d" }}</strong>
                         </li>
                     </ul>
                 </div>
-                <!--توضیحات فروشنده-->
+
                 <div class="ad-description">
                     <h2>توضیحات</h2>
-                    <p>
-                        {{ ad.description }}
-                    </p>
+                    <p>{{ ad.description }}</p>
                 </div>
             </div>
-            <!--ستون سمت چب برای عکس اصلی آگهی و گالری عکس میباشد-->
+
+            <!-- ستون گالری -->
             <div class="ad-gallery-col card-bg">
-                <!--عکس اصلی آگهی-->
                 <div class="main-image-wrapper">
                     <img src="{{ ad.images.first.image.url }}" alt="عکس اصلی آگهی" id="mainImage">
                 </div>
-                <!--گالری عکس-->
                 <div class="gallery-thumbnails">
                     {% for image in ad.images.all %}
                         <div class="thumb-item"><img src="{{ image.image.url }}" alt="گالری"></div>
@@ -183,58 +171,63 @@
                 </div>
             </div>
         </section>
-        <!--آگهی های مشابه-->
+
+        <!-- آگهی‌های مشابه -->
         <section class="related-products">
-            {# اینجا اسم related به کلاس اضافه شد #}
             <div class="related-container">
                 <div class="section-header">
                     <h2>آگهی‌های مشابه</h2>
-                    <a href="{% url 'ads:ads-list' %}" class="view-all">مشاهده همه آگهی‌ ها</a>
+                    <a href="{% url 'ads:ads-list' %}" class="view-all">مشاهده همه آگهی‌ها</a>
                 </div>
-                <!--اسلایدر-->
-                {# اینجا اسم related به کلاس اضافه شد #}
+
                 <div class="related-slider-container">
-                    <!--دکمه قبلی-->
                     <button class="slider-btn prev-btn" id="prevNewBtn">
-                        <i class="bi bi-chevron-right"></i>
+                        <i class="fa-solid fa-chevron-right"></i>
                     </button>
+
                     <div class="slider-wrapper" id="newSliderWrapper">
-                    {# اینجا اسم related به کلاس اضافه شد #}
                         <div class="related-slider-track" id="newSliderTrack">
-                            <!--آگهی شماره یک-->
                             {% for related_ad in ads %}
-                                <article class="ad-card" data-category="{{ related_ad.category }}"
-                                         data-price="{{ related_ad.price }}" data-province="{{ related_ad.province }}"
-                                         data-city="{{ related_ad.city }}" data-date="">
-                                    <a href="{{ related_ad.get_absolute_url }}" class="ad-link">
-                                        <div class="ad-img-wrapper">
+                                <article class="common-ad-card ad-card"
+                                         data-category="{{ related_ad.category }}"
+                                         data-price="{{ related_ad.price }}"
+                                         data-province="{{ related_ad.province }}"
+                                         data-city="{{ related_ad.city }}"
+                                         data-date="">
+                                    <a href="{{ related_ad.get_absolute_url }}" class="ad-card-link">
+                                        <div class="ad-card-image">
                                             {% with img=related_ad.images.first %}
                                                 {% if img %}
-                                                    <img src="{{ img.image.url }}" alt="{{ related_ad.title }}">
+                                                    <img src="{{ img.image.url }}" alt="{{ related_ad.title }}" loading="lazy">
                                                 {% endif %}
                                             {% endwith %}
                                             {% if related_ad.badge %}
-                                                <span class="badge">فوری</span>
+                                                <span class="ad-badge urgent-badge">فوری</span>
                                             {% endif %}
                                         </div>
-                                        <!--اطلاعات آگهی-->
-                                        <div class="ad-info">
+
+                                        <div class="ad-card-content">
                                             <h3 class="ad-title">{{ related_ad.title }}</h3>
-                                            <div class="ad-meta">
-                                                <span><i class="bi bi-geo-alt"></i>{{ related_ad.city }}</span>
-                                                <span><i
-                                                        class="bi bi-clock"></i>{{ ad.date_added|timesince }} پیش </span>
+                                            <p class="ad-price">{{ related_ad.price|floatformat:0 }} تومان</p>
+                                            <div class="ad-card-footer">
+                                                <span>{{ related_ad.city }}</span>
+                                                <span>{{ related_ad.date_added|timesince }} پیش</span>
                                             </div>
-                                            <p class="ad-price"> {{ ad.price|floatformat:0 }} تومان</p>
                                         </div>
                                     </a>
+
+                                    <input type="checkbox" id="related-fav-{{ forloop.counter }}" class="favorite-checkbox">
+                                    <label for="related-fav-{{ forloop.counter }}" class="favorite-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <i class="fa-solid fa-heart"></i>
+                                    </label>
                                 </article>
                             {% endfor %}
                         </div>
                     </div>
-                    <!--دکمه بعدی-->
+
                     <button class="slider-btn next-btn" id="nextNewBtn">
-                        <i class="bi bi-chevron-left"></i>
+                        <i class="fa-solid fa-chevron-left"></i>
                     </button>
                 </div>
             </div>
@@ -243,6 +236,5 @@
 {% endblock content %}
 
 {% block js %}
-    <!--فایل های js-->
     <script src="{% static 'js/adDetails.js' %}"></script>
 {% endblock js %}
