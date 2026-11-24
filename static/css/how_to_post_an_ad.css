@@ -1,65 +1,13 @@
-/*فونت وزیر*/
-@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
-
-/*رنگ های پروزه در حالت Light mode*/
-:root {
-    --primary: #087F72;
-    --primary-hover: #06665C;
-    --primary-tint: #E0F2EF;
-    --bg-color: #F5F7F7;
-    --surface: #FFFFFF;
-    --text-primary: #172A2A;
-    --text-secondary: #647474;
-    --border: #E1E8E7;
-    --success: #15803D;
-    --info-bg: #E0F2EF;
-    --info-text: #06665C;
-    --danger: #B91C1C;
-    --font-family: 'Vazirmatn', Tahoma, sans-serif;
-    --radius: 8px;
-    --transition: all 0.3s ease;
-    --meta-data: #FF8A3D
-}
-
-/*رنگ های پروژه در حالت Dark mode*/
-@media (prefers-color-scheme: dark) {
-    :root {
-        --primary: #63D2BE;
-        --primary-hover: #85E0D0;
-        --primary-tint: #203B36;
-        --bg-color: #111C1B;
-        --surface: #1A2927;
-        --text-primary: #E6F0ED;
-        --text-secondary: #9BAEAA;
-        --border: #30413E;
-        --info-bg: #203B36;
-        --info-text: #85E0D0;
-    }
-}
-
-/*ستایل های عمومی*/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: var(--font-family) !important;
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-primary);
-    direction: rtl;
-    min-height: 100vh;
-}
-
+/*کانتینر اصلی*/
 .post-an-ad-container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 30px auto;
+    padding: 0 20px;
 }
 
 /*بنر بالای صفحه*/
 .page-banner {
-    background: linear-gradient(135deg, #087F72 0%, #0a9c8c 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, #0a9c8c 100%);
     border-radius: 20px;
     padding: 40px;
     margin-bottom: 40px;
@@ -151,7 +99,7 @@ body {
     line-height: 1;
 }
 
-/* آیکون کارت */
+/*آیکون کارت*/
 .card-icon {
     width: 70px;
     height: 70px;
@@ -215,10 +163,6 @@ body {
 }
 
 @media (max-width: 768px) {
-    .post-an-ad-container {
-        padding-top: 100px;
-    }
-
     .page-banner {
         flex-direction: column;
         text-align: center;
