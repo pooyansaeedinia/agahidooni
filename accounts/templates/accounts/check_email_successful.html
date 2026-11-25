@@ -8,6 +8,7 @@
 
 {# css #}
 {% block css %}
+    <link rel="stylesheet" href="{% static "css/authentication.css" %}">
     <link rel="stylesheet" href="{% static "css/check_email.css" %}">
 {% endblock css %}
 
@@ -18,19 +19,21 @@
 
 {# content #}
 {% block content %}
-    <section class="check-email-section">
-        <!--آیکون-->
-        <div class="icon-wrapper">
-            <i class="bi bi-check-circle-fill"></i>
-        </div>
-        <h2>ایمیل با موفقیت تأیید شد</h2>
-        <p class="desc">
-            آدرس ایمیل شما با موفقیت تایید شد. اکنون می‌توانید وارد حساب کاربری خود شوید و خرید خود را آغاز کنید
-        </p>
-        <div class="info-box">
-            <i class="bi bi-gift"></i>
-            <span>به خانواده آگهی دونی خوش آمدید از کد <strong>WELCOME10</strong> برای 10٪ تخفیف اولین سفارش خود استفاده کنید.</span>
-        </div>
-        <a href="{% url "accounts:login" %}" class="back-to-login">ورود به حساب کاربری</a>
-    </section>
+    <div class="auth-wrapper">
+        <section class="check-email-section">
+            <!--آیکون-->
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h2>ایمیل با موفقیت تأیید شد</h2>
+            <p class="desc">
+                آدرس ایمیل شما با موفقیت تایید شد. اکنون می‌توانید وارد حساب کاربری خود شوید و خرید خود را آغاز کنید
+            </p>
+            <div class="info-box">
+                <i class="bi bi-gift"></i>
+                <span>به خانواده آگهی دونی خوش آمدید از کد <strong>WELCOME10</strong> برای 10٪ تخفیف اولین سفارش خود استفاده کنید.</span>
+            </div>
+            <a href="{% url "accounts:login" %}" class="back-to-login">ورود به حساب کاربری</a>
+        </section>
+    </div>
 {% endblock content %}

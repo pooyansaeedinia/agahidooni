@@ -1,63 +1,13 @@
-/*فونت وزیر*/
-@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
-
-/*رنگ های پروزه در حالت Light mode*/
-:root {
-    --primary: #087F72;
-    --primary-hover: #06665C;
-    --primary-tint: #E0F2EF;
-    --bg-color: #F5F7F7;
-    --surface: #FFFFFF;
-    --text-primary: #172A2A;
-    --text-secondary: #647474;
-    --border: #E1E8E7;
-    --success: #15803D;
-    --info-bg: #E0F2EF;
-    --info-text: #06665C;
-    --danger: #B91C1C;
-    --danger-bg: #FEF2F2;
-    --font-family: 'Vazirmatn', Tahoma, sans-serif;
-    --radius: 8px;
-    --transition: all 0.3s ease;
-}
-
-/*رنگ های پروژه در حالت Dark mode*/
-@media (prefers-color-scheme: dark) {
-    :root {
-        --primary: #63D2BE;
-        --primary-hover: #85E0D0;
-        --primary-tint: #203B36;
-        --bg-color: #111C1B;
-        --surface: #1A2927;
-        --text-primary: #E6F0ED;
-        --text-secondary: #9BAEAA;
-        --border: #30413E;
-        --info-bg: #203B36;
-        --info-text: #85E0D0;
-        --danger-bg: #3A2022
-    }
-}
-
-/*ستایل های عمومی*/
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: var(--font-family) !important;
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-primary);
+/*کانتینر اصلی*/
+.auth-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px;
-    direction: rtl;
+    padding: 20px
 }
 
-/*فرم کانتینر ها*/
+/*فرم کانتینرها*/
 .login-section, .signup-section, .forgot-section {
     background-color: var(--surface);
     padding: 40px;
@@ -76,7 +26,7 @@ h2 {
     font-weight: 700;
 }
 
-/*گروه های فرم ها که شامل Label, Inupt میباشد*/
+/*گروه‌های فرم*/
 .form-group {
     margin-bottom: 20px;
     position: relative;
@@ -94,11 +44,11 @@ h2 {
     width: 100%;
     padding: 12px 16px;
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: 8px;
     background-color: var(--surface);
     color: var(--text-primary);
     font-size: 15px;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     outline: none;
 }
 
@@ -107,36 +57,36 @@ input[type="password"],
 input[type="text"]:not(#signup-full-name) {
     direction: ltr;
     text-align: right;
-
 }
 
 input::placeholder {
     text-align: right;
     color: var(--text-secondary);
     opacity: 0.6;
+    font-size: 13px;
 }
 
 .form-group input:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px var(--primary-tint);
+    box-shadow: 0 0 0 1px var(--primary-tint);
 }
 
 /*آیکون چشم*/
 .toggle-password {
     position: absolute;
     left: 16px;
-    top: 42px;
+    top: 47px;
     cursor: pointer;
     color: var(--text-secondary);
-    font-size: 18px;
-    transition: var(--transition);
+    font-size: 15px;
+    transition: all 0.3s ease;
 }
 
 .toggle-password:hover {
     color: var(--primary);
 }
 
-/*لینک های قرار گرفته در پایین صفحات (فراموشی رمز عبور و صفحه ثبت نام و صفحه ورود)*/
+/* لینک‌های پایین فرم */
 .signup-resetPassword {
     display: flex;
     justify-content: space-between;
@@ -148,7 +98,8 @@ input::placeholder {
     color: var(--primary);
     text-decoration: none;
     font-weight: 500;
-    transition: var(--transition);
+    transition: all 0.3s ease;
+    font-family: "Vazir", sans-serif;
 }
 
 .signup-resetPassword a:hover {
@@ -160,18 +111,18 @@ input::placeholder {
     justify-content: center;
 }
 
-/*دکمه*/
+/* دکمه */
 .submitButton {
     width: 100%;
     padding: 14px;
     background-color: var(--primary);
     color: #FFFFFF;
     border: none;
-    border-radius: var(--radius);
-    font-size: 16px;
+    border-radius: 8px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .submitButton:hover {
@@ -180,19 +131,15 @@ input::placeholder {
 
 /* پیام خطا (small) */
 small {
-    font-family: var(--font-family) !important;
     font-weight: 500;
 }
 
 /* خطاهای کلی فرم از سمت سرور */
 .server-errors {
     position: fixed;
-
     top: 20px;
     right: 20px;
-
     z-index: 1000;
-
     width: min(400px, calc(100% - 40px));
 }
 
@@ -203,16 +150,12 @@ small {
     gap: 8px;
     width: 100%;
     padding: 12px 14px;
-
-    border: 1px solid var(--danger-border);
-    border-radius: var(--radius);
-
-    background-color: var(--danger-bg);
-    color: var(--danger);
-
+    border: 1px solid var(--color-danger);
+    border-radius: 8px;
+    background-color: rgba(236, 32, 42, 0.08);
+    color: var(--color-danger);
     font-size: 13px;
     line-height: 1.8;
-
     text-align: right;
     margin-bottom: 8px;
 }
@@ -221,7 +164,7 @@ small {
     display: block;
     width: 100%;
     margin-top: 6px;
-    color: var(--danger);
+    color: var(--color-danger);
     font-size: 12px;
     font-weight: 500;
     text-align: right;

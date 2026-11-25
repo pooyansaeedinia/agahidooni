@@ -1,61 +1,3 @@
-/*فونت وزیر*/
-@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
-
-/*رنگ های پروزه در حالت Light mode*/
-:root {
-    --primary: #087F72;
-    --primary-hover: #06665C;
-    --primary-tint: #E0F2EF;
-    --bg-color: #F5F7F7;
-    --surface: #FFFFFF;
-    --text-primary: #172A2A;
-    --text-secondary: #647474;
-    --border: #E1E8E7;
-    --success: #15803D;
-    --info-bg: #E0F2EF;
-    --info-text: #06665C;
-    --danger: #B91C1C;
-    --font-family: 'Vazirmatn', Tahoma, sans-serif;
-    --radius: 8px;
-    --transition: all 0.3s ease;
-}
-
-/*رنگ های پروژه در حالت Dark mode*/
-@media (prefers-color-scheme: dark) {
-    :root {
-        --primary: #63D2BE;
-        --primary-hover: #85E0D0;
-        --primary-tint: #203B36;
-        --bg-color: #111C1B;
-        --surface: #1A2927;
-        --text-primary: #E6F0ED;
-        --text-secondary: #9BAEAA;
-        --border: #30413E;
-        --info-bg: #203B36;
-        --info-text: #85E0D0;
-    }
-}
-
-/*ستایل های عمومی*/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: var(--font-family) !important;
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-primary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    direction: rtl;
-}
-
-/*کانتینر چک اایمیل*/
 .check-email-section {
     background-color: var(--surface);
     padding: 50px 40px;
@@ -67,7 +9,7 @@ body {
     text-align: center;
 }
 
-/*آیکون*/
+/* آیکون */
 .icon-wrapper {
     display: inline-flex;
     justify-content: center;
@@ -95,19 +37,20 @@ body {
     margin-bottom: 26px;
 }
 
-/*اینو باکس*/
+/* باکس اطلاعات */
 .info-box {
     display: flex;
     align-items: center;
     gap: 10px;
-    background-color: var(--info-bg);
-    color: var(--info-text);
+    background-color: var(--primary-tint);
+    color: var(--primary);
     padding: 14px 16px;
-    border-radius: var(--radius);
+    border-radius: 8px;
     font-size: 12px;
     font-weight: 500;
     margin-bottom: 30px;
     text-align: center;
+    font-family: "Vazir", sans-serif;
 }
 
 .info-box i {
@@ -115,14 +58,14 @@ body {
     flex-shrink: 0;
 }
 
-/*بازگشت به صفحه قبل*/
+/* بازگشت به صفحه قبل */
 .back-to-login, .back-to-signup {
     display: block;
     font-size: 14px;
     font-weight: 600;
     color: var(--primary);
     text-decoration: none;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .back-to-login:hover, .back-to-signup:hover {
@@ -130,7 +73,7 @@ body {
     text-decoration: underline;
 }
 
-/*دکمه بازگشت به صفحه قبل*/
+/* دکمه بازگشت به صفحه قبل */
 .login-btn {
     display: inline-flex;
     align-items: center;
@@ -138,11 +81,11 @@ body {
     padding: 14px 28px;
     background-color: var(--primary);
     color: #FFFFFF;
-    border-radius: var(--radius);
+    border-radius: 8px;
     font-size: 15px;
     font-weight: 600;
     text-decoration: none;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     width: 100%;
 }
 

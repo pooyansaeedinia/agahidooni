@@ -8,6 +8,7 @@
 
 {# css #}
 {% block css %}
+    <link rel="stylesheet" href="{% static "css/authentication.css" %}">
     <link rel="stylesheet" href="{% static "css/check_email.css" %}">
 {% endblock css %}
 
@@ -18,16 +19,18 @@
 
 {# content #}
 {% block content %}
-    <section class="check-email-section">
-        <!--آیکون-->
-        <div class="icon-wrapper">
-            <i class="bi bi-x-circle-fill"></i>
-        </div>
-        <h2>تأیید ایمیل ناموفق بود</h2>
-        <p class="desc">
-            ما نتوانستیم آدرس ایمیل شما را تأیید کنیم<br>
-            لطفاً بررسی کنید که آیا لینک منقضی شده است یا اشتباه وارد شده است
-        </p>
-        <a href="{% url "accounts:signup" %}" class="back-to-signup">تلاش مجدد</a>
-    </section>
+    <div class="auth-wrapper">
+        <section class="check-email-section">
+            <!--آیکون-->
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+            <h2>تأیید ایمیل ناموفق بود</h2>
+            <p class="desc">
+                ما نتوانستیم آدرس ایمیل شما را تایید کنیم<br>
+                لطفاً بررسی کنید که آیا لینک منقضی شده است یا اشتباه وارد شده است
+            </p>
+            <a href="{% url "accounts:signup" %}" class="back-to-signup">تلاش مجدد</a>
+        </section>
+    </div>
 {% endblock content %}
