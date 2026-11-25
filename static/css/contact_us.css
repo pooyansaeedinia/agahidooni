@@ -1,66 +1,13 @@
-/*فونت وزیر*/
-@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
-
-/*رنگ های پروزه در حالت Light mode*/
-:root {
-    --primary: #087F72;
-    --primary-hover: #06665C;
-    --primary-tint: #E0F2EF;
-    --bg-color: #F5F7F7;
-    --surface: #FFFFFF;
-    --text-primary: #172A2A;
-    --text-secondary: #647474;
-    --border: #E1E8E7;
-    --success: #15803D;
-    --info-bg: #E0F2EF;
-    --info-text: #06665C;
-    --danger: #B91C1C;
-    --font-family: 'Vazirmatn', Tahoma, sans-serif;
-    --radius: 8px;
-    --transition: all 0.3s ease;
-    --meta-data: #FF8A3D
-}
-
-/*رنگ های پروژه در حالت Dark mode*/
-@media (prefers-color-scheme: dark) {
-    :root {
-        --primary: #63D2BE;
-        --primary-hover: #85E0D0;
-        --primary-tint: #203B36;
-        --bg-color: #111C1B;
-        --surface: #1A2927;
-        --text-primary: #E6F0ED;
-        --text-secondary: #9BAEAA;
-        --border: #30413E;
-        --info-bg: #203B36;
-        --info-text: #85E0D0;
-    }
-}
-
-/*ستایل های عمومی*/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: var(--font-family) !important;
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-primary);
-    min-height: 100vh;
-    direction: rtl;
-}
-
-/*کانتینر تماس با ما*/
+/*کانتینر اصلی*/
 .contact-container {
-    max-width: 1300px;
+    max-width: 1200px;
     margin: 30px auto;
+    padding: 0 20px;
 }
 
 /*بنر بالای صفحه*/
 .page-banner {
-    background: linear-gradient(135deg, #087F72 0%, #0a9c8c 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, #0a9c8c 100%);
     border-radius: 20px;
     padding: 35px 40px;
     margin-bottom: 35px;
@@ -72,7 +19,7 @@ body {
     overflow: hidden;
 }
 
-/*استایل دایره ی درون بنر*/
+/*استایل دایره در بنر صفحه*/
 .page-banner::before {
     content: '';
     position: absolute;
@@ -85,7 +32,7 @@ body {
     pointer-events: none;
 }
 
-/*اآیکون بنر*/
+/*آیکون درون بنر*/
 .banner-icon {
     width: 80px;
     height: 80px;
@@ -115,20 +62,20 @@ body {
     line-height: 1.7;
 }
 
-/*گرید تماس با ما*/
+/* گرید تماس با ما */
 .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1.6fr; /* ستون فرم پهن‌تر */
-    gap: 40px; /* فاصله بیشتر بین دو ستون */
+    grid-template-columns: 1fr 1.6fr;
+    gap: 40px;
     align-items: start;
 }
 
-/*اطلاعات تماس*/
+/* اطلاعات تماس */
 .contact-info {
     background-color: var(--surface);
     border: 1px solid var(--border);
     border-radius: 20px;
-    padding: 40px; /* پدینگ جادار */
+    padding: 40px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
@@ -203,7 +150,7 @@ body {
 .social-links a {
     width: 42px;
     height: 42px;
-    background: var(--bg-color);
+    background: var(--bg);
     color: var(--text-secondary);
     border-radius: 50%;
     display: flex;
@@ -226,7 +173,7 @@ body {
     background-color: var(--surface);
     border: 1px solid var(--border);
     border-radius: 20px;
-    padding: 40px; /* پدینگ جادار */
+    padding: 40px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
@@ -261,7 +208,7 @@ body {
 }
 
 .required {
-    color: var(--danger);
+    color: var(--color-danger);
 }
 
 .form-group input, .form-group textarea {
@@ -269,7 +216,6 @@ body {
     padding: 14px 18px;
     border: 1.5px solid var(--primary-tint);
     border-radius: 10px;
-    font-family: var(--font-family, inherit);
     font-size: 15px;
     background-color: var(--surface);
     color: var(--text-primary);
@@ -303,7 +249,6 @@ body {
     color: #FFFFFF;
     border: none;
     border-radius: 12px;
-    font-family: var(--font-family);
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -316,7 +261,7 @@ body {
     box-shadow: 0 6px 15px rgba(8, 127, 114, 0.2);
 }
 
-/*تست نوتیفیکیشن*/
+/*نوتیفیکیشن*/
 .toast-notification {
     position: fixed;
     top: -120px;
@@ -374,7 +319,6 @@ body {
     line-height: 1.5;
 }
 
-/*دکمه بستن*/
 .toast-close {
     background: none;
     border: none;
@@ -382,12 +326,12 @@ body {
     cursor: pointer;
     font-size: 16px;
     padding: 4px;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     flex-shrink: 0;
 }
 
 .toast-close:hover {
-    color: var(--danger);
+    color: var(--color-danger);
     transform: rotate(90deg);
 }
 
@@ -421,7 +365,8 @@ body {
         font-size: 20px;
     }
 
-    .contact-info, .contact-form-wrapper {
+    .contact-info,
+    .contact-form-wrapper {
         padding: 24px 20px;
     }
 
@@ -429,7 +374,8 @@ body {
         gap: 20px;
     }
 
-    .form-group input, .form-group textarea {
+    .form-group input,
+    .form-group textarea {
         padding: 12px 14px;
         font-size: 14px;
     }

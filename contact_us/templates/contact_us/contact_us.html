@@ -3,7 +3,6 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static "css/contact_us.css" %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 {% endblock css %}
 
 {% block title %}
@@ -17,13 +16,13 @@
             <div class="toast-notification active" id="toastNotification">
                 <div class="toast-icon">
                     {% if message.tags == 'success' %}
-                        <i class="bi bi-check-circle-fill"
+                        <i class="fa-solid fa-circle-check"
                            style="color: var(--success);"></i>
                     {% elif message.tags == 'error' or message.tags == 'danger' %}
-                        <i class="bi bi-exclamation-circle-fill"
+                        <i class="fa-solid fa-circle-exclamation"
                            style="color: var(--danger);"></i>
                     {% else %}
-                        <i class="bi bi-info-circle-fill"
+                        <i class="fa-solid fa-circle-info"
                            style="color: var(--primary);"></i>
                     {% endif %}
                 </div>
@@ -43,7 +42,7 @@
                 </div>
 
                 <button type="button" class="toast-close" id="toastClose">
-                    <i class="bi bi-x-lg"></i>
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
         {% endfor %}
@@ -52,7 +51,7 @@
         <!--بنر بالای صفحه-->
         <div class="page-banner">
             <div class="banner-icon">
-                <i class="bi bi-headset"></i>
+                <i class="fa-solid fa-headset"></i>
             </div>
             <div class="banner-text">
                 <h1>تماس با ما</h1>
@@ -68,21 +67,21 @@
 
                 <ul class="contact-list">
                     <li>
-                        <div class="icon-box"><i class="bi bi-geo-alt"></i></div>
+                        <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
                         <div>
                             <strong>آدرس:</strong>
                             <span>تهران، خیابان ولیعصر، کوچه بهار، پلاک 12</span>
                         </div>
                     </li>
                     <li>
-                        <div class="icon-box"><i class="bi bi-telephone"></i></div>
+                        <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
                         <div>
                             <strong>تلفن:</strong>
                             <span>021-12345678</span>
                         </div>
                     </li>
                     <li>
-                        <div class="icon-box"><i class="bi bi-envelope"></i></div>
+                        <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
                         <div>
                             <strong>ایمیل:</strong>
                             <span>support@agahidooni.com</span>
@@ -98,15 +97,15 @@
                 </ul>
                 <!--شبکه‌های اجتماعی-->
                 <div class="social-links">
-                    <a href="#" aria-label="اینستاگرام"><i class="bi bi-instagram"></i></a>
-                    <a href="#" aria-label="تلگرام"><i class="bi bi-telegram"></i></a>
-                    <a href="#" aria-label="واتس‌اپ"><i class="bi bi-whatsapp"></i></a>
-                    <a href="#" aria-label="لینکدین"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" aria-label="واتس‌اپ"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" aria-label="لینکدین"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
             </aside>
             <!--فرم تماس با ما-->
             <section class="contact-form-wrapper">
-                <h2><i class="bi bi-chat-dots"></i> ارسال پیام</h2>
+                <h2><i class="fa-solid fa-comments"></i> ارسال پیام</h2>
                 <p class="info-desc">فرم زیر را پر کنید و پیام خود را برای ما ارسال کنید.</p>
 
                 <form action="{% url "contact_us:contact-us" %}" method="POST" class="contact-form" id="contactForm">
@@ -131,7 +130,7 @@
                     <!--دکمه ارسال پیام-->
                     <div class="form-actions">
                         <button type="submit" class="btn-submit">
-                            <i class="bi bi-send"></i> ارسال پیام
+                            <i class="fa-solid fa-paper-plane"></i> ارسال پیام
                         </button>
                     </div>
                 </form>
